@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@klazzroom/client-common-ui-layout": [
+        "libs/client/common/ui/layout/src/index.ts"
+      ],
+      "@klazzroom/client-common-ui-navbar": [
+        "libs/client/common/ui/navbar/src/index.ts"
+      ],
+      "@klazzroom/client-portal-sidebar-teacher": [
+        "libs/client/portal/sidebars/teacher/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
