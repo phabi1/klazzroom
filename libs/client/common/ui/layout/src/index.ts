@@ -1,1 +1,2 @@
-export * from './lib/client-common-lui-ayout.module';
+export * from './lib/client-common-ui-ayout.module';
+export * from './lib/containers/layout/layout.component';

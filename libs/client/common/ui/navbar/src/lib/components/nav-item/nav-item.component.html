@@ -1,0 +1,9 @@
+<a [routerLink]="item.to" class="nav-link">
+  <span class="flex">
+    <span *ngIf="item.icon">{{ item.icon }}</span>
+    <span>
+      {{ item.title }}
+    </span>
+  </span>
+  <span *ngIf="item.badge && item.badge.text"> {{ item.badge.text }}</span>
+</a>

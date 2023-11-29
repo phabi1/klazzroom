@@ -1,0 +1,13 @@
+<div class="nav-link">{{ item.title }}</div>
+<div class="nav-children">
+    <ng-container *ngFor="let link of item.children">
+        <klazzroom-client-common-ui-navbar-nav-item
+        *ngIf="link.type === 'item'"
+        [item]="link"
+        ></klazzroom-client-common-ui-navbar-nav-item>
+        <klazzroom-client-common-ui-navbar-nav-folder
+        *ngIf="link.type === 'folder'"
+        [item]="link"
+        ></klazzroom-client-common-ui-navbar-nav-folder>
+    </ng-container>
+</div>

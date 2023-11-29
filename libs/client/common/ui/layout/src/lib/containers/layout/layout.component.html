@@ -1,0 +1,9 @@
+<mat-sidenav-container class="h-full">
+    <mat-sidenav mode="side" opened class="w-60">
+        <div>Klazzroom</div>
+        <ng-container [ngComponentOutlet]="sidebarType"></ng-container>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

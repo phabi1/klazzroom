@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  angulardevkitarchitect:
+    image: angulardevkitarchitect
+    build:
+      context: node_modules/@angular-devkit/architect
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000

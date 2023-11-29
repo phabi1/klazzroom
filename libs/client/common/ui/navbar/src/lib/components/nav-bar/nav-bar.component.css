@@ -1,0 +1,7 @@
+klazzroom-client-common-ui-navbar-nav-bar {
+    @apply text-sm;
+}
+
+klazzroom-client-common-ui-navbar-nav-bar .nav-link {
+    @apply flex justify-between px-4 py-2;
+}

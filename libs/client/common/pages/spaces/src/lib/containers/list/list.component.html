@@ -1,0 +1,8 @@
+<h1>My Spaces</h1>
+<div>
+  <div *ngFor="let space of spaces$ | async;">
+    <a [routerLink]="['/space', space.id]">
+      {{ space.title }}
+    </a>
+  </div>
+</div>

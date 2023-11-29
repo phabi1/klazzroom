@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  client-portal-web:
+    image: klazzroom/base
+    environment:
+      NODE_ENV: development
+    command: ["npm", "run", "nx", "run", "client-portal-web:serve"]
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    networks:
+      - public
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.klazzroom-client-portal-web.rule=Host(`portal-klazzroom.docker.localhost`)
+      - traefik.http.routers.klazzroom-client-portal-web.entrypoints=web
+      - traefik.http.routers.klazzroom-client-portal-webs.rule=Host(`portal-klazzroom.docker.localhost`)
+      - traefik.http.routers.klazzroom-client-portal-webs.entrypoints=websecure
+      - traefik.http.routers.klazzroom-client-portal-webs.tls=true
+      - traefik.http.services.klazzroom-client-portal-web.loadbalancer.server.port=4200
+
+networks:
+  public:
+    name: traefik_webgateway
+    external: true
+
+volumes:
+  node_modules:
+
+ 

@@ -1,0 +1,11 @@
+<div *ngIf="currentSpace$ | async as currentSpace">
+  <div>
+    {{ currentSpace.title }}
+  </div>
+  <div>
+    <a routerLink="/spaces">change</a>
+  </div>
+</div>
+<klazzroom-client-common-ui-navbar-nav-bar
+  [links]="links"
+></klazzroom-client-common-ui-navbar-nav-bar>

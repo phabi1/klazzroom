@@ -1,0 +1,16 @@
+{
+    "links": [
+        {
+            "type": "group",
+            "title": "Class",
+            "to": "",
+            "children": [
+                {
+                    "type": "item",
+                    "title": "Students",
+                    "to": "/space/:space/students"
+                }
+            ]
+        }
+    ]
+}

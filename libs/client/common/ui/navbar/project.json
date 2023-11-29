@@ -2,7 +2,7 @@
   "name": "client-common-ui-navbar",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/common/ui/navbar/src",
-  "prefix": "klazzroom",
+  "prefix": "klazzroom-client-common-ui-navbar",
   "tags": [],
   "projectType": "library",
   "targets": {

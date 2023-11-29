@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@klazzroom/client-common-pages-space-dashboard": [
+        "libs/client/common/pages/space/dashboard/src/index.ts"
+      ],
+      "@klazzroom/client-common-pages-space-teacher-students": [
+        "libs/client/common/pages/space/teacher/students/src/index.ts"
+      ],
+      "@klazzroom/client-common-pages-spaces": [
+        "libs/client/common/pages/spaces/src/index.ts"
+      ],
+      "@klazzroom/client-common-stores-spaces": [
+        "libs/client/common/stores/spaces/src/index.ts"
+      ],
       "@klazzroom/client-common-ui-layout": [
         "libs/client/common/ui/layout/src/index.ts"
       ],
