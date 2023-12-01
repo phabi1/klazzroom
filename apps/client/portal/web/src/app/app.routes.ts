@@ -1,17 +1,19 @@
 import { Routes } from '@angular/router';
-import { selectSpaceGuard } from '@klazzroom/client-common-stores-spaces';
+import { selectSpaceGuard } from '@klazzroom/client-portal-stores-spaces';
 import { LayoutComponent } from '@klazzroom/client-common-ui-layout';
+import { IsLoggedGuard } from './guards/is-logged.guard';
 
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [IsLoggedGuard],
     component: LayoutComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'spaces' },
       {
         path: 'spaces',
         loadChildren: () =>
-          import('@klazzroom/client-common-pages-spaces').then(
+          import('@klazzroom/client-portal-pages-spaces').then(
             (m) => m.ClientCommonPagesSpacesModule
           ),
       },
@@ -22,14 +24,14 @@ export const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('@klazzroom/client-common-pages-space-dashboard').then(
+              import('@klazzroom/client-portal-pages-space-dashboard').then(
                 (m) => m.ClientCommonPagesDashboardModule
               ),
           },
           {
             path: 'students',
             loadChildren: () =>
-              import('@klazzroom/client-common-pages-space-teacher-students').then((m) => m.StudentsModule),
+              import('@klazzroom/client-portal-pages-space-teacher-students').then((m) => m.StudentsModule),
           },
         ],
       },

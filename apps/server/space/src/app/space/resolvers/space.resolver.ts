@@ -1,34 +1,23 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { SpaceService } from '../space.service';
-import { Space } from '../entities/space.entity';
-import { CreateTeacherSpaceInput } from '../inputs/create-teacher-space.input';
-import { UpdateTeacherSpaceInput } from '../inputs/update-teacher-space.input';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { SpaceService } from '../services/space.service';
+import { SpaceResult } from '../types/space-result.type';
+import { CurrentUser } from '@klazzroom/server-common-auth';
 
-@Resolver(() => Space)
+@Resolver()
 export class SpaceResolver {
   constructor(private readonly spaceService: SpaceService) {}
 
-  @Mutation(() => Space)
-  createSpace(@Args('input') createSpaceInput: CreateTeacherSpaceInput) {
-    return this.spaceService.create(createSpaceInput);
+  @Query(() => [SpaceResult], { name: 'spaces', nullable: 'items' })
+  findAll(@CurrentUser() uid: string) {
+    return this.spaceService.findByUser(uid);
   }
 
-  @Query(() => [Space], { name: 'space' })
-  findAll() {
-    return this.spaceService.findAll();
-  }
-
-  @Query(() => Space, { name: 'space' })
+  @Query(() => SpaceResult, { name: 'space' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.spaceService.findOne(id);
   }
 
-  @Mutation(() => Space)
-  updateSpace(@Args('input') updateSpaceInput: UpdateTeacherSpaceInput) {
-    return this.spaceService.update(updateSpaceInput.id, updateSpaceInput);
-  }
-
-  @Mutation(() => Space)
+  @Mutation(() => SpaceResult)
   removeSpace(@Args('id', { type: () => String }) id: string) {
     return this.spaceService.remove(id);
   }

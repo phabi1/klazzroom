@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpaceSelectors } from '@klazzroom/client-common-stores-spaces';
+import { SpaceSelectors } from 'libs/client/portal/stores/spaces/src';
 import { NavLink } from '@klazzroom/client-common-ui-navbar';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs';

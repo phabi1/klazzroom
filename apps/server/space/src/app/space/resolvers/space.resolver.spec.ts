@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SpaceResolver } from './space.resolver';
-import { SpaceService } from '../space.service';
+import { SpaceService } from '../services/space.service';
 
 describe('SpaceResolver', () => {
   let resolver: SpaceResolver;

@@ -10,22 +10,25 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2020", "dom", "esnext.asynciterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@klazzroom/client-common-pages-space-dashboard": [
-        "libs/client/common/pages/space/dashboard/src/index.ts"
+      "@klazzroom/client-portal-pages-space-dashboard": [
+        "libs/client/portal/pages/space/dashboard/src/index.ts"
       ],
-      "@klazzroom/client-common-pages-space-teacher-students": [
-        "libs/client/common/pages/space/teacher/students/src/index.ts"
+      "@klazzroom/client-portal-pages-space-teacher-students": [
+        "libs/client/portal/pages/space/teacher/students/src/index.ts"
       ],
-      "@klazzroom/client-common-pages-spaces": [
-        "libs/client/common/pages/spaces/src/index.ts"
+      "@klazzroom/client-portal-pages-spaces": [
+        "libs/client/portal/pages/spaces/src/index.ts"
       ],
-      "@klazzroom/client-common-stores-spaces": [
-        "libs/client/common/stores/spaces/src/index.ts"
+      "@klazzroom/client-portal-stores-space-teacher-students": [
+        "libs/client/portal/stores/space/teacher/students/src/index.ts"
+      ],
+      "@klazzroom/client-portal-stores-spaces": [
+        "libs/client/portal/stores/spaces/src/index.ts"
       ],
       "@klazzroom/client-common-ui-layout": [
         "libs/client/common/ui/layout/src/index.ts"
@@ -35,8 +38,10 @@
       ],
       "@klazzroom/client-portal-sidebar-teacher": [
         "libs/client/portal/sidebars/teacher/src/index.ts"
-      ]
-    }
+      ],
+      "@klazzroom/server-common-auth": ["libs/server/common/auth/src/index.ts"]
+    },
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "tmp"]
 }
