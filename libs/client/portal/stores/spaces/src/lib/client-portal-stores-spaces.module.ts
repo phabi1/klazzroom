@@ -8,4 +8,4 @@ import { SpaceEffects } from './effects/space.effects';
 @NgModule({
   imports: [CommonModule, StoreModule.forFeature(fromSpace.spacesFeatureKey, fromSpace.reducer), EffectsModule.forFeature([SpaceEffects])],
 })
-export class ClientCommonStoresSpacesModule {}
+export class ClientPortalStoresSpacesModule {}

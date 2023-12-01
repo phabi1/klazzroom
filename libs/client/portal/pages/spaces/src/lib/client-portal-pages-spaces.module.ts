@@ -8,4 +8,4 @@ import { ListComponent } from './containers/list/list.component';
   imports: [CommonModule, RouterModule.forChild(clientCommonPagesSpacesRoutes)],
   declarations: [ListComponent],
 })
-export class ClientCommonPagesSpacesModule {}
+export class ClientPortalPagesSpacesModule {}

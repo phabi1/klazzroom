@@ -2,11 +2,13 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
 import { Student } from '../models/student.model';
+import { Grade } from '../models/grade.model';
 
-export const StudentActions = createActionGroup({
+export const SpaceTeacherStudentsActions = createActionGroup({
   source: 'Student/API',
   events: {
-    'Load Students': props<{ students: Student[] }>(),
+    Init: props<{ course: string }>(),
+    'Init Complete': props<{ grades: Grade[]; students: Student[] }>(),
     'Add Student': props<{ student: Student }>(),
     'Upsert Student': props<{ student: Student }>(),
     'Add Students': props<{ students: Student[] }>(),
@@ -16,5 +18,5 @@ export const StudentActions = createActionGroup({
     'Delete Student': props<{ id: string }>(),
     'Delete Students': props<{ ids: string[] }>(),
     'Clear Students': emptyProps(),
-  }
+  },
 });

@@ -51,6 +51,9 @@ services:
       - traefik.http.routers.klazzroom-api-gateways.entrypoints=websecure
       - traefik.http.routers.klazzroom-api-gateways.tls=true
       - traefik.http.services.klazzroom-api-gateway.loadbalancer.server.port=3000
+    extra_hosts:
+      - auth.docker.localhost:${TRAEFIK_IP}
+
   space-server:
     image: klazzroom/base
     environment:

@@ -15,6 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@klazzroom/client-common-ui-layout": [
+        "libs/client/common/ui/layout/src/index.ts"
+      ],
+      "@klazzroom/client-common-ui-navbar": [
+        "libs/client/common/ui/navbar/src/index.ts"
+      ],
       "@klazzroom/client-portal-pages-space-dashboard": [
         "libs/client/portal/pages/space/dashboard/src/index.ts"
       ],
@@ -24,20 +30,14 @@
       "@klazzroom/client-portal-pages-spaces": [
         "libs/client/portal/pages/spaces/src/index.ts"
       ],
+      "@klazzroom/client-portal-sidebar-teacher": [
+        "libs/client/portal/sidebars/teacher/src/index.ts"
+      ],
       "@klazzroom/client-portal-stores-space-teacher-students": [
         "libs/client/portal/stores/space/teacher/students/src/index.ts"
       ],
       "@klazzroom/client-portal-stores-spaces": [
         "libs/client/portal/stores/spaces/src/index.ts"
-      ],
-      "@klazzroom/client-common-ui-layout": [
-        "libs/client/common/ui/layout/src/index.ts"
-      ],
-      "@klazzroom/client-common-ui-navbar": [
-        "libs/client/common/ui/navbar/src/index.ts"
-      ],
-      "@klazzroom/client-portal-sidebar-teacher": [
-        "libs/client/portal/sidebars/teacher/src/index.ts"
       ],
       "@klazzroom/server-common-auth": ["libs/server/common/auth/src/index.ts"]
     },

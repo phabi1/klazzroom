@@ -1,1 +1,11 @@
-<p>list works!</p>
+<mat-drawer-container class="h-full">
+  <mat-drawer mode="side" opened>
+    <klazzroom-client-portal-pages-space-teacher-students-student-list
+      *ngIf="students$ | async as students"
+      [students]="students"
+    ></klazzroom-client-portal-pages-space-teacher-students-student-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

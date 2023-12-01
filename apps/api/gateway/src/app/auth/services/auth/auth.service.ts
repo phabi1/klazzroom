@@ -6,21 +6,20 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { readFile } from 'fs/promises';
-import { verify } from 'jsonwebtoken';
+import { decode } from 'jsonwebtoken';
 import { join } from 'path';
-import {
-  INVALID_AUTH_TOKEN,
-  INVALID_BEARER_TOKEN,
-} from '../../auth.constants';
+import { INVALID_AUTH_TOKEN, INVALID_BEARER_TOKEN } from '../../auth.constants';
 import { AuthIdentity } from '../../models/auth-identity.model';
 
 @Injectable()
 export class AuthService implements OnModuleInit {
+  private endpoint = 'https://auth.docker.localhost';
+  private realm = 'klazzroom';
 
   private publicKey: string;
 
   async onModuleInit() {
-    await this.loadPublicKey();
+    // await this.loadPublicKey();
   }
 
   handleAuth({ req }) {
@@ -34,6 +33,7 @@ export class AuthService implements OnModuleInit {
         };
       }
     } catch (err) {
+      console.log(err);
       throw new UnauthorizedException(
         'User unauthorized with invalid authorization Headers'
       );
@@ -52,7 +52,7 @@ export class AuthService implements OnModuleInit {
   }
 
   private decodeToken(tokenString: string): AuthIdentity {
-    const decoded = verify(tokenString, this.publicKey) as AuthIdentity;
+    const decoded = decode(tokenString) as AuthIdentity;
     if (!decoded) {
       throw new HttpException(
         { message: INVALID_AUTH_TOKEN },
@@ -62,16 +62,20 @@ export class AuthService implements OnModuleInit {
     return decoded;
   }
 
-  
-
   /**
    * Load public key
    */
-  private async loadPublicKey (): Promise<void> {
+  private async loadPublicKey(): Promise<void> {
+    const url = `${this.endpoint}/realms/${this.realm}/protocol/openid-connect/certs`;
+
+    const res = await fetch(url);
+    const jwts = await res.json();
+
+    console.log(jwts);
+
     this.publicKey = await readFile(
       join(process.cwd(), 'certs', 'klazzroom-api-gateway.pem'),
       'utf-8'
     );
   }
-
 }

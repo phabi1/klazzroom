@@ -8,4 +8,4 @@ import { PageComponent } from './containers/page/page.component';
   imports: [CommonModule, RouterModule.forChild(dashboardRoutes)],
   declarations: [PageComponent],
 })
-export class ClientCommonPagesDashboardModule {}
+export class ClientPortalPagesDashboardModule {}

@@ -12,6 +12,7 @@ const GET_SPACES_GQL = gql`
       ... on TeacherSpace {
         id
         title
+        course
       }
     }
   }

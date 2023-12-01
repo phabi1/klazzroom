@@ -14,7 +14,7 @@ export const routes: Routes = [
         path: 'spaces',
         loadChildren: () =>
           import('@klazzroom/client-portal-pages-spaces').then(
-            (m) => m.ClientCommonPagesSpacesModule
+            (m) => m.ClientPortalPagesSpacesModule
           ),
       },
       {
@@ -25,13 +25,13 @@ export const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('@klazzroom/client-portal-pages-space-dashboard').then(
-                (m) => m.ClientCommonPagesDashboardModule
+                (m) => m.ClientPortalPagesDashboardModule
               ),
           },
           {
             path: 'students',
             loadChildren: () =>
-              import('@klazzroom/client-portal-pages-space-teacher-students').then((m) => m.StudentsModule),
+              import('@klazzroom/client-portal-pages-space-teacher-students').then((m) => m.SpaceTeacherStudentsModule),
           },
         ],
       },

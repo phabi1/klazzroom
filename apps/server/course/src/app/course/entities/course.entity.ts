@@ -1,6 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Student, StudentSchema } from './student.entity';
+import { Grade } from '../../grade/entities/grade.entity';
 
 @ObjectType()
 @Schema({ toJSON: { virtuals: true } })
@@ -12,6 +13,7 @@ export class Course {
   @Prop()
   days: string[];
 
+  @Field(() => [Grade], {description: 'Grades in the course'})
   @Prop()
   grades: string[];
 
