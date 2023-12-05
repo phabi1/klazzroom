@@ -4,6 +4,7 @@ import { selectSpaceGuard } from '@klazzroom/client-portal-stores-spaces';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 
 export const routes: Routes = [
+ 
   {
     path: '',
     canActivate: [IsLoggedGuard],
@@ -40,6 +41,13 @@ export const routes: Routes = [
             loadChildren: () =>
               import('@klazzroom/client-space-teacher-timetable').then(
                 (m) => m.ClientSpaceTeacherTimetableModule
+              ),
+          },
+          {
+            path: 'age-structure',
+            loadChildren: () =>
+              import('@klazzroom/client-portal-pages-space-teacher-age-structure').then(
+                (m) => m.ClientPortalPagesSpaceTeacherAgeStructureModule
               ),
           },
         ],

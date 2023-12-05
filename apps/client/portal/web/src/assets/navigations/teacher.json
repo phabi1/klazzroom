@@ -38,6 +38,11 @@
             "children": [
                 {
                     "type": "item",
+                    "title": "Age structure",
+                    "to": "/space/:space/age-structure"
+                }, 
+                {
+                    "type": "item",
                     "title": "Stickies",
                     "to": "/space/:space/stickies"
                 }
