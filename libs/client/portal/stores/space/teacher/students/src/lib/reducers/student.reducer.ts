@@ -1,8 +1,7 @@
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Student } from '../models/student.model';
+import { Grade, Student } from '../../graphql/generated';
 import { SpaceTeacherStudentsActions } from '../actions/student.actions';
-import { Grade } from '../models/grade.model';
 
 export const spaceTeacherStudentsFeatureKey = 'spaceTeacherStudents';
 
@@ -10,6 +9,7 @@ export interface State extends EntityState<Student> {
   loaded: boolean;
   course: string | null;
   grades: Grade[];
+  currentId: string | null;
 }
 
 export const adapter: EntityAdapter<Student> = createEntityAdapter<Student>();
@@ -18,33 +18,26 @@ export const initialState: State = adapter.getInitialState({
   loaded: false,
   course: null,
   grades: [],
+  currentId: null,
 });
 
 export const reducer = createReducer(
   initialState,
-  on(SpaceTeacherStudentsActions.addStudent, (state, action) =>
+
+  on(SpaceTeacherStudentsActions.addStudentSuccess, (state, action) =>
     adapter.addOne(action.student, state)
   ),
-  on(SpaceTeacherStudentsActions.upsertStudent, (state, action) =>
-    adapter.upsertOne(action.student, state)
-  ),
-  on(SpaceTeacherStudentsActions.addStudents, (state, action) =>
-    adapter.addMany(action.students, state)
-  ),
-  on(SpaceTeacherStudentsActions.upsertStudents, (state, action) =>
-    adapter.upsertMany(action.students, state)
-  ),
-  on(SpaceTeacherStudentsActions.updateStudent, (state, action) =>
+  on(SpaceTeacherStudentsActions.updateStudentSuccess, (state, action) =>
     adapter.updateOne(action.student, state)
   ),
-  on(SpaceTeacherStudentsActions.updateStudents, (state, action) =>
-    adapter.updateMany(action.students, state)
-  ),
-  on(SpaceTeacherStudentsActions.deleteStudent, (state, action) =>
+  on(SpaceTeacherStudentsActions.deleteStudentSuccess, (state, action) =>
     adapter.removeOne(action.id, state)
   ),
-  on(SpaceTeacherStudentsActions.deleteStudents, (state, action) =>
-    adapter.removeMany(action.ids, state)
+  on(SpaceTeacherStudentsActions.init, (state, action) =>
+    adapter.removeAll({
+      ...state,
+      course: action.course,
+    })
   ),
   on(SpaceTeacherStudentsActions.initComplete, (state, action) =>
     adapter.setAll(action.students, {
@@ -53,8 +46,12 @@ export const reducer = createReducer(
       grades: action.grades,
     })
   ),
-  on(SpaceTeacherStudentsActions.clearStudents, (state) =>
-    adapter.removeAll(state)
+  on(
+    SpaceTeacherStudentsActions.selectStudent,
+    (state, action): State => ({
+      ...state,
+      currentId: action.id,
+    })
   )
 );
 

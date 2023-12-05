@@ -1,0 +1,17 @@
+<div class="p-4">
+  <div *ngIf="selectedStudent$ | async as selectedStudent">
+    <div class="flex justify-between">
+      <div>
+        <h1>
+          {{ selectedStudent.firstname + ' ' + selectedStudent.lastname }}
+        </h1>
+      </div>
+      <div>
+        <a mat-raised-button color="primary" routerLink="./edit">Edit</a>
+      </div>
+    </div>
+    <div>
+      {{ selectedStudent.birthday | date: 'mediumDate' }}
+    </div>
+  </div>
+</div>

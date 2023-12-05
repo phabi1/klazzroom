@@ -6,6 +6,12 @@
   "tags": [],
   "projectType": "library",
   "targets": {
+    "graphql": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "graphql-codegen --config graphql.config.js --project client-portal-stores-space-teacher-students"
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

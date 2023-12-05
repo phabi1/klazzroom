@@ -1,9 +1,21 @@
 <mat-drawer-container class="h-full">
-  <mat-drawer mode="side" opened>
-    <klazzroom-client-portal-pages-space-teacher-students-student-list
-      *ngIf="students$ | async as students"
-      [students]="students"
-    ></klazzroom-client-portal-pages-space-teacher-students-student-list>
+  <mat-drawer mode="side" opened class="w-60">
+    <div class="pb-12">
+      <div class="p-2 border-b">
+        <klazzroom-client-portal-pages-space-teacher-students-search
+          (search)="onSearch($event)"
+        ></klazzroom-client-portal-pages-space-teacher-students-search>
+      </div>
+      <klazzroom-client-portal-pages-space-teacher-students-student-list
+        *ngIf="students$ | async as students"
+        [students]="students"
+      ></klazzroom-client-portal-pages-space-teacher-students-student-list>
+      <div class="p-2 absolute bottom-0 w-full border-t">
+        <a mat-raised-button color="primary" routerLink="./add" class="w-full"
+          >New student</a
+        >
+      </div>
+    </div>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>

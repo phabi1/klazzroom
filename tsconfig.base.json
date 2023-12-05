@@ -39,6 +39,9 @@
       "@klazzroom/client-portal-stores-spaces": [
         "libs/client/portal/stores/spaces/src/index.ts"
       ],
+      "@klazzroom/client-space-teacher-timetable": [
+        "libs/client/portal/pages/space/teacher/timetable/src/index.ts"
+      ],
       "@klazzroom/server-common-auth": ["libs/server/common/auth/src/index.ts"]
     },
     "allowSyntheticDefaultImports": true

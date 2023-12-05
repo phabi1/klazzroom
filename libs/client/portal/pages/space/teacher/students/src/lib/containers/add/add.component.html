@@ -1,0 +1,16 @@
+<div class="p-4">
+  <div class="mb-4 flex justify-between">
+    <div class="text-2xl">Add Student</div>
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="submit()"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+  <formly-form [form]="form" [fields]="fields" [model]="model"> </formly-form>
+</div>

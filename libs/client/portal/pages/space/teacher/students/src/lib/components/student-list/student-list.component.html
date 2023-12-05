@@ -1,4 +1,16 @@
-Students
-<div *ngFor="let student of students">
-{{ student.firstname + ' ' + student.lastname }}
+<div>
+  <a
+    *ngFor="let student of students"
+    [routerLink]="[student.id]"
+    [relativeTo]=""
+    class="flex border-b border-gray-200 hover:bg-gray-50 cursor-pointer"
+  >
+    <span class="w-1 mr-2" [ngClass]="student.sex.toLowerCase()"></span>
+    <span class="flex flex-col py-2">
+      <span>
+        {{ student.firstname + ' ' + student.lastname }}
+      </span>
+      <span class="text-xs text-gray-500">{{ student.grade.title }}</span>
+    </span>
+  </a>
 </div>

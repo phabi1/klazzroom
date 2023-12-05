@@ -6,7 +6,7 @@ services:
     networks:
       - private
     ports:
-      - 27017:27017
+      - 27018:27017
   rabbitmq:
     image: rabbitmq:3-management
     networks:

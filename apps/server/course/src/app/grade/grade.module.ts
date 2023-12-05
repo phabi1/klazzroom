@@ -5,7 +5,10 @@ import { GradeResolver } from './resolvers/grade.resolver';
 import { GradeService } from './services/grade.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'grade', schema: GradeSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: 'Grade', schema: GradeSchema }]),
+  ],
   providers: [GradeResolver, GradeService],
+  exports: [GradeService],
 })
 export class GradeModule {}

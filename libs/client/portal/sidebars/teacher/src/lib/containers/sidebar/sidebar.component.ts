@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { SpaceSelectors } from 'libs/client/portal/stores/spaces/src';
+import { Component } from '@angular/core';
 import { NavLink } from '@klazzroom/client-common-ui-navbar';
+import { SpaceSelectors } from '@klazzroom/client-portal-stores-spaces';
 import { Store } from '@ngrx/store';
-import { map, withLatestFrom } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { NavigationService } from '../../services/navigation.service';
 
 @Component({
@@ -10,26 +10,28 @@ import { NavigationService } from '../../services/navigation.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   currentSpace$ = this.store.select(SpaceSelectors.selectCurrentSpace);
-  links: NavLink[] = [];
+
+  links$ = this.store
+    .select(SpaceSelectors.selectCurrentSpaceId)
+    .pipe(
+      switchMap((space) =>
+        this.navigationService
+          .getLinks()
+          .pipe(map((links) => this.injectSpaceToLinks(space, links)))
+      )
+    );
 
   constructor(
     private store: Store,
-    private navigationService: NavigationService) {}
+    private navigationService: NavigationService
+  ) {}
 
-  ngOnInit(): void {
-    this.navigationService.getLinks()
-    .pipe(
-      withLatestFrom(this.store.select(SpaceSelectors.selectCurrentSpaceId)),
-      map(([links, space]) => this.injectSpaceToLinks(space, links))
-    )
-    .subscribe((links) => {
-      this.links = links;
-    });
-  }
-
-  private injectSpaceToLinks(space: string | null, links: NavLink[]): NavLink[] {
+  private injectSpaceToLinks(
+    space: string | null,
+    links: NavLink[]
+  ): NavLink[] {
     return links.map((link) => {
       let children: NavLink[] = [];
       if (link.children && link.children.length > 0) {
@@ -38,7 +40,7 @@ export class SidebarComponent implements OnInit {
       return {
         ...link,
         to: (link.to || '').replace(':space', space || ''),
-        children
+        children,
       };
     });
   }

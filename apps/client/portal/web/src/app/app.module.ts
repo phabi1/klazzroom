@@ -9,6 +9,8 @@ import { ClientPortalStoresSpacesModule } from '@klazzroom/client-portal-stores-
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
@@ -29,6 +31,10 @@ import initializeKeycloak from './initializers/keycloak.initializer';
     EffectsModule.forRoot([]),
     ClientPortalStoresSpacesModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     GraphQLModule,
   ],
   providers: [

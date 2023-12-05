@@ -1,12 +1,26 @@
-import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  ID,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { CourseService } from '../../services/course/course.service';
 import { Course } from '../../entities/course.entity';
 import { CreateCourseInput } from '../../dto/create-course.input';
 import { UpdateCourseInput } from '../../dto/update-course.input';
+import { Grade } from '../../../grade/entities/grade.entity';
+import { GradeService } from '../../../grade/services/grade.service';
 
 @Resolver(() => Course)
 export class CourseResolver {
-  constructor(private readonly courseService: CourseService) {}
+  constructor(
+    private readonly courseService: CourseService,
+    private readonly gradeService: GradeService
+  ) {}
 
   @Mutation(() => Course)
   createCourse(
@@ -35,5 +49,10 @@ export class CourseResolver {
   @Mutation(() => Course)
   removeCourse(@Args('id', { type: () => Int }) id: number) {
     return this.courseService.remove(id);
+  }
+
+  @ResolveField(() => [Grade])
+  grades(@Parent() course: Course) {
+    return this.gradeService.findByIds(course.grades);
   }
 }

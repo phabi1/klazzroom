@@ -1,6 +1,12 @@
 {
     "links": [
         {
+            "type": "item",
+            "title": "Dashboard",
+            "to": "/space/:space",
+            "icon": "dashboard"
+        },
+        {
             "type": "group",
             "title": "Class",
             "to": "",
@@ -8,7 +14,32 @@
                 {
                     "type": "item",
                     "title": "Students",
-                    "to": "/space/:space/students"
+                    "to": "/space/:space/students",
+                    "icon": "groups"
+                },
+                {
+                    "type": "item",
+                    "title": "Timetable",
+                    "to": "/space/:space/timetable",
+                    "icon": "schedule"
+                },
+                {
+                    "type": "item",
+                    "title": "Daily book",
+                    "to": "/space/:space/daily-book",
+                    "icon": "maps"
+                }
+            ]
+        },
+        {
+        "type": "group",
+            "title": "Toolbox",
+            "to": "",
+            "children": [
+                {
+                    "type": "item",
+                    "title": "Stickies",
+                    "to": "/space/:space/stickies"
                 }
             ]
         }

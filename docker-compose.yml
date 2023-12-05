@@ -1,12 +1,55 @@
 version: '3.4'
 
 services:
-  angulardevkitarchitect:
-    image: angulardevkitarchitect
-    build:
-      context: node_modules/@angular-devkit/architect
-      dockerfile: ./Dockerfile
+  postgres:
+    container_name: db
+    image: "postgres:14.4"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     environment:
-      NODE_ENV: production
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: keycloak
+      POSTGRES_HOST: postgres
+    networks:
+      - local
     ports:
-      - 3000:3000
+      - "5432:5432"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.0
+    command: ['start', '--optimized']
+    depends_on:
+      - "postgres"
+    environment:
+      JAVA_OPTS_APPEND: -Dkeycloak.profile.feature.upload_scripts=enabled
+      KC_DB_PASSWORD: postgres
+      KC_DB_URL: jdbc:postgresql://postgres/keycloak
+      KC_DB_USERNAME: postgres
+      KC_HEALTH_ENABLED: 'true'
+      KC_HTTP_ENABLED: 'true'
+      KC_METRICS_ENABLED: 'true'
+      KC_HOSTNAME: auth.klazzroom.fr
+      KC_HOSTNAME_PORT: 8080
+      KC_HOSTNAME_URL: https://auth.klazzroom.fr
+      KC_PROXY: reencrypt
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: P@s5word123!u
+    ports:
+      - "8080:8080"
+      - "8787:8787" # debug port
+    networks:
+      - local
+
+networks:
+  local:
+    name: local
+    driver: bridge
+
+volumes:
+  postgres_data:

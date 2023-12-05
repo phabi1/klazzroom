@@ -1,0 +1,48 @@
+<div class="p-4">
+  <h1 class="text-2xl font-bold">Timetable</h1>
+  <div class="mt-4">
+    <mwl-calendar-week-view
+      [dayStartHour]="8"
+      [dayEndHour]="16"
+      [viewDate]="viewDate"
+      [events]="events"
+      [headerTemplate]="timetableHeaderTpl"
+    ></mwl-calendar-week-view>
+  </div>
+</div>
+
+<ng-template
+  #timetableHeaderTpl
+  let-days="days"
+  let-locale="locale"
+  let-dayHeaderClicked="dayHeaderClicked"
+  let-eventDropped="eventDropped"
+  let-trackByWeekDayHeaderDate="trackByWeekDayHeaderDate"
+  let-dragEnter="dragEnter"
+>
+  <div class="cal-day-headers" role="row">
+    <div
+      class="cal-header"
+      *ngFor="let day of days; trackBy: trackByWeekDayHeaderDate"
+      [class.cal-past]="day.isPast"
+      [class.cal-future]="day.isFuture"
+      [class.cal-weekend]="day.isWeekend"
+      [ngClass]="day.cssClass"
+      (mwlClick)="dayHeaderClicked.emit({ day: day, sourceEvent: $event })"
+      mwlDroppable
+      dragOverClass="cal-drag-over"
+      (drop)="
+        eventDropped.emit({
+          event: $event.dropData.event,
+          newStart: day.date
+        })
+      "
+      (dragEnter)="dragEnter.emit({ date: day.date })"
+      tabindex="0"
+      role="columnheader"
+    >
+      <b>{{ day.date | calendarDate : 'weekViewColumnHeader' : locale }}</b
+      >
+    </div>
+  </div></ng-template
+>

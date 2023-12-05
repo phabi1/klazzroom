@@ -1,0 +1,11 @@
+.boy {
+    @apply bg-blue-400;
+}
+
+.girl {
+    @apply bg-pink-400;
+}
+
+.unknow {
+    @apply bg-gray-400;
+}

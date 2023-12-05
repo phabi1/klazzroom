@@ -1,5 +1,6 @@
+export { Student, Sex } from './graphql/generated';
 export * from './lib/actions/student.actions';
 export * from './lib/client-portal-stores-space-teacher-students.module';
-export * from './lib/models/student.model';
+export * from './lib/guards/select-student.guard';
 export * from './lib/reducers/student.reducer';
 export * as SpaceTeacherStudentsSelectors from './lib/selectors/student.selectors';

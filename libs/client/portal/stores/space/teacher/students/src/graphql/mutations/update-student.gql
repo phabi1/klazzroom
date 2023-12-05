@@ -1,0 +1,14 @@
+mutation UpdateStudent($id: ID!, $student: UpdateStudentInput!) {
+  updateStudent(id: $id, input: $student) {
+    id
+    firstname
+    lastname
+    grade {
+      id
+      title
+    }
+    birthday
+    sex
+    comments
+  }
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateGradeInput } from '../dto/create-grade.input';
 import { UpdateGradeInput } from '../dto/update-grade.input';
 import { Grade } from '../entities/grade.entity';
@@ -8,7 +8,7 @@ import { CourseNotFoundException } from '../../course/exceptions/course-not-foun
 
 @Injectable()
 export class GradeService {
-  constructor(@InjectModel('grade') private readonly model: Model<Grade>) {}
+  constructor(@InjectModel('Grade') private readonly model: Model<Grade>) {}
 
   create(createGradeInput: CreateGradeInput): Promise<Grade> {
     const entity = new this.model(createGradeInput);
@@ -17,6 +17,12 @@ export class GradeService {
 
   findAll(): Promise<Grade[]> {
     return this.model.find().exec();
+  }
+
+  findByIds(ids: string[]): Promise<Grade[]> {
+    return this.model
+      .find({ _id: { $in: ids.map((id) => new Types.ObjectId(id)) } })
+      .exec();
   }
 
   findOne(id: string): Promise<Grade> {
@@ -29,13 +35,13 @@ export class GradeService {
 
   async remove(id: string): Promise<Grade> {
     const course = await this.model.findById(id);
-    
+
     if (!course) {
       throw CourseNotFoundException.withId(id);
     }
 
     await course.deleteOne();
-    
+
     return course;
   }
 }

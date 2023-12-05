@@ -8,7 +8,7 @@ import { CourseNotFoundException } from '../../exceptions/course-not-found.excep
 
 @Injectable()
 export class CourseService {
-  constructor(@InjectModel('course') private readonly model: Model<Course>) {}
+  constructor(@InjectModel('Course') private readonly model: Model<Course>) {}
 
   async create(createCourseInput: CreateCourseInput) {
     const entity = new this.model(createCourseInput);

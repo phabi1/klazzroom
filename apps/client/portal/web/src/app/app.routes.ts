@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { selectSpaceGuard } from '@klazzroom/client-portal-stores-spaces';
 import { LayoutComponent } from '@klazzroom/client-common-ui-layout';
+import { selectSpaceGuard } from '@klazzroom/client-portal-stores-spaces';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 
 export const routes: Routes = [
@@ -31,7 +31,16 @@ export const routes: Routes = [
           {
             path: 'students',
             loadChildren: () =>
-              import('@klazzroom/client-portal-pages-space-teacher-students').then((m) => m.SpaceTeacherStudentsModule),
+              import(
+                '@klazzroom/client-portal-pages-space-teacher-students'
+              ).then((m) => m.SpaceTeacherStudentsModule),
+          },
+          {
+            path: 'timetable',
+            loadChildren: () =>
+              import('@klazzroom/client-space-teacher-timetable').then(
+                (m) => m.ClientSpaceTeacherTimetableModule
+              ),
           },
         ],
       },

@@ -5,9 +5,7 @@ import {
   OnModuleInit,
   UnauthorizedException,
 } from '@nestjs/common';
-import { readFile } from 'fs/promises';
 import { decode } from 'jsonwebtoken';
-import { join } from 'path';
 import { INVALID_AUTH_TOKEN, INVALID_BEARER_TOKEN } from '../../auth.constants';
 import { AuthIdentity } from '../../models/auth-identity.model';
 
@@ -19,7 +17,7 @@ export class AuthService implements OnModuleInit {
   private publicKey: string;
 
   async onModuleInit() {
-    // await this.loadPublicKey();
+    await this.loadPublicKey();
   }
 
   handleAuth({ req }) {
@@ -66,16 +64,6 @@ export class AuthService implements OnModuleInit {
    * Load public key
    */
   private async loadPublicKey(): Promise<void> {
-    const url = `${this.endpoint}/realms/${this.realm}/protocol/openid-connect/certs`;
-
-    const res = await fetch(url);
-    const jwts = await res.json();
-
-    console.log(jwts);
-
-    this.publicKey = await readFile(
-      join(process.cwd(), 'certs', 'klazzroom-api-gateway.pem'),
-      'utf-8'
-    );
+    this.publicKey = '';
   }
 }
