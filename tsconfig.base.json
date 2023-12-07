@@ -36,6 +36,9 @@
       "@klazzroom/client-portal-sidebar-teacher": [
         "libs/client/portal/sidebars/teacher/src/index.ts"
       ],
+      "@klazzroom/client-portal-stores-space-teacher-age-structure": [
+        "libs/client/portal/stores/space/teacher/age-structure/src/index.ts"
+      ],
       "@klazzroom/client-portal-stores-space-teacher-students": [
         "libs/client/portal/stores/space/teacher/students/src/index.ts"
       ],

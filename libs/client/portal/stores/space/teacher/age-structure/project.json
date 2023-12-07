@@ -1,0 +1,40 @@
+{
+  "name": "client-portal-stores-space-teacher-age-structure",
+  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/portal/stores/space/teacher/age-structure/src",
+  "prefix": "klazzroom",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "graphql": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "graphql-codegen --config graphql.config.js --project client-portal-stores-space-teacher-age-structure"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/client/portal/stores/space/teacher/age-structure/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/portal/stores/space/teacher/age-structure/**/*.ts",
+          "libs/client/portal/stores/space/teacher/age-structure/**/*.html"
+        ]
+      }
+    }
+  }
+}

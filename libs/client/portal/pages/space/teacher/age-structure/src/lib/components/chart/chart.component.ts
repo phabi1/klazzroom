@@ -1,33 +1,49 @@
 import * as am5 from '@amcharts/amcharts5';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import * as am5xy from '@amcharts/amcharts5/xy';
+import * as am5pluginsExporting from "@amcharts/amcharts5/plugins/exporting";
 import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   Inject,
+  Input,
   NgZone,
+  OnChanges,
   OnDestroy,
   PLATFORM_ID,
+  SimpleChanges,
 } from '@angular/core';
+
+interface Student {
+  birthday: Date;
+  sex: string;
+}
 
 @Component({
   selector: 'klazzroom-portal-pages-space-teacher-age-structure-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css'],
 })
-export class ChartComponent implements AfterViewInit, OnDestroy {
+export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
   private root!: am5.Root;
 
-  sourceData: { birthday: Date; sex: string }[] = [];
-  currentYear = new Date().getFullYear();
-  pyramidSeriesMale: any;
-  pyramidSeriesFemale: any;
+  @Input() students: Student[] = [];
+
+  yAxis1: any;
+  yAxis2: any;
+  series: {male: any, female: any} = {male: null, female: null};
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     private zone: NgZone
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['students']) {
+      this.updateData();
+    }
+  }
 
   // Run the function only in the browser
   browserOnly(f: () => void) {
@@ -41,163 +57,155 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // Chart code goes in here
     this.browserOnly(() => {
+      const data = this.aggregateData(this.students);
+
+      // ===========================================================
+      // Root and wrapper container
+      // ===========================================================
+
+      // Create root and chart
       const root = am5.Root.new('chartdiv');
 
+      const exporting = am5pluginsExporting.Exporting.new(root, {
+        menu: am5pluginsExporting.ExportingMenu.new(root, {})
+      });
+
+      // Set themes
       root.setThemes([am5themes_Animated.new(root)]);
 
+      // Create wrapper container
       const container = root.container.children.push(
         am5.Container.new(root, {
+          layout: root.horizontalLayout,
           width: am5.p100,
           height: am5.p100,
-          layout: root.horizontalLayout,
         })
       );
 
-      const chart = root.container.children.push(
-        am5xy.XYChart.new(root, {
-          panY: false,
-          layout: root.verticalLayout,
-        })
-      );
+      // Set up formats
+      root.numberFormatter.setAll({
+        numberFormat: '#.##as',
+      });
 
-      // Define data
-      this.sourceData = [
-        { birthday: new Date(), sex: 'Boy' },
-        { birthday: new Date(), sex: 'Girl' },
-      ];
+      // ===========================================================
+      // XY chart
+      // ===========================================================
 
-      const pyramidChart = container.children.push(
+      // Create chart
+      const chart = container.children.push(
         am5xy.XYChart.new(root, {
-          width: am5.p50,
           panX: false,
           panY: false,
           wheelX: 'none',
           wheelY: 'none',
           layout: root.verticalLayout,
-        })
-      );
-
-      // Add titles
-      pyramidChart.children.unshift(
-        am5.Label.new(root, {
-          text: ' ',
-          x: am5.p100,
-          centerX: am5.p100,
-        })
-      );
-
-      pyramidChart.children.unshift(
-        am5.Label.new(root, {
-          text: this.currentYear + '',
-          fontSize: 20,
-          x: am5.p100,
-          centerX: am5.p100,
-        })
-      );
-
-      // Add labels
-      // Male label
-      pyramidChart.plotContainer.children.push(
-        am5.Label.new(root, {
-          text: 'Males',
-          fontSize: 20,
-          x: am5.p100,
-          y: 5,
-          centerX: am5.p100,
-          dx: -5,
-          fill: am5.color(0x000000),
-          background: am5.RoundedRectangle.new(root, {
-            fill: am5.color(0xffffff),
-            fillOpacity: 0.5,
-          }),
-        })
-      );
-
-      // Female label
-      pyramidChart.plotContainer.children.push(
-        am5.Label.new(root, {
-          text: 'Females',
-          fontSize: 20,
-          y: 5,
-          x: 5,
-          fill: am5.color(0x000000),
-          background: am5.RoundedRectangle.new(root, {
-            fill: am5.color(0xffffff),
-            fillOpacity: 0.5,
-          }),
+          width: am5.percent(60),
         })
       );
 
       // Create axes
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
-      const pyramidXAxis = pyramidChart.xAxes.push(
-        am5xy.ValueAxis.new(root, {
-          min: -20000,
-          max: 20000,
-          renderer: am5xy.AxisRendererX.new(root, {
-            minGridDistance: 50,
-            strokeOpacity: 0.1,
-          }),
-          tooltip: am5.Tooltip.new(root, {}),
-        })
-      );
-
-      const yRenderer = am5xy.AxisRendererY.new(root, {
-        minGridDistance: 10,
-        minorGridEnabled: true,
-      });
-      const pyramidYAxis = pyramidChart.yAxes.push(
+      this.yAxis1 = chart.yAxes.push(
         am5xy.CategoryAxis.new(root, {
-          categoryField: 'birthday',
-          renderer: yRenderer,
+          categoryField: 'age',
+          renderer: am5xy.AxisRendererY.new(root, {
+            minorGridEnabled: true,
+            minGridDistance: 15,
+          }),
+        })
+      );
+      this.yAxis1.get('renderer').grid.template.set('location', 1);
+      this.yAxis1.get('renderer').labels.template.set('fontSize', 12);
+      this.yAxis1.data.setAll(data);
+
+      this.yAxis2 = chart.yAxes.push(
+        am5xy.CategoryAxis.new(root, {
+          categoryField: 'age',
+          renderer: am5xy.AxisRendererY.new(root, {
+            opposite: true,
+          }),
+        })
+      );
+      this.yAxis2.get('renderer').labels.template.set('fontSize', 12);
+      this.yAxis2.data.setAll(data);
+
+      const xAxis = chart.xAxes.push(
+        am5xy.ValueAxis.new(root, {
+          min: -10,
+          max: 10,
+          renderer: am5xy.AxisRendererX.new(root, {
+            minGridDistance: 40,
+          }),
         })
       );
 
-      yRenderer.grid.template.setAll({
-        location: 1,
+      // Create series
+      this.series.male = chart.series.push(
+        am5xy.ColumnSeries.new(root, {
+          name: 'Boys',
+          xAxis: xAxis,
+          yAxis: this.yAxis1,
+          valueXField: 'male',
+          categoryYField: 'age',
+          clustered: false,
+        })
+      );
+
+      this.series.male.columns.template.setAll({
+        tooltipText: 'Males, age {categoryY}: {male})',
+        tooltipX: am5.p100,
       });
 
-      // Add series
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-      this.pyramidSeriesMale = pyramidChart.series.push(
+      this.series.male.data.setAll(data);
+
+      this.series.female = chart.series.push(
         am5xy.ColumnSeries.new(root, {
-          xAxis: pyramidXAxis,
-          yAxis: pyramidYAxis,
-          categoryYField: 'birthday',
-          valueXField: 'boy',
+          name: 'Girls',
+          xAxis: xAxis,
+          yAxis: this.yAxis1,
+          valueXField: 'female',
+          categoryYField: 'age',
           clustered: false,
-          tooltip: am5.Tooltip.new(root, {
-            labelText: '{valueX}',
+        })
+      );
+
+      this.series.female.columns.template.setAll({
+        tooltipText: 'Girls, age {categoryY}: {female})',
+        tooltipX: am5.p100,
+      });
+
+      this.series.female.data.setAll(data);
+
+      // Add labels
+      chart.plotContainer.children.push(
+        am5.Label.new(root, {
+          text: 'Boys',
+          fontSize: 20,
+          y: 5,
+          x: 5,
+          //centerX: am5.p50,
+          fill: this.series.male.get('fill'),
+          background: am5.RoundedRectangle.new(root, {
+            fill: am5.color(0xffffff),
+            fillOpacity: 0.5,
           }),
         })
       );
 
-      this.pyramidSeriesFemale = pyramidChart.series.push(
-        am5xy.ColumnSeries.new(root, {
-          xAxis: pyramidXAxis,
-          yAxis: pyramidYAxis,
-          categoryYField: 'birthday',
-          valueXField: 'girl',
-          clustered: false,
-          tooltip: am5.Tooltip.new(root, {
-            labelText: '{valueX}',
+      chart.plotContainer.children.push(
+        am5.Label.new(root, {
+          text: 'Girls',
+          fontSize: 20,
+          y: 5,
+          x: am5.p100,
+          centerX: am5.p100,
+          dx: -5,
+          fill: this.series.female.get('fill'),
+          background: am5.RoundedRectangle.new(root, {
+            fill: am5.color(0xffffff),
+            fillOpacity: 0.5,
           }),
         })
       );
-
-      // Add cursor
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-      const pyradmidCursor = pyramidChart.set(
-        'cursor',
-        am5xy.XYCursor.new(root, {
-          xAxis: pyramidXAxis,
-          yAxis: pyramidYAxis,
-        })
-      );
-      pyradmidCursor.lineX.set('visible', false);
-      pyradmidCursor.lineY.set('visible', false);
-
-      this.root = root;
     });
   }
 
@@ -210,49 +218,37 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  getCurrentData() {
-    const currentData: { birthday: Date; sex: string }[] = [];
-    am5.array.each(this.sourceData, (row) => {
-      const year = new Date(row.birthday).getFullYear();
-      if (year == this.currentYear) {
-        currentData.push(row);
-      }
-    });
-    currentData.sort(function (a, b) {
-      const a1 = a.birthday;
-      const b1 = b.birthday;
-      if (a1 > b1) {
-        return 1;
-      } else if (a1 < b1) {
-        return -1;
-      }
-      return 0;
-    });
-    return currentData;
+  private updateData() {
+    const data = this.aggregateData(this.students);
+    if (this.yAxis1 && this.yAxis2) {
+      this.yAxis1.data.setAll(data);
+      this.yAxis2.data.setAll(data);
+      this.series.male.data.setAll(data);
+      this.series.female.data.setAll(data);
+    }
   }
 
-  updateData() {
-    const data = this.getCurrentData();
-    const pyramidData = this.pyramidSeriesMale.data.values;
+  private aggregateData(list: Student[]) {
+    const students = list
+      .map((s) => ({ ...s, birthday: new Date(s.birthday) }))
+      .sort((a, b) => a.birthday.getTime() - b.birthday.getTime());
 
-    if (data.length == 0) {
-      return;
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    am5.array.each(pyramidData, (row: any, i) => {
-      row = JSON.parse(JSON.stringify(pyramidData[i]));
-      if (!data[i]) {
-        row.boy = 0;
-        row.girl = 0;
-      } else {
-        if (data[i].sex == 'Boy') {
-          row.boy += 1;
-        } else {
-          row.girl += 1;
-        }
+    const data: { age: string; male: number; female: number }[] = [];
+
+    for (let i = 0; i < students.length; i++) {
+      const month =
+        students[i].birthday.getMonth() +
+        1 +
+        '-' +
+        students[i].birthday.getFullYear();
+      let row = data.find((d) => d.age === month);
+      if (!row) {
+        row = { age: month, male: 0, female: 0 };
+        data.push(row);
       }
-      this.pyramidSeriesMale.data.setIndex(i, row);
-      this.pyramidSeriesFemale.data.setIndex(i, row);
-    });
+      row.male += list[i].sex === 'Boy' ? -1 : 0;
+      row.female += list[i].sex === 'Girl' ? 1 : 0;
+    }
+    return data;
   }
 }

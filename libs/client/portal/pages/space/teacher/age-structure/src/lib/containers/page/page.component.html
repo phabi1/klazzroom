@@ -2,5 +2,10 @@
   <div class="mb-4">
     <h1 class="text-2xl font-bold">Age Structure</h1>
   </div>
-  <klazzroom-portal-pages-space-teacher-age-structure-chart></klazzroom-portal-pages-space-teacher-age-structure-chart>
+  <div class="shadow rounded p-2 bg-white">
+    <klazzroom-portal-pages-space-teacher-age-structure-chart
+      *ngIf="students$ | async as students"
+      [students]="students"
+    ></klazzroom-portal-pages-space-teacher-age-structure-chart>
+  </div>
 </div>

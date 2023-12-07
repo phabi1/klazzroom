@@ -1,0 +1,8 @@
+query GetBirthdays($course: ID!) {
+  course(id: $course) {
+    students {
+        birthday
+        sex
+    }
+  }
+}
