@@ -1,7 +1,7 @@
 # builder stage named "deps"
 FROM docker.io/node:lts-alpine as deps
 
-COPY dist/apps/api/gateway/package*.json ./
+COPY dist/apps/server/timetable/package*.json ./
 
 # install extracted deps
 RUN npm install --only=production
@@ -14,7 +14,7 @@ COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=deps /usr/src/app/package.json ./package.json
 
 # copy local, compiled app
-COPY dist/apps/api/gateway .
+COPY dist/apps/server/timetable .
 RUN chown -R node:node .
 USER node
 
