@@ -20,6 +20,7 @@
       "inputs": ["default", "^production"]
     },
     "test": {
+      "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     }
   },
