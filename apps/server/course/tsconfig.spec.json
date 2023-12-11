@@ -10,5 +10,5 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ]
+, "src/app/course/controllers/course/course.controller._spec.ts", "src/app/grade/services/grade.service._spec.ts", "src/app/course/services/course/course.service._spec.ts"  ]
 }
