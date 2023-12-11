@@ -1,0 +1,11 @@
+gridster {
+    @apply bg-transparent;
+}
+
+gridster-item {
+    @apply rounded-md shadow-md bg-white;
+}
+
+gridster-item.blank {
+    @apply shadow-none bg-transparent;
+}

@@ -3,5 +3,5 @@ klazzroom-client-common-ui-navbar-nav-bar {
 }
 
 klazzroom-client-common-ui-navbar-nav-bar .nav-link {
-    @apply flex justify-between px-4 py-2;
+    @apply flex justify-between px-4 py-2 rounded-md mx-4 hover:bg-white hover:bg-opacity-10;
 }

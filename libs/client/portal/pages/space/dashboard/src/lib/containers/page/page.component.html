@@ -1,1 +1,15 @@
-<p>Dashboard</p>
+<gridster [options]="options">
+  <gridster-item
+    *ngFor="let widget of widgets"
+    [item]="widget"
+    [ngClass]="{ blank: widget.blank === true }"
+  >
+    <klazzroom-dashboard-widget [widget]="widget"></klazzroom-dashboard-widget>
+  </gridster-item>
+</gridster>
+
+<div class="absolute bottom-4 right-4">
+  <button mat-fab class>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

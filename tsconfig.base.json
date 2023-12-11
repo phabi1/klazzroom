@@ -45,8 +45,17 @@
       "@klazzroom/client-portal-stores-spaces": [
         "libs/client/portal/stores/spaces/src/index.ts"
       ],
+      "@klazzroom/client-space-dashboard-widgets-students": [
+        "libs/client/portal/pages/space/widgets/students/src/index.ts"
+      ],
+      "@klazzroom/client-space-dashboard-widgets-welcome": [
+        "libs/client/portal/pages/space/widgets/welcome/src/index.ts"
+      ],
       "@klazzroom/client-space-teacher-timetable": [
         "libs/client/portal/pages/space/teacher/timetable/src/index.ts"
+      ],
+      "@klazzroom/clock": [
+        "libs/client/portal/pages/space/widgets/clock/src/index.ts"
       ],
       "@klazzroom/server-common-auth": ["libs/server/common/auth/src/index.ts"]
     },

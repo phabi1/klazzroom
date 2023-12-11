@@ -16,7 +16,8 @@
         "tsConfig": "apps/server/course/tsconfig.app.json",
         "assets": ["apps/server/course/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/server/course/webpack.config.js"
+        "webpackConfig": "apps/server/course/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
@@ -58,7 +59,29 @@
           "codeCoverage": true
         }
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/server/course/Dockerfile . -t r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-course && docker push r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-course"
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "options": {
+        "engine": "docker",
+        "metadata": {
+          "images": ["r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-course"],
+          "load": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
+      }
     }
   },
-  "tags": []
+  "tags": ["server", "course"]
 }

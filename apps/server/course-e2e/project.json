@@ -1,5 +1,5 @@
 {
-  "name": "course-e2e",
+  "name": "server-course-e2e",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "implicitDependencies": ["server-course"],
   "projectType": "application",

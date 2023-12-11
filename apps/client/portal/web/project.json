@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/client/portal/web",
         "index": "apps/client/portal/web/src/index.html",
         "main": "apps/client/portal/web/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/client/portal/web/tsconfig.app.json",
         "assets": [
           "apps/client/portal/web/src/favicon.ico",
@@ -65,9 +61,7 @@
         "development": {
           "browserTarget": "client-portal-web:build:development",
           "host": "0.0.0.0",
-          "allowedHosts": [
-            "portal-klazzzroom.docker.localhost"
-          ]
+          "allowedHosts": ["portal-klazzzroom.docker.localhost"]
         }
       },
       "defaultConfiguration": "development"
@@ -80,9 +74,7 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "apps/client/portal/web/**/*.ts",
@@ -92,9 +84,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/client/portal/web/jest.config.ts",
         "passWithNoTests": true
@@ -110,6 +100,28 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "client-portal-web:build"
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/client/portal/web/Dockerfile . -t r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web && docker push r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web"
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "options": {
+        "engine": "docker",
+        "metadata": {
+          "images": ["r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web"],
+          "load": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
       }
     }
   }
