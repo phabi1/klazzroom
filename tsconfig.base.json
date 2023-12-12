@@ -15,6 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@klazzroom/client-common-config-core": [
+        "libs/client/common/config/core/src/index.ts"
+      ],
+      "@klazzroom/client-common-config-loader-http": [
+        "libs/client/common/config/loader/http/src/index.ts"
+      ],
       "@klazzroom/client-common-ui-layout": [
         "libs/client/common/ui/layout/src/index.ts"
       ],

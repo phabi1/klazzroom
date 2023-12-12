@@ -4,7 +4,6 @@ import { selectSpaceGuard } from '@klazzroom/client-portal-stores-spaces';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 
 export const routes: Routes = [
- 
   {
     path: '',
     canActivate: [IsLoggedGuard],
@@ -20,6 +19,7 @@ export const routes: Routes = [
       },
       {
         path: 'space/:space',
+        data: { sidebar: 'space' },
         canActivate: [selectSpaceGuard],
         children: [
           {
@@ -46,9 +46,9 @@ export const routes: Routes = [
           {
             path: 'age-structure',
             loadChildren: () =>
-              import('@klazzroom/client-portal-pages-space-teacher-age-structure').then(
-                (m) => m.ClientPortalPagesSpaceTeacherAgeStructureModule
-              ),
+              import(
+                '@klazzroom/client-portal-pages-space-teacher-age-structure'
+              ).then((m) => m.ClientPortalPagesSpaceTeacherAgeStructureModule),
           },
         ],
       },

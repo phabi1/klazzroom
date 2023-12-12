@@ -16,7 +16,8 @@
         "tsConfig": "apps/server/timetable/tsconfig.app.json",
         "assets": ["apps/server/timetable/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/server/timetable/webpack.config.js"
+        "webpackConfig": "apps/server/timetable/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
@@ -64,19 +65,12 @@
       "dependsOn": ["build"],
       "options": {
         "engine": "docker",
-        "metadata": {
-          "images": ["r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-timetable"],
-          "load": true,
-          "tags": [
-            "type=schedule",
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=ref,event=pr",
-            "type=sha,prefix=sha-"
-          ]
-        }
+        "push": true,
+        "tags": [
+          "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-timetable"
+        ]
       }
     }
   },
-  "tags": []
+  "tags": ["server", "timetable"]
 }

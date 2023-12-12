@@ -60,28 +60,17 @@
         }
       }
     },
-    "docker-build": {
-      "dependsOn": ["build"],
-      "command": "docker build -f apps/api/gateway/Dockerfile . -t r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway && docker push r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway"
-    },
     "container": {
       "executor": "@nx-tools/nx-container:build",
       "dependsOn": ["build"],
       "options": {
         "engine": "docker",
-        "metadata": {
-          "images": ["r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway"],
-          "load": true,
-          "tags": [
-            "type=schedule",
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=ref,event=pr",
-            "type=sha,prefix=sha-"
-          ]
-        }
+        "push": true,
+        "tags": [
+          "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway:latest"
+        ]
       }
     }
   },
-  "tags": []
+  "tags": ["api", "server"]
 }

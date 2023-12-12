@@ -102,26 +102,15 @@
         "buildTarget": "client-portal-web:build"
       }
     },
-    "docker-build": {
-      "dependsOn": ["build"],
-      "command": "docker build -f apps/client/portal/web/Dockerfile . -t r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web && docker push r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web"
-    },
     "container": {
       "executor": "@nx-tools/nx-container:build",
       "dependsOn": ["build"],
       "options": {
         "engine": "docker",
-        "metadata": {
-          "images": ["r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web"],
-          "load": true,
-          "tags": [
-            "type=schedule",
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=ref,event=pr",
-            "type=sha,prefix=sha-"
-          ]
-        }
+        "tags": [
+          "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web"
+        ],
+        "push": true
       }
     }
   }

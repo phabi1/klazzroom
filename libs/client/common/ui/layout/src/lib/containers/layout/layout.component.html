@@ -1,9 +1,12 @@
 <mat-sidenav-container class="h-full">
-    <mat-sidenav mode="side" opened class="sidenav">
-        <div class="text-center text-xl py-2">Klazzroom</div>
-        <ng-container [ngComponentOutlet]="sidebarType"></ng-container>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+  <mat-sidenav mode="side" opened class="sidenav">
+    <div class="text-center text-xl py-2">Klazzroom</div>
+    <ng-container
+      *ngIf="sidebarType"
+      [ngComponentOutlet]="sidebarType"
+    ></ng-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

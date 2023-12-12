@@ -1,0 +1,7 @@
+{
+    "auth": {
+        "endpoint": "https://auth.docker.localhost",
+        "realm": "klazzroom",
+        "clientId": "client-portal-web"
+    }
+}

@@ -45,6 +45,65 @@ services:
     networks:
       - local
 
+  mongo:
+    image: mongo:${MONGO_VERSION}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - local
+    ports:
+      - 27018:27017
+    volumes:
+      - ./mongo/data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - local
+
+  client-portal-web:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web
+    volumes:
+      - ./client-portal-web/assets/config.json:/app/assets/config.json
+    networks:
+      - local
+    ports:
+      - 4200:4200
+
+  api-gateway:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway
+    environment:
+      HOST: 0.0.0.0
+    depends_on:
+      - space-server
+    networks:
+      - local
+    ports:
+      - 3000:3000
+
+  space-server:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-space
+    environment:
+      HOST: 0.0.0.0
+      MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/space
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - local
+
+  course-server:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-course
+    environment:
+      HOST: 0.0.0.0
+      MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/course
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - local
+
 networks:
   local:
     name: local
