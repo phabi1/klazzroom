@@ -2,11 +2,16 @@ import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import { ConfigService } from '@klazzroom/client-common-config-core';
 
-const uri = 'https://api-klazzroom.docker.localhost/graphql'; // <-- add the URL of the GraphQL server here
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+export function createApollo(
+  httpLink: HttpLink,
+  confgService: ConfigService
+): ApolloClientOptions<any> {
   return {
-    link: httpLink.create({ uri }),
+    link: httpLink.create({
+      uri: confgService.getSettings('api.endpoint'),
+    }),
     cache: new InMemoryCache(),
   };
 }
@@ -17,7 +22,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink],
+      deps: [HttpLink, ConfigService],
     },
   ],
 })

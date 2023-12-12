@@ -3,5 +3,8 @@
         "endpoint": "https://auth.docker.localhost",
         "realm": "klazzroom",
         "clientId": "client-portal-web"
+    },
+    "api": {
+        "endpoint": "https://api-klazzroom.docker.localhost/graphql"
     }
 }
