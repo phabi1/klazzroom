@@ -1,7 +1,9 @@
+/// <reference types="@angular/localize" />
+
 import * as am5 from '@amcharts/amcharts5';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import * as am5xy from '@amcharts/amcharts5/xy';
-import * as am5pluginsExporting from "@amcharts/amcharts5/plugins/exporting";
+import * as am5pluginsExporting from '@amcharts/amcharts5/plugins/exporting';
 import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
@@ -32,7 +34,7 @@ export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   yAxis1: any;
   yAxis2: any;
-  series: {male: any, female: any} = {male: null, female: null};
+  series: { male: any; female: any } = { male: null, female: null };
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
@@ -67,7 +69,7 @@ export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
       const root = am5.Root.new('chartdiv');
 
       const exporting = am5pluginsExporting.Exporting.new(root, {
-        menu: am5pluginsExporting.ExportingMenu.new(root, {})
+        menu: am5pluginsExporting.ExportingMenu.new(root, {}),
       });
 
       // Set themes
@@ -141,7 +143,7 @@ export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
       // Create series
       this.series.male = chart.series.push(
         am5xy.ColumnSeries.new(root, {
-          name: 'Boys',
+          name: $localize`:@@spaceTeacherAgeStructure.chart.labels.boys:Boys`,
           xAxis: xAxis,
           yAxis: this.yAxis1,
           valueXField: 'male',
@@ -159,7 +161,7 @@ export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       this.series.female = chart.series.push(
         am5xy.ColumnSeries.new(root, {
-          name: 'Girls',
+          name: $localize`:@@spaceTeacherAgeStructure.chart.labels.girls:Girls`,
           xAxis: xAxis,
           yAxis: this.yAxis1,
           valueXField: 'female',
@@ -178,7 +180,7 @@ export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
       // Add labels
       chart.plotContainer.children.push(
         am5.Label.new(root, {
-          text: 'Boys',
+          text: $localize`:@@spaceTeacherAgeStructure.chart.labels.boys:Boys`,
           fontSize: 20,
           y: 5,
           x: 5,
@@ -193,7 +195,7 @@ export class ChartComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       chart.plotContainer.children.push(
         am5.Label.new(root, {
-          text: 'Girls',
+          text: $localize`:@@spaceTeacherAgeStructure.chart.labels.girls:Girls`,
           fontSize: 20,
           y: 5,
           x: am5.p100,

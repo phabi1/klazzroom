@@ -36,6 +36,7 @@ export class PageComponent implements OnInit {
       { cols: 12, rows: 1, y: 0, x: 0, type: 'welcome', blank: true},
       { cols: 2, rows: 1, y: 0, x: 0, type: 'clock' },
       { cols: 2, rows: 1, y: 0, x: 0, type: 'students' },
+      { cols: 2, rows: 3, y: 0, x: 0, type: 'birthdays' },
     ];
   }
 

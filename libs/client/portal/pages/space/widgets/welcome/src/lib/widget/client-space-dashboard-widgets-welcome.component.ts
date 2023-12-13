@@ -15,7 +15,7 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./client-space-dashboard-widgets-welcome.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientSpaceDashboardWidgetsWelcomeComponent implements OnInit {
+export class ClientPortalSpaceDashboardWidgetsWelcomeWidgetComponent implements OnInit {
   name = '';
 
   constructor(

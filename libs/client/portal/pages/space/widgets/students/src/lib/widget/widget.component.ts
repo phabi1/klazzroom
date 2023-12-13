@@ -22,7 +22,7 @@ import { Observable, Subject, map, takeUntil } from 'rxjs';
   styleUrls: ['./widget.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientSpaceDashboardWidgetsStudentsWidgetComponent
+export class ClientPortalSpaceDashboardWidgetsStudentsWidgetComponent
   implements OnInit, OnDestroy
 {
   private ngSubscribeAll = new Subject<void>();

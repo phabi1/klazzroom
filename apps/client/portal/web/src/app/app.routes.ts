@@ -39,7 +39,7 @@ export const routes: Routes = [
           {
             path: 'timetable',
             loadChildren: () =>
-              import('@klazzroom/client-space-teacher-timetable').then(
+              import('@klazzroom/client-portal-space-teacher-timetable').then(
                 (m) => m.ClientSpaceTeacherTimetableModule
               ),
           },

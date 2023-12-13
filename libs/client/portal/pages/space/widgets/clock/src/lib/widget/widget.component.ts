@@ -7,16 +7,17 @@ import {
   OnInit,
 } from '@angular/core';
 import { Subscription, interval, startWith } from 'rxjs';
+import { FormatTimePipe } from '../pipes/format-time.pipe';
 
 @Component({
-  selector: 'klazzroom-space-dashboard-widget-clock',
+  selector: 'klazzroom-space-portal-dashboard-widgets-clock',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormatTimePipe],
   templateUrl: './widget.component.html',
   styleUrls: ['./widget.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpaceDashboardWidgetsClockWidgetComponent
+export class ClientPortalSpaceDashboardWidgetsClockWidgetComponent
   implements OnInit, OnDestroy
 {
   private timeSubscription!: Subscription;
@@ -25,6 +26,9 @@ export class SpaceDashboardWidgetsClockWidgetComponent
   minutes = 0;
   hours = 0;
   seconds = 0;
+  day = '';
+  numberDay = 0;
+  month = '';
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
@@ -46,6 +50,10 @@ export class SpaceDashboardWidgetsClockWidgetComponent
     this.hours = this.time.getHours();
     this.minutes = this.time.getMinutes();
     this.seconds = this.time.getSeconds();
+
+    this.day = this.time.toLocaleString('fr-FR', { weekday: 'long' });
+    this.numberDay = this.time.getDate();
+    this.month = this.time.toLocaleString('fr-FR', { month: 'long' });
 
     this.changeDetectorRef.detectChanges();
   }

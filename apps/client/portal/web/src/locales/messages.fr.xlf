@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="ng2.template" source-language="en-US" target-language="fr-FR">
+    <body>
+      <trans-unit id="spaceTeacherAgeStructure.chart.labels.boys" datatype="html">
+        <source>Boys</source>
+        <target>Garçons</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/components/chart/chart.component.ts</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherAgeStructure.chart.labels.girls" datatype="html">
+        <source>Girls</source>
+        <target>Filles</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/components/chart/chart.component.ts</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherAgeStructure.title" datatype="html">
+        <source>Age Structure</source>
+        <target>Pyramide des ages</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/containers/page/page.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboard.widgets.birthdays.title" datatype="html">
+        <source> Birthdays </source>
+        <target> Anniversaires</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/widgets/birthdays/src/lib/widget/widget.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboard.widgets.birthdays.messages.empty" datatype="html">
+        <source> No birthdays </source>
+        <target> Pas d'anniversaires</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/widgets/birthdays/src/lib/widget/widget.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboard.widgets.students.label" datatype="html">
+        <source>Students</source>
+        <target>Étudiants</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/widgets/students/src/lib/widget/widget.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboard.widgets.welcome.label" datatype="html">
+        <source>Welcome <x id="INTERPOLATION" equiv-text="{{ name }}"/></source>
+        <target>Bienvenue <x id="INTERPOLATION" equiv-text="{{ name }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/widgets/welcome/src/lib/widget/client-space-dashboard-widgets-welcome.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaces.title" datatype="html">
+        <source>My Spaces</source>
+        <target>Mes espaces</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/spaces/src/lib/containers/list/list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaces.goToSpace" datatype="html">
+        <source> Go </source>
+        <target> Aller</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/spaces/src/lib/containers/list/list.component.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

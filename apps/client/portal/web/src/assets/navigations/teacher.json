@@ -1,52 +1,52 @@
 {
-    "links": [
+  "links": [
+    {
+      "type": "item",
+      "title": { "en": "Dashboard", "fr": "Tableau de bord" },
+      "to": "/space/:space",
+      "icon": "dashboard"
+    },
+    {
+      "type": "group",
+      "title": { "en": "Class", "fr": "Classe" },
+      "to": "",
+      "children": [
         {
-            "type": "item",
-            "title": "Dashboard",
-            "to": "/space/:space",
-            "icon": "dashboard"
+          "type": "item",
+          "title": { "en": "Students", "fr": "Élèves" },
+          "to": "/space/:space/students",
+          "icon": "groups"
         },
         {
-            "type": "group",
-            "title": "Class",
-            "to": "",
-            "children": [
-                {
-                    "type": "item",
-                    "title": "Students",
-                    "to": "/space/:space/students",
-                    "icon": "groups"
-                },
-                {
-                    "type": "item",
-                    "title": "Timetable",
-                    "to": "/space/:space/timetable",
-                    "icon": "schedule"
-                },
-                {
-                    "type": "item",
-                    "title": "Daily book",
-                    "to": "/space/:space/daily-book",
-                    "icon": "maps"
-                }
-            ]
+          "type": "item",
+          "title": { "en": "Timetable", "fr": "Emploi du temps" },
+          "to": "/space/:space/timetable",
+          "icon": "schedule"
         },
         {
-        "type": "group",
-            "title": "Toolbox",
-            "to": "",
-            "children": [
-                {
-                    "type": "item",
-                    "title": "Age structure",
-                    "to": "/space/:space/age-structure"
-                }, 
-                {
-                    "type": "item",
-                    "title": "Stickies",
-                    "to": "/space/:space/stickies"
-                }
-            ]
+          "type": "item",
+          "title": { "en": "Daily book", "fr": "Cahier journal" },
+          "to": "/space/:space/daily-book",
+          "icon": "maps"
         }
-    ]
+      ]
+    },
+    {
+      "type": "group",
+      "title": { "en": "Toolbox", "fr": "Boîte à outils" },
+      "to": "",
+      "children": [
+        {
+          "type": "item",
+          "title": { "en": "Age structure", "fr": "Pyramide des âges" },
+          "to": "/space/:space/age-structure"
+        },
+        {
+          "type": "item",
+          "title": { "en": "Stickies", "fr": "Etiquettes" },
+          "to": "/space/:space/stickies"
+        }
+      ]
+    }
+  ]
 }

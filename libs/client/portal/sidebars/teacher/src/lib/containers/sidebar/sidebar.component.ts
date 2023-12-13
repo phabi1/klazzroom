@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { NavLink } from '@klazzroom/client-common-ui-navbar';
 import { SpaceSelectors } from '@klazzroom/client-portal-stores-spaces';
 import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
-import { NavigationService } from '../../services/navigation.service';
+import { INavLink, NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'klazzroom-portal-sidebars-teacher-sidebar',
@@ -13,20 +13,37 @@ import { NavigationService } from '../../services/navigation.service';
 export class SidebarComponent {
   currentSpace$ = this.store.select(SpaceSelectors.selectCurrentSpace);
 
-  links$ = this.store
-    .select(SpaceSelectors.selectCurrentSpaceId)
-    .pipe(
-      switchMap((space) =>
-        this.navigationService
-          .getLinks()
-          .pipe(map((links) => this.injectSpaceToLinks(space, links)))
+  links$ = this.store.select(SpaceSelectors.selectCurrentSpaceId).pipe(
+    switchMap((space) =>
+      this.navigationService.getLinks().pipe(
+        map((links) => this.translateLinks(links)),
+        map((links) => this.injectSpaceToLinks(space, links))
       )
-    );
+    )
+  );
 
   constructor(
+    @Inject(LOCALE_ID) public localeId: string,
     private store: Store,
     private navigationService: NavigationService
   ) {}
+
+  private translateLinks(links: INavLink[]): NavLink[] {
+    return links.map((link) => {
+      let children: NavLink[] = [];
+      if (link.children && link.children.length > 0) {
+        children = this.translateLinks(link.children);
+      }
+      return {
+        ...link,
+        title:
+          typeof link.title === 'object'
+            ? link.title[this.localeId] || link.title['en']
+            : link.title,
+        children,
+      };
+    });
+  }
 
   private injectSpaceToLinks(
     space: string | null,

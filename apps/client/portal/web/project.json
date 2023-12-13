@@ -5,19 +5,28 @@
   "prefix": "klazzroom",
   "sourceRoot": "apps/client/portal/web/src",
   "tags": [],
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+      "fr": {
+        "translation": "apps/client/portal/web/src/locales/messages.fr.xlf",
+        "baseHref": "/"
+      },
+      "en": {
+        "translation": "apps/client/portal/web/src/locales/messages.en.xlf",
+        "baseHref": "/en/"
+      }
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/client/portal/web",
         "index": "apps/client/portal/web/src/index.html",
         "main": "apps/client/portal/web/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/client/portal/web/tsconfig.app.json",
         "assets": [
           "apps/client/portal/web/src/favicon.ico",
@@ -27,7 +36,9 @@
           "@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/client/portal/web/src/styles.css"
         ],
-        "scripts": []
+        "scripts": [],
+        "i18nMissingTranslation": "warning",
+        "localize": ["fr", "en"]
       },
       "configurations": {
         "production": {
@@ -58,6 +69,12 @@
               "with": "apps/client/portal/web/src/environments/environment.development.ts"
             }
           ]
+        },
+        "fr": {
+          "localize": ["fr"]
+        },
+        "en": {
+          "localize": ["en"]
         }
       },
       "defaultConfiguration": "production"
@@ -66,14 +83,12 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "client-portal-web:build:production"
+          "browserTarget": "client-portal-web:build:production,en"
         },
         "development": {
-          "browserTarget": "client-portal-web:build:development",
+          "browserTarget": "client-portal-web:build:development,fr",
           "host": "0.0.0.0",
-          "allowedHosts": [
-            "portal-klazzzroom.docker.localhost"
-          ]
+          "allowedHosts": ["portal-klazzzroom.docker.localhost"]
         }
       },
       "defaultConfiguration": "development"
@@ -81,14 +96,13 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "client-portal-web:build"
+        "browserTarget": "client-portal-web:build",
+        "outFile": "apps/client/portal/web/src/locales/messages.en.xlf"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "apps/client/portal/web/**/*.ts",
@@ -98,9 +112,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/client/portal/web/jest.config.ts",
         "passWithNoTests": true
@@ -120,9 +132,7 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "engine": "docker",
         "tags": [

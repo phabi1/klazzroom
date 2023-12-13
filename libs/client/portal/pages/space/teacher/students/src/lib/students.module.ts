@@ -17,6 +17,7 @@ import { EmptyComponent } from './containers/empty/empty.component';
 import { ListComponent } from './containers/list/list.component';
 import { RemoveComponent } from './containers/remove/remove.component';
 import { studentsRoutes } from './lib.routes';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { studentsRoutes } from './lib.routes';
     MatButtonModule,
     MatNativeDateModule,
     MatSidenavModule,
+    ReactiveFormsModule,
     FormlyModule.forChild(),
     FormlyMaterialModule,
     FormlyMatDatepickerModule,

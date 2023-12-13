@@ -3,7 +3,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { ConfigService } from '@klazzroom/client-common-config-core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 export function createApollo(
   httpLink: HttpLink,

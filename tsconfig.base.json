@@ -42,6 +42,21 @@
       "@klazzroom/client-portal-sidebar-teacher": [
         "libs/client/portal/sidebars/teacher/src/index.ts"
       ],
+      "@klazzroom/client-portal-space-dashboard-widgets-birthdays": [
+        "libs/client/portal/pages/space/widgets/birthdays/src/index.ts"
+      ],
+      "@klazzroom/client-portal-space-dashboard-widgets-clock": [
+        "libs/client/portal/pages/space/widgets/clock/src/index.ts"
+      ],
+      "@klazzroom/client-portal-space-dashboard-widgets-students": [
+        "libs/client/portal/pages/space/widgets/students/src/index.ts"
+      ],
+      "@klazzroom/client-portal-space-dashboard-widgets-welcome": [
+        "libs/client/portal/pages/space/widgets/welcome/src/index.ts"
+      ],
+      "@klazzroom/client-portal-space-teacher-timetable": [
+        "libs/client/portal/pages/space/teacher/timetable/src/index.ts"
+      ],
       "@klazzroom/client-portal-stores-space-teacher-age-structure": [
         "libs/client/portal/stores/space/teacher/age-structure/src/index.ts"
       ],
@@ -50,18 +65,6 @@
       ],
       "@klazzroom/client-portal-stores-spaces": [
         "libs/client/portal/stores/spaces/src/index.ts"
-      ],
-      "@klazzroom/client-space-dashboard-widgets-students": [
-        "libs/client/portal/pages/space/widgets/students/src/index.ts"
-      ],
-      "@klazzroom/client-space-dashboard-widgets-welcome": [
-        "libs/client/portal/pages/space/widgets/welcome/src/index.ts"
-      ],
-      "@klazzroom/client-space-teacher-timetable": [
-        "libs/client/portal/pages/space/teacher/timetable/src/index.ts"
-      ],
-      "@klazzroom/clock": [
-        "libs/client/portal/pages/space/widgets/clock/src/index.ts"
       ],
       "@klazzroom/server-common-auth": ["libs/server/common/auth/src/index.ts"]
     },

@@ -1,16 +1,15 @@
 <mat-drawer-container class="h-full">
   <mat-drawer mode="side" opened class="w-60">
-    <div class="pb-12">
-      <div class="p-2 border-b">
-        <klazzroom-client-portal-pages-space-teacher-students-search
-          (search)="onSearch($event)"
-        ></klazzroom-client-portal-pages-space-teacher-students-search>
+    <div class="relative flex flex-col h-full">
+      <div class="p-2 w-full border-b bg-white">
+        <input placeholder="Search" class="px-4 py-2 border w-full rounded-full" [formControl]="searchInput">
       </div>
       <klazzroom-client-portal-pages-space-teacher-students-student-list
         *ngIf="students$ | async as students"
         [students]="students"
+        class="flex-1 overflow-y-auto"
       ></klazzroom-client-portal-pages-space-teacher-students-student-list>
-      <div class="p-2 absolute bottom-0 w-full border-t">
+      <div class="p-2 w-full border-t bg-white">
         <a mat-raised-button color="primary" routerLink="./add" class="w-full"
           >New student</a
         >

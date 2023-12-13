@@ -1,8 +1,8 @@
 {
-  "name": "client-portal-space-dashboard-widgets-clock",
+  "name": "client-portal-space-dashboard-widgets-birthdays",
   "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/client/portal/pages/space/widgets/clock/src",
-  "prefix": "klazzroom-client-portal-space-dashboard-widgets-clock",
+  "sourceRoot": "libs/client/portal/pages/space/widgets/birthdays/src",
+  "prefix": "klazzroom",
   "tags": [],
   "projectType": "library",
   "targets": {
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/portal/pages/space/widgets/clock/jest.config.ts",
+        "jestConfig": "libs/client/portal/pages/space/widgets/birthdays/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/client/portal/pages/space/widgets/clock/**/*.ts",
-          "libs/client/portal/pages/space/widgets/clock/**/*.html"
+          "libs/client/portal/pages/space/widgets/birthdays/**/*.ts",
+          "libs/client/portal/pages/space/widgets/birthdays/**/*.html"
         ]
       }
     }

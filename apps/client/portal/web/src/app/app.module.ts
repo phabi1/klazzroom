@@ -20,7 +20,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { createConfigLoader } from './factories/config-loader.factory';
-import { GraphQLModule } from './graphql.module';
+import { GraphQLModule } from './graphql/graphql.module';
 import initializeKeycloak from './initializers/keycloak.initializer';
 
 @NgModule({

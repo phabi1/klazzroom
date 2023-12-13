@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ClientSpaceDashboardWidgetsStudentsWidgetComponent } from '@klazzroom/client-space-dashboard-widgets-students';
-import { ClientSpaceDashboardWidgetsWelcomeComponent } from '@klazzroom/client-space-dashboard-widgets-welcome';
-import { SpaceDashboardWidgetsClockWidgetComponent } from '@klazzroom/clock';
+import { ClientPortalSpaceDashboardWidgetsBirthdaysWidgetComponent } from '@klazzroom/client-portal-space-dashboard-widgets-birthdays';
+import { ClientPortalSpaceDashboardWidgetsClockWidgetComponent } from '@klazzroom/client-portal-space-dashboard-widgets-clock';
+import { ClientPortalSpaceDashboardWidgetsStudentsWidgetComponent } from '@klazzroom/client-portal-space-dashboard-widgets-students';
+import { ClientPortalSpaceDashboardWidgetsWelcomeWidgetComponent } from '@klazzroom/client-portal-space-dashboard-widgets-welcome';
 import { Widget } from '../../interfaces/widget.interface';
 
 @Component({
@@ -14,11 +15,13 @@ export class WidgetComponent {
 
   get componentType() {
     if (this.widget.type === 'welcome') {
-      return ClientSpaceDashboardWidgetsWelcomeComponent;
+      return ClientPortalSpaceDashboardWidgetsWelcomeWidgetComponent;
     } else if (this.widget.type === 'clock') {
-      return SpaceDashboardWidgetsClockWidgetComponent;
+      return ClientPortalSpaceDashboardWidgetsClockWidgetComponent;
     } else if (this.widget.type === 'students') {
-      return ClientSpaceDashboardWidgetsStudentsWidgetComponent;
+      return ClientPortalSpaceDashboardWidgetsStudentsWidgetComponent;
+    } else if (this.widget.type === 'birthdays') {
+      return ClientPortalSpaceDashboardWidgetsBirthdaysWidgetComponent;
     } else {
       return null;
     }
