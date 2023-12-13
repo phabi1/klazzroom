@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/client/portal/web",
         "index": "apps/client/portal/web/src/index.html",
         "main": "apps/client/portal/web/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/client/portal/web/tsconfig.app.json",
         "assets": [
           "apps/client/portal/web/src/favicon.ico",
@@ -47,7 +51,13 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/client/portal/web/src/environments/environment.ts",
+              "with": "apps/client/portal/web/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -61,7 +71,9 @@
         "development": {
           "browserTarget": "client-portal-web:build:development",
           "host": "0.0.0.0",
-          "allowedHosts": ["portal-klazzzroom.docker.localhost"]
+          "allowedHosts": [
+            "portal-klazzzroom.docker.localhost"
+          ]
         }
       },
       "defaultConfiguration": "development"
@@ -74,7 +86,9 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
           "apps/client/portal/web/**/*.ts",
@@ -84,7 +98,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/client/portal/web/jest.config.ts",
         "passWithNoTests": true
@@ -104,7 +120,9 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "engine": "docker",
         "tags": [
