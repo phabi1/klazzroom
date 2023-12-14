@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -9,7 +9,10 @@ import {
   ConfigService,
 } from '@klazzroom/client-common-config-core';
 import { ClientCommonUiLayoutModule } from '@klazzroom/client-common-ui-layout';
-import { ClientPortalSidebarTeacherModule, SidebarComponent } from '@klazzroom/client-portal-sidebar-teacher';
+import {
+  ClientPortalSidebarTeacherModule,
+  SidebarComponent,
+} from '@klazzroom/client-portal-sidebar-teacher';
 import { ClientPortalStoresSpacesModule } from '@klazzroom/client-portal-stores-spaces';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -22,6 +25,8 @@ import { routes } from './app.routes';
 import { createConfigLoader } from './factories/config-loader.factory';
 import { GraphQLModule } from './graphql/graphql.module';
 import initializeKeycloak from './initializers/keycloak.initializer';
+import { APP_BASE_HREF } from '@angular/common';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,12 +42,14 @@ import initializeKeycloak from './initializers/keycloak.initializer';
       },
     }),
     KeycloakAngularModule,
-    ClientCommonUiLayoutModule.forRoot({sidebars: [
-      {
-        name: 'space',
-        component: SidebarComponent,
-      },
-    ]}),
+    ClientCommonUiLayoutModule.forRoot({
+      sidebars: [
+        {
+          name: 'space',
+          component: SidebarComponent,
+        },
+      ],
+    }),
     ClientPortalSidebarTeacherModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}, {}),

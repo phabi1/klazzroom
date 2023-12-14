@@ -50,6 +50,13 @@ export const routes: Routes = [
                 '@klazzroom/client-portal-pages-space-teacher-age-structure'
               ).then((m) => m.ClientPortalPagesSpaceTeacherAgeStructureModule),
           },
+          {
+            path: 'frieze-days',
+            loadChildren: () =>
+              import('@klazzroom/client-portal-space-teacher-frieze-days').then(
+                (m) => m.ClientPortalSpaceTeacherFriezeDaysModule
+              ),
+          },
         ],
       },
     ],

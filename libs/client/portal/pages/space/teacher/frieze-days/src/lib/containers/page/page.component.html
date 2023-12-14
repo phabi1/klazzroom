@@ -1,0 +1,11 @@
+<div class="p-4">
+  <div class="flex mb-4">
+    <h1 class="text-2xl font-bold" i18n="@@spaceTeacherFriezeDays.title">
+      Frieze days
+    </h1>
+  </div>
+  <formly-form [form]="form" [model]="model" [fields]="fields"></formly-form>
+  <button mat-raised-button color="primary" (click)="generate()" i18n="@@commons.buttons.generate">
+    Generate
+  </button>
+</div>

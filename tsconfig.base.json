@@ -54,6 +54,9 @@
       "@klazzroom/client-portal-space-dashboard-widgets-welcome": [
         "libs/client/portal/pages/space/widgets/welcome/src/index.ts"
       ],
+      "@klazzroom/client-portal-space-teacher-frieze-days": [
+        "libs/client/portal/pages/space/teacher/frieze-days/src/index.ts"
+      ],
       "@klazzroom/client-portal-space-teacher-timetable": [
         "libs/client/portal/pages/space/teacher/timetable/src/index.ts"
       ],

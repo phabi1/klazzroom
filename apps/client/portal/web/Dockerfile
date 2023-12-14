@@ -1,7 +1,7 @@
 FROM docker.io/nginx:alpine
 
-COPY dist/apps/client/portal/web /app
-COPY apps/client/portal/web/nginx.conf  /etc/nginx/conf.d/default.conf
+COPY dist/apps/client/portal/web/fr /app
+COPY apps/client/portal/web/nginx.conf  /etc/nginx/nginx.conf
 
 EXPOSE 80
 

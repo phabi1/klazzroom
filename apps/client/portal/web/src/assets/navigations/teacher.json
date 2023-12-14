@@ -43,8 +43,8 @@
         },
         {
           "type": "item",
-          "title": { "en": "Stickies", "fr": "Etiquettes" },
-          "to": "/space/:space/stickies"
+          "title": { "en": "Frieze days", "fr": "Frise des jours" },
+          "to": "/space/:space/frieze-days"
         }
       ]
     }
