@@ -1,9 +1,9 @@
+/// <reference types="@angular/localize" />
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
+  MatDialogRef
 } from '@angular/material/dialog';
 import {
   ContactInfo,
@@ -41,7 +41,7 @@ export class ContactFormComponent implements OnInit {
       key: 'firstname',
       type: 'input',
       props: {
-        label: 'First Name',
+        label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.firstname.label:Firstname`,
         required: true,
       },
     },
@@ -49,7 +49,7 @@ export class ContactFormComponent implements OnInit {
       key: 'lastname',
       type: 'input',
       props: {
-        label: 'Last Name',
+        label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.lastname.label:Lastname`,
         required: true,
       },
     },
@@ -57,8 +57,8 @@ export class ContactFormComponent implements OnInit {
       key: 'emails',
       type: 'repeat',
       props: {
-        label: 'Emails',
-        addText: 'Add another email',
+        label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.emails.label:Emails`,
+        addText: $localize`:@@commons.buttons.addAnother:Add another`
       },
       fieldArray: {
         fieldGroupClassName: 'flex',
@@ -67,7 +67,7 @@ export class ContactFormComponent implements OnInit {
             key: 'type',
             type: 'select',
             props: {
-              label: 'Type',
+              label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.emailType.label:Type`,
               required: true,
               options: [
                 {
@@ -85,7 +85,7 @@ export class ContactFormComponent implements OnInit {
             key: 'value',
             type: 'input',
             props: {
-              label: 'Email',
+              label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.email.label:Email`,
               required: true,
             },
             className: 'flex-1',
@@ -97,8 +97,8 @@ export class ContactFormComponent implements OnInit {
       key: 'phones',
       type: 'repeat',
       props: {
-        label: 'Phone numbers',
-        addText: 'Add another phone number',
+        label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.phones.label:Phone numbers`,
+        addText: $localize`:@@commons.buttons.addAnother:Add another`
       },
       fieldArray: {
         fieldGroupClassName: 'flex',
@@ -107,7 +107,7 @@ export class ContactFormComponent implements OnInit {
             key: 'type',
             type: 'select',
             props: {
-              label: 'Type',
+              label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.phoneType.label:Type`,
               required: true,
               options: [
                 {
@@ -129,7 +129,7 @@ export class ContactFormComponent implements OnInit {
             key: 'value',
             type: 'input',
             props: {
-              label: 'Phone number',
+              label: $localize`:@@spaceTeacherStudents.details.contacts.form.fields.phone.label:Phone number`,
               required: true,
             },
             className: 'flex-1',

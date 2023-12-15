@@ -1,16 +1,17 @@
-<h1 *ngIf="mode === 'add'" mat-dialog-title>Create contact</h1>
-<h1 *ngIf="mode === 'update'" mat-dialog-title>Update contact</h1>
+<h1 *ngIf="mode === 'add'" mat-dialog-title i18n="@@spaceTeacherStudents.details.contacts.form.titles.create">Create contact</h1>
+<h1 *ngIf="mode === 'update'" mat-dialog-title i18n="@@spaceTeacherStudents.details.contacts.form.titles.update">Update contact</h1>
 <mat-dialog-content>
   <formly-form [form]="form" [model]="model" [fields]="fields"></formly-form>
 </mat-dialog-content>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close="">Cancel</button>
+  <button mat-button mat-dialog-close="" i18n="@@commons.buttons.cancel">Cancel</button>
   <button
     *ngIf="mode === 'add'"
     mat-button
     color="primary"
     (click)="submit()"
     cdkFocusInitial
+    i18n="@@commons.buttons.create"
   >
     Create
   </button>
@@ -20,6 +21,7 @@
     color="primary"
     (click)="submit()"
     cdkFocusInitial
+    i18n="@@commons.buttons.save"
   >
     Save
   </button>

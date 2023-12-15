@@ -8,6 +8,10 @@
           <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/components/chart/chart.component.ts</context>
           <context context-type="linenumber">146</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/components/chart/chart.component.ts</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="spaceTeacherAgeStructure.chart.labels.girls" datatype="html">
         <source>Girls</source>
@@ -15,12 +19,244 @@
           <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/components/chart/chart.component.ts</context>
           <context context-type="linenumber">164</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/components/chart/chart.component.ts</context>
+          <context context-type="linenumber">198</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="spaceTeacherAgeStructure.title" datatype="html">
         <source>Age Structure</source>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/client/portal/pages/space/teacher/age-structure/src/lib/containers/page/page.component.html</context>
           <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherFriezeDays.title" datatype="html">
+        <source> Frieze days </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/containers/page/page.component.html</context>
+          <context context-type="linenumber">3,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.buttons.generate" datatype="html">
+        <source> Generate </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/containers/page/page.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.january" datatype="html">
+        <source>January</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.february" datatype="html">
+        <source>February</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.march" datatype="html">
+        <source>March</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.april" datatype="html">
+        <source>April</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.may" datatype="html">
+        <source>May</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.june" datatype="html">
+        <source>June</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.july" datatype="html">
+        <source>July</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.august" datatype="html">
+        <source>August</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.september" datatype="html">
+        <source>September</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.october" datatype="html">
+        <source>October</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.november" datatype="html">
+        <source>November</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.date.months.december" datatype="html">
+        <source>December</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/frieze-days/src/lib/services/frieze-days.service.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.titles.create" datatype="html">
+        <source>Create contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.titles.update" datatype="html">
+        <source>Update contact</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.buttons.cancel" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.buttons.create" datatype="html">
+        <source> Create </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.buttons.save" datatype="html">
+        <source> Save </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.html</context>
+          <context context-type="linenumber">25,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.firstname.label" datatype="html">
+        <source>Firstname</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.lastname.label" datatype="html">
+        <source>Lastname</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.emails.label" datatype="html">
+        <source>Emails</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commons.buttons.addAnother" datatype="html">
+        <source>Add another</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.emailType.label" datatype="html">
+        <source>Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.email.label" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.phones.label" datatype="html">
+        <source>Phone numbers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.phoneType.label" datatype="html">
+        <source>Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.contacts.form.fields.phone.label" datatype="html">
+        <source>Phone number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/components/contact-form/contact-form.component.ts</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.groups.personal.title" datatype="html">
+        <source> Personal </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/containers/details/details.component.html</context>
+          <context context-type="linenumber">12,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.groups.personal.labels.sex" datatype="html">
+        <source> Sex </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/containers/details/details.component.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.groups.personal.labels.birthday" datatype="html">
+        <source> Birthday </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/containers/details/details.component.html</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spaceTeacherStudents.details.groups.contacts.title" datatype="html">
+        <source> Contacts </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/client/portal/pages/space/teacher/students/src/lib/containers/details/details.component.html</context>
+          <context context-type="linenumber">43,45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dashboard.widgets.birthdays.title" datatype="html">
