@@ -21,6 +21,9 @@
       "@klazzroom/client-common-config-loader-http": [
         "libs/client/common/config/loader/http/src/index.ts"
       ],
+      "@klazzroom/client-common-form-field-repeat": [
+        "libs/client/common/form/field/repeat/src/index.ts"
+      ],
       "@klazzroom/client-common-ui-layout": [
         "libs/client/common/ui/layout/src/index.ts"
       ],

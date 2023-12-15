@@ -16,6 +16,19 @@ query GetStudents($id: ID!) {
       birthday
       sex
       comments
+      contacts {
+        id
+        firstname
+        lastname
+        emails {
+          type
+          value
+        }
+        phones {
+          type
+          value
+        }
+      }
     }
   }
 }

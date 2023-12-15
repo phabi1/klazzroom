@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
 import { Grade } from '../../grade/entities/grade.entity';
 import { Sex } from '../enums/sex.enum';
+import { ContactInfo, ContactInfoSchema } from './contact-info.entity';
 
 @ObjectType()
 @Schema({ toJSON: { virtuals: true } })
@@ -29,12 +30,18 @@ export class Student {
   birthday: Date | null;
 
   @Field(() => Sex, { description: 'Sex of student' })
-  @Prop({ type: Number, enum: Sex , default: Sex.Unknown })
+  @Prop({ type: Number, enum: Sex, default: Sex.Unknown })
   sex: Sex;
 
-  @Field({ description: 'Commants' })
+  @Field({ description: 'Comments' })
   @Prop({ default: '' })
   comments: string;
+
+  @Field(() => [ContactInfo], {
+    description: 'Contacts',
+  })
+  @Prop({ type: [ContactInfoSchema], default: [] })
+  contacts: ContactInfo[];
 }
 
 export const StudentSchema = SchemaFactory.createForClass(Student);

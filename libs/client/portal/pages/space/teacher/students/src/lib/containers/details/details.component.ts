@@ -5,6 +5,7 @@ import {
   SpaceTeacherStudentsSelectors,
 } from '@klazzroom/client-portal-stores-space-teacher-students';
 import { Store } from '@ngrx/store';
+import { ContactInfo } from '@klazzroom/client-portal-stores-space-teacher-students';
 import { Subject, startWith, takeUntil } from 'rxjs';
 
 @Component({
@@ -18,6 +19,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
   selectedStudent$ = this.store.select(
     SpaceTeacherStudentsSelectors.selectCurrentStudent
   );
+
+  contacts: ContactInfo[] = [];
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 

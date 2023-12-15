@@ -10,5 +10,18 @@ mutation UpdateStudent($id: ID!, $student: UpdateStudentInput!) {
     birthday
     sex
     comments
+    contacts {
+        id
+        firstname
+        lastname
+        emails {
+          type
+          value
+        }
+        phones {
+          type
+          value
+        }
+      }
   }
 }

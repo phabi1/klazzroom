@@ -1,0 +1,5 @@
+mutation RemoveContact($id: String!) {
+  removeContact(id: $id) {
+    id
+  }
+}

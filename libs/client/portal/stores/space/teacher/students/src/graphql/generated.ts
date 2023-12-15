@@ -19,6 +19,27 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
+export type Contact = {
+  __typename?: 'Contact';
+  type: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+};
+
+export type ContactInfo = {
+  __typename?: 'ContactInfo';
+  emails: Array<Contact>;
+  firstname: Scalars['String']['output'];
+  /** Contact ID */
+  id: Scalars['ID']['output'];
+  lastname: Scalars['String']['output'];
+  phones: Array<Contact>;
+};
+
+export type ContactInput = {
+  type: Scalars['String']['input'];
+  value: Scalars['String']['input'];
+};
+
 export type Course = {
   __typename?: 'Course';
   /** Worked days */
@@ -29,6 +50,13 @@ export type Course = {
   id: Scalars['ID']['output'];
   /** Students in the course */
   students: Array<Student>;
+};
+
+export type CreateContactInfoInput = {
+  emails: Array<ContactInput>;
+  firstname: Scalars['String']['input'];
+  lastname: Scalars['String']['input'];
+  phones: Array<ContactInput>;
 };
 
 export type CreateCourseInput = {
@@ -73,17 +101,26 @@ export type Grade = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addContact: ContactInfo;
   createCourse: Course;
   createGrade: Grade;
   createStudent: Student;
   createTeacherSpace: Space;
+  removeContact: ContactInfo;
   removeCourse: Course;
   removeGrade: Grade;
   removeSpace: SpaceResult;
+  updateContact: ContactInfo;
   updateCourse: Course;
   updateGrade: Grade;
   updateStudent: Student;
   updateTeacherSpace: Space;
+};
+
+
+export type MutationAddContactArgs = {
+  input: CreateContactInfoInput;
+  student: Scalars['String']['input'];
 };
 
 
@@ -107,6 +144,11 @@ export type MutationCreateTeacherSpaceArgs = {
 };
 
 
+export type MutationRemoveContactArgs = {
+  id: Scalars['String']['input'];
+};
+
+
 export type MutationRemoveCourseArgs = {
   id: Scalars['Int']['input'];
 };
@@ -119,6 +161,12 @@ export type MutationRemoveGradeArgs = {
 
 export type MutationRemoveSpaceArgs = {
   id: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateContactArgs = {
+  id: Scalars['String']['input'];
+  input: UpdateContactInfoInput;
 };
 
 
@@ -188,8 +236,10 @@ export type Student = {
   __typename?: 'Student';
   /** Birthday of student */
   birthday?: Maybe<Scalars['DateTime']['output']>;
-  /** Commants */
+  /** Comments */
   comments: Scalars['String']['output'];
+  /** Contacts */
+  contacts: Array<ContactInfo>;
   /** Firstname of student */
   firstname: Scalars['String']['output'];
   /** Grade of student */
@@ -212,6 +262,13 @@ export type TeacherSpace = {
   title: Scalars['String']['output'];
   /** User ID */
   user: Scalars['String']['output'];
+};
+
+export type UpdateContactInfoInput = {
+  emails?: InputMaybe<Array<ContactInput>>;
+  firstname?: InputMaybe<Scalars['String']['input']>;
+  lastname?: InputMaybe<Scalars['String']['input']>;
+  phones?: InputMaybe<Array<ContactInput>>;
 };
 
 export type UpdateCourseInput = {
@@ -248,12 +305,35 @@ export type UpdateTeacherSpaceInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type CreateContactMutationVariables = Exact<{
+  input: CreateContactInfoInput;
+  student: Scalars['String']['input'];
+}>;
+
+
+export type CreateContactMutation = { __typename?: 'Mutation', addContact: { __typename?: 'ContactInfo', id: string, firstname: string, lastname: string, emails: Array<{ __typename?: 'Contact', type: string, value: string }>, phones: Array<{ __typename?: 'Contact', type: string, value: string }> } };
+
 export type CreateStudentMutationVariables = Exact<{
   student: CreateStudentInput;
 }>;
 
 
-export type CreateStudentMutation = { __typename?: 'Mutation', createStudent: { __typename?: 'Student', id: string, firstname: string, lastname: string, birthday?: any | null, sex: Sex, comments: string, grade: { __typename?: 'Grade', id: string, title: string } } };
+export type CreateStudentMutation = { __typename?: 'Mutation', createStudent: { __typename?: 'Student', id: string, firstname: string, lastname: string, birthday?: any | null, sex: Sex, comments: string, grade: { __typename?: 'Grade', id: string, title: string }, contacts: Array<{ __typename?: 'ContactInfo', id: string, firstname: string, lastname: string, emails: Array<{ __typename?: 'Contact', type: string, value: string }>, phones: Array<{ __typename?: 'Contact', type: string, value: string }> }> } };
+
+export type RemoveContactMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type RemoveContactMutation = { __typename?: 'Mutation', removeContact: { __typename?: 'ContactInfo', id: string } };
+
+export type UpdateContactMutationVariables = Exact<{
+  input: UpdateContactInfoInput;
+  id: Scalars['String']['input'];
+}>;
+
+
+export type UpdateContactMutation = { __typename?: 'Mutation', updateContact: { __typename?: 'ContactInfo', id: string, firstname: string, lastname: string, emails: Array<{ __typename?: 'Contact', type: string, value: string }>, phones: Array<{ __typename?: 'Contact', type: string, value: string }> } };
 
 export type UpdateStudentMutationVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -261,15 +341,43 @@ export type UpdateStudentMutationVariables = Exact<{
 }>;
 
 
-export type UpdateStudentMutation = { __typename?: 'Mutation', updateStudent: { __typename?: 'Student', id: string, firstname: string, lastname: string, birthday?: any | null, sex: Sex, comments: string, grade: { __typename?: 'Grade', id: string, title: string } } };
+export type UpdateStudentMutation = { __typename?: 'Mutation', updateStudent: { __typename?: 'Student', id: string, firstname: string, lastname: string, birthday?: any | null, sex: Sex, comments: string, grade: { __typename?: 'Grade', id: string, title: string }, contacts: Array<{ __typename?: 'ContactInfo', id: string, firstname: string, lastname: string, emails: Array<{ __typename?: 'Contact', type: string, value: string }>, phones: Array<{ __typename?: 'Contact', type: string, value: string }> }> } };
 
 export type GetStudentsQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type GetStudentsQuery = { __typename?: 'Query', course: { __typename?: 'Course', id: string, grades: Array<{ __typename?: 'Grade', id: string, title: string }>, students: Array<{ __typename?: 'Student', id: string, firstname: string, lastname: string, birthday?: any | null, sex: Sex, comments: string, grade: { __typename?: 'Grade', id: string, title: string } }> } };
+export type GetStudentsQuery = { __typename?: 'Query', course: { __typename?: 'Course', id: string, grades: Array<{ __typename?: 'Grade', id: string, title: string }>, students: Array<{ __typename?: 'Student', id: string, firstname: string, lastname: string, birthday?: any | null, sex: Sex, comments: string, grade: { __typename?: 'Grade', id: string, title: string }, contacts: Array<{ __typename?: 'ContactInfo', id: string, firstname: string, lastname: string, emails: Array<{ __typename?: 'Contact', type: string, value: string }>, phones: Array<{ __typename?: 'Contact', type: string, value: string }> }> }> } };
 
+export const CreateContactDocument = gql`
+    mutation CreateContact($input: CreateContactInfoInput!, $student: String!) {
+  addContact(input: $input, student: $student) {
+    id
+    firstname
+    lastname
+    emails {
+      type
+      value
+    }
+    phones {
+      type
+      value
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateContactGQL extends Apollo.Mutation<CreateContactMutation, CreateContactMutationVariables> {
+    override document = CreateContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const CreateStudentDocument = gql`
     mutation CreateStudent($student: CreateStudentInput!) {
   createStudent(input: $student) {
@@ -283,6 +391,19 @@ export const CreateStudentDocument = gql`
     birthday
     sex
     comments
+    contacts {
+      id
+      firstname
+      lastname
+      emails {
+        type
+        value
+      }
+      phones {
+        type
+        value
+      }
+    }
   }
 }
     `;
@@ -292,6 +413,52 @@ export const CreateStudentDocument = gql`
   })
   export class CreateStudentGQL extends Apollo.Mutation<CreateStudentMutation, CreateStudentMutationVariables> {
     override document = CreateStudentDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RemoveContactDocument = gql`
+    mutation RemoveContact($id: String!) {
+  removeContact(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RemoveContactGQL extends Apollo.Mutation<RemoveContactMutation, RemoveContactMutationVariables> {
+    override document = RemoveContactDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateContactDocument = gql`
+    mutation UpdateContact($input: UpdateContactInfoInput!, $id: String!) {
+  updateContact(input: $input, id: $id) {
+    id
+    firstname
+    lastname
+    emails {
+      type
+      value
+    }
+    phones {
+      type
+      value
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateContactGQL extends Apollo.Mutation<UpdateContactMutation, UpdateContactMutationVariables> {
+    override document = UpdateContactDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -310,6 +477,19 @@ export const UpdateStudentDocument = gql`
     birthday
     sex
     comments
+    contacts {
+      id
+      firstname
+      lastname
+      emails {
+        type
+        value
+      }
+      phones {
+        type
+        value
+      }
+    }
   }
 }
     `;
@@ -343,6 +523,19 @@ export const GetStudentsDocument = gql`
       birthday
       sex
       comments
+      contacts {
+        id
+        firstname
+        lastname
+        emails {
+          type
+          value
+        }
+        phones {
+          type
+          value
+        }
+      }
     }
   }
 }

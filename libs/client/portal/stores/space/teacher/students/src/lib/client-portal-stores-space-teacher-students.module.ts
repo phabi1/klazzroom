@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromStudent from './reducers/student.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { StudentEffects } from './effects/student.effects';
+import { ContactEffects } from './effects/contact.effects';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { StudentEffects } from './effects/student.effects';
       fromStudent.spaceTeacherStudentsFeatureKey,
       fromStudent.reducer
     ),
-    EffectsModule.forFeature([StudentEffects]),
+    EffectsModule.forFeature([StudentEffects, ContactEffects]),
   ],
 })
 export class ClientPortalStoresSpaceTeacherStudentsModule {}

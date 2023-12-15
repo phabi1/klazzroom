@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, LOCALE_ID, NgModule, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, NgModule, isDevMode } from '@angular/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -25,8 +26,6 @@ import { routes } from './app.routes';
 import { createConfigLoader } from './factories/config-loader.factory';
 import { GraphQLModule } from './graphql/graphql.module';
 import initializeKeycloak from './initializers/keycloak.initializer';
-import { APP_BASE_HREF } from '@angular/common';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -68,6 +67,10 @@ import { environment } from '../environments/environment';
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService, ConfigService],
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' },
     },
   ],
   bootstrap: [AppComponent],

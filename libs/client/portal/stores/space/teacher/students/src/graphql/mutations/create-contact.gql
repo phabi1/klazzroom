@@ -1,0 +1,15 @@
+mutation CreateContact($input: CreateContactInfoInput!, $student: String!) {
+  addContact(input: $input, student: $student) {
+    id
+    firstname
+    lastname
+    emails {
+      type
+      value
+    }
+    phones {
+      type
+      value
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { Grade, Student } from '../../graphql/generated';
+import { SpaceTeacherStudentsContactActions } from '../actions/contact.actions';
 import { SpaceTeacherStudentsActions } from '../actions/student.actions';
 
 export const spaceTeacherStudentsFeatureKey = 'spaceTeacherStudents';
@@ -32,6 +33,68 @@ export const reducer = createReducer(
   ),
   on(SpaceTeacherStudentsActions.deleteStudentSuccess, (state, action) =>
     adapter.removeOne(action.id, state)
+  ),
+  on(SpaceTeacherStudentsContactActions.addContactSuccess, (state, action) => {
+    if (state.currentId) {
+      const student = state.entities[state.currentId];
+      if (!student) {
+        return state;
+      }
+      return adapter.updateOne(
+        {
+          id: state.currentId,
+          changes: {
+            contacts: student.contacts.concat(action.contact),
+          },
+        },
+        state
+      );
+    }
+    return state;
+  }),
+  on(
+    SpaceTeacherStudentsContactActions.updateContactSuccess,
+    (state, action) => {
+      if (state.currentId) {
+        const student = state.entities[state.currentId];
+        if (!student) {
+          return state;
+        }
+        return adapter.updateOne(
+          {
+            id: state.currentId,
+            changes: {
+              contacts: student.contacts.map((c) =>
+                c.id === action.contact.id ? action.contact : c
+              ),
+            },
+          },
+          state
+        );
+      }
+      return state;
+    }
+  ),
+  on(
+    SpaceTeacherStudentsContactActions.deleteContactSuccess,
+    (state, action) => {
+      if (state.currentId) {
+        const student = state.entities[state.currentId];
+        if (!student) {
+          return state;
+        }
+        return adapter.updateOne(
+          {
+            id: state.currentId,
+            changes: {
+              contacts: student.contacts.filter((c) => c.id !== action.id),
+            },
+          },
+          state
+        );
+      }
+      return state;
+    }
   ),
   on(SpaceTeacherStudentsActions.init, (state, action) =>
     adapter.removeAll({

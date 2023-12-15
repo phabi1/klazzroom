@@ -1,17 +1,54 @@
 <div class="p-4">
   <div *ngIf="selectedStudent$ | async as selectedStudent">
-    <div class="flex justify-between">
-      <div>
-        <h1>
-          {{ selectedStudent.firstname + ' ' + selectedStudent.lastname }}
-        </h1>
-      </div>
-      <div>
-        <a mat-raised-button color="primary" routerLink="./edit">Edit</a>
+    <div class="text-center py-6">
+      <h1 class="text-2xl">
+        {{ selectedStudent.firstname + ' ' + selectedStudent.lastname }}
+      </h1>
+    </div>
+    <div class="bg-white rounded shadow mb-4 p-4">
+      <h2
+        class="text-xl"
+        i18n="spaceTeacherStudents.details.groups.personal.title"
+      >
+        Personal
+      </h2>
+      <div class="flex">
+        <div class="flex-1">
+          <div
+            class="font-bold"
+            i18n="@@spaceTeacherStudents.details.groups.personal.labels.sex"
+          >
+            Sex
+          </div>
+          <div>{{ selectedStudent.sex }}</div>
+        </div>
+        <div class="flex-1">
+          <div
+            class="font-bold"
+            i18n="
+              @@spaceTeacherStudents.details.groups.personal.labels.birthday"
+          >
+            Birthday
+          </div>
+          <div>
+            {{ selectedStudent.birthday | date : 'mediumDate' }}
+          </div>
+        </div>
       </div>
     </div>
-    <div>
-      {{ selectedStudent.birthday | date: 'mediumDate' }}
+    <div class="bg-white rounded shadow mb-4 p-4">
+      <h2
+        class="text-xl"
+        i18n="spaceTeacherStudents.details.groups.contacts.title"
+      >
+        Contacts
+      </h2>
+      <div>
+        <klazzroom-client-portal-pages-space-teacher-students-contact-list
+          [student]="selectedStudent.id"
+          [contacts]="selectedStudent.contacts"
+        ></klazzroom-client-portal-pages-space-teacher-students-contact-list>
+      </div>
     </div>
   </div>
 </div>

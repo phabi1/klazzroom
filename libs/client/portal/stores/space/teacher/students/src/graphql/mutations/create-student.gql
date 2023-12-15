@@ -10,5 +10,18 @@ mutation CreateStudent($student: CreateStudentInput!) {
     birthday
     sex
     comments
+    contacts {
+        id
+        firstname
+        lastname
+        emails {
+          type
+          value
+        }
+        phones {
+          type
+          value
+        }
+      }
   }
 }

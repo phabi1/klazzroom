@@ -1,0 +1,24 @@
+<table class="w-full">
+  <tr *ngFor="let contact of contacts">
+    <td>{{ contact.firstname + ' ' + contact.lastname }}</td>
+    <td>
+      <ul *ngIf="contact.emails">
+        <li *ngFor="let email of contact.emails">{{ email.value }}</li>
+      </ul>
+    </td>
+    <td>
+      <ul *ngIf="contact.phones">
+        <li *ngFor="let phone of contact.phones">{{ phone.value }}</li>
+      </ul>
+    </td>
+    <td>
+      <button mat-icon-button (click)="editContact(contact.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteContact(contact.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </tr>
+</table>
+<button mat-raised-button color="primary" (click)="newContact()">New</button>
