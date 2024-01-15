@@ -1,12 +1,44 @@
 <mat-sidenav-container class="h-full">
-  <mat-sidenav mode="side" opened class="sidenav">
-    <div class="text-center text-xl py-2">Klazzroom</div>
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <div class="text-center text-xl py-2 h-16 flex justify-center items-center">
+      <span>Klazzroom </span>
+    </div>
     <ng-container
       *ngIf="sidebarType"
       [ngComponentOutlet]="sidebarType"
     ></ng-container>
   </mat-sidenav>
   <mat-sidenav-content>
+    <div class="bg-white shadow h-16 flex justify-between items-center">
+      <div class="ml-4">
+        <button
+          mat-icon-button
+          (click)="sidenav.toggle()"
+          class="p-2"
+          aria-label="Menu"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div class="flex items-center mr-4">
+        <div>
+          <button mat-icon-button class="p-2" aria-label="Notifications">
+            <mat-icon>notifications</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="profile">
+          <ngx-avatars
+            [gravatarId]="profile.email"
+            [name]="profile.firstname + ' ' + profile.lastname"
+            [size]="32"
+            [mat-menu-trigger-for]="profileMenu"
+          ></ngx-avatars>
+          <mat-menu #profileMenu>
+            <button mat-menu-item (click)="logout()">Log out</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

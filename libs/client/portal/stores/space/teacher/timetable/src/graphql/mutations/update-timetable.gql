@@ -1,0 +1,5 @@
+mutation UpdateTimetable ($id: ID!, $input: UpdateTimetableInput!) {
+    updateTimetable(id: $id, input: $input) {
+        id
+    }
+}

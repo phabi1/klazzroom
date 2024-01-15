@@ -28,14 +28,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "timetable:build"
+        "buildTarget": "server-timetable:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "timetable:build:development"
+          "buildTarget": "server-timetable:build:development"
         },
         "production": {
-          "buildTarget": "timetable:build:production"
+          "buildTarget": "server-timetable:build:production"
         }
       }
     },

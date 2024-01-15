@@ -13,7 +13,7 @@ import { AuthService } from '../auth/services/auth/auth.service';
       useFactory: (authService: AuthService): ApolloGatewayDriverConfig => ({
         server: {
           context: authService.handleAuth.bind(authService),
-          playground: true
+          playground: true,
         },
         gateway: {
           buildService: ({ url }) => {
@@ -32,6 +32,10 @@ import { AuthService } from '../auth/services/auth/auth.service';
             subgraphs: [
               { name: 'spaces', url: 'http://space-server:3000/graphql' },
               { name: 'courses', url: 'http://course-server:3000/graphql' },
+              {
+                name: 'timetables',
+                url: 'http://timetable-server:3000/graphql',
+              },
             ],
           }),
         },

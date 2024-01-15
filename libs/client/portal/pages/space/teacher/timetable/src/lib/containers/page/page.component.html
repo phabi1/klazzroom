@@ -1,16 +1,38 @@
 <div class="p-4">
   <h1 class="text-2xl font-bold">Timetable</h1>
   <div class="mt-4">
-    <mwl-calendar-week-view
-      [dayStartHour]="8"
-      [dayEndHour]="16"
-      [hourSegments]="5"
-      [viewDate]="viewDate"
-      [events]="events"
-      [headerTemplate]="timetableHeaderTpl"
-    ></mwl-calendar-week-view>
+    <div class="p-4 bg-white shadow rounded">
+      <mwl-calendar-week-view
+        locale="fr"
+        [dayStartHour]="8"
+        [dayEndHour]="16"
+        [hourDuration]="30"
+        [hourSegments]="3"
+        [viewDate]="viewDate"
+        [excludeDays]="excludeDays"
+        [events]="events"
+        [headerTemplate]="timetableHeaderTpl"
+        [eventTemplate]="eventTpl"
+        [refresh]="refresh"
+        (hourSegmentClicked)="onHourSegmentClicked($event)"
+        (eventClicked)="onEventClicked($event)"
+        (eventTimesChanged)="onEventTimesChanged($event)"
+      ></mwl-calendar-week-view>
+    </div>
   </div>
 </div>
+
+<ng-template
+  #eventTpl
+  let-weekEvent="weekEvent"
+  let-eventClicked="eventClicked"
+>
+  <span
+    (mwlClick)="eventClicked.emit({ event: weekEvent, sourceEvent: $event })"
+    >{{ weekEvent.event.title }}</span
+  >
+  <div class="absolute bottom-0 right-0 text-xs">MS</div>
+</ng-template>
 
 <ng-template
   #timetableHeaderTpl
@@ -42,8 +64,7 @@
       tabindex="0"
       role="columnheader"
     >
-      <b>{{ day.date | calendarDate : 'weekViewColumnHeader' : locale }}</b
-      >
+      <b>{{ day.date | calendarDate : 'weekViewColumnHeader' : locale }}</b>
     </div>
   </div></ng-template
 >

@@ -1,0 +1,13 @@
+query GetTimetables  {
+  timetables {
+    id
+    title
+    events {
+      id
+      type
+      title
+      start
+      end
+    }
+  }
+}

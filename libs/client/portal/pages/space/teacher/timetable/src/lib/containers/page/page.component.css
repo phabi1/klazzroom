@@ -1,0 +1,3 @@
+mwl-calendar-week-view-event {
+    @apply w-full h-full flex border border-solid border-gray-300 rounded-lg bg-white relative;
+}

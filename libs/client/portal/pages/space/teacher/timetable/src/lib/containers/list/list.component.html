@@ -1,0 +1,6 @@
+<div class="p-4">
+    <div *ngFor="let item of items$ | async" class="bg-white shadow rounded">
+        {{item.title}}
+    </div>
+    <button (click)="addTimetable()">New timetable</button>
+</div>
