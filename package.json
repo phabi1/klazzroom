@@ -5,8 +5,7 @@
   "scripts": {
     "nx": "nx",
     "docker:base": "docker build -t klazzroom/base -f ./docker/base.Dockerfile .",
-    "docker:dev": "docker compose -f ./docker-compose.dev.yml",
-    "prepare": "husky install"
+    "docker:dev": "docker compose -f ./docker-compose.dev.yml"
   },
   "private": true,
   "devDependencies": {
