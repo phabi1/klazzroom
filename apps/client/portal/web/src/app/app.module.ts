@@ -54,7 +54,7 @@ import initializeKeycloak from './initializers/keycloak.initializer';
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     ClientPortalStoresSpacesModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() , connectInZone: true}),
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
