@@ -6,7 +6,6 @@ export function createConfigLoader(
   httpClient: HttpClient,
   assetService: AssetService
 ) {
-  console.log('config')
   return new ConfigHttpLoader(
     httpClient,
     assetService.toUrl('assets/config.json')

@@ -1,12 +1,16 @@
 import { createUnionType } from '@nestjs/graphql';
 import { TeacherSpace } from '../entities/teacher-space.entity';
+import { AdministratorSpace } from '../entities/administrator-space.entity';
 
 export const SpaceResult = createUnionType({
   name: 'SpaceResult',
-  types: () => [TeacherSpace],
+  types: () => [TeacherSpace, AdministratorSpace],
   resolveType(value) {
-    if (value.kind === 'TeacherSpace') {
-      return TeacherSpace;
+    switch (value.kind) {
+      case 'TeacherSpace':
+        return TeacherSpace;
+      case 'AdministratorSpace':
+        return AdministratorSpace;
     }
     return null;
   },

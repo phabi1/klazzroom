@@ -1,3 +1,3 @@
 export interface ConfigLoader {
-  loadSettings(): Promise<unknown>;
+  loadSettings(): Promise<Record<string, unknown>>;
 }
