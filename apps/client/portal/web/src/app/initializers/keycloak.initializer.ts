@@ -1,10 +1,12 @@
+import { AssetService } from '@klazzroom/client-common-asset';
 import { ConfigService } from '@klazzroom/client-common-config-core';
 import { KeycloakService } from 'keycloak-angular';
 import { filter, first, lastValueFrom } from 'rxjs';
 
 export default function (
   keycloak: KeycloakService,
-  configService: ConfigService
+  configService: ConfigService,
+  assetService: AssetService
 ) {
   return () =>
     lastValueFrom(
@@ -23,7 +25,8 @@ export default function (
         initOptions: {
           onLoad: 'check-sso',
           silentCheckSsoRedirectUri:
-            window.location.origin + '/assets/silent-check-sso.html',
+            window.location.origin +
+            assetService.toUrl('assets/silent-check-sso.html')
         },
       });
     });

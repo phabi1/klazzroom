@@ -1,0 +1,13 @@
+
+<klazzroom-client-common-ui-navbar-nav-bar
+  *ngIf="links$ | async as links"
+  [links]="links"
+></klazzroom-client-common-ui-navbar-nav-bar>
+<div *ngIf="currentSpace$ | async as currentSpace" class="m-4 px-4 py-2 border rounded">
+  <div>
+    {{ currentSpace.title }}
+  </div>
+  <div>
+    <a routerLink="/spaces" class="text-xs text-gray-300">change</a>
+  </div>
+</div>

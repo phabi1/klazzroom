@@ -1,17 +1,14 @@
-import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
-import { ConfigService } from '@klazzroom/client-common-config-core';
-import { environment } from '../../environments/environment';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 
 export function createApollo(
-  httpLink: HttpLink,
+  httpLink: HttpLink
 ): ApolloClientOptions<any> {
-  const uri = environment.api.endpoint;
   return {
     link: httpLink.create({
-      uri
+      uri: 'https://api.klazzroom.fr/graphql',
     }),
     cache: new InMemoryCache(),
   };

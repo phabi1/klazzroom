@@ -10,7 +10,7 @@
     "locales": {
       "fr": {
         "translation": "apps/client/portal/web/src/locales/messages.fr.xlf",
-        "baseHref": "/"
+        "baseHref": "/fr/"
       },
       "en": {
         "translation": "apps/client/portal/web/src/locales/messages.en.xlf",
@@ -86,8 +86,6 @@
           "buildTarget": "client-portal-web:build:production,en"
         },
         "development": {
-          "host": "0.0.0.0",
-          "allowedHosts": ["portal-klazzzroom.docker.localhost"],
           "buildTarget": "client-portal-web:build:development,fr"
         }
       },

@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'klazzroom-portal-sidebars-teacher-sidebar',
+  selector: 'klazzroom-portal-sidebars-admin-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
@@ -18,7 +18,7 @@ export class SidebarComponent {
 
   links$ = this.store.select(SpaceSelectors.selectCurrentSpaceId).pipe(
     switchMap((space) =>
-      this.navigationService.getLinks('teacher').pipe(
+      this.navigationService.getLinks('admin').pipe(
         map((links) => this.translateLinks(links)),
         map((links) => this.injectSpaceToLinks(space, links))
       )

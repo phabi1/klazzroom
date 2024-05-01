@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClientCommonUiNavbarModule } from '@klazzroom/client-common-ui-navbar';
+import { ClientPortalStoresNavigationModule } from '@klazzroom/client-portal-stores-navigation';
 import { SidebarComponent } from './containers/sidebar/sidebar.component';
-import { NavigationService } from './services/navigation.service';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ClientCommonUiNavbarModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ClientCommonUiNavbarModule,
+    forwardRef(() => ClientPortalStoresNavigationModule),
+  ],
   declarations: [SidebarComponent],
-  providers: [NavigationService],
   exports: [SidebarComponent],
 })
 export class ClientPortalSidebarTeacherModule {}

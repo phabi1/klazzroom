@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@klazzroom/client-common-asset": [
+        "libs/client/common/asset/src/index.ts"
+      ],
       "@klazzroom/client-common-config-core": [
         "libs/client/common/config/core/src/index.ts"
       ],
@@ -42,6 +45,9 @@
       "@klazzroom/client-portal-pages-spaces": [
         "libs/client/portal/pages/spaces/src/index.ts"
       ],
+      "@klazzroom/client-portal-sidebar-admin": [
+        "libs/client/portal/sidebars/admin/src/index.ts"
+      ],
       "@klazzroom/client-portal-sidebar-teacher": [
         "libs/client/portal/sidebars/teacher/src/index.ts"
       ],
@@ -62,6 +68,9 @@
       ],
       "@klazzroom/client-portal-space-teacher-timetable": [
         "libs/client/portal/pages/space/teacher/timetable/src/index.ts"
+      ],
+      "@klazzroom/client-portal-stores-navigation": [
+        "libs/client/portal/stores/navigation/src/index.ts"
       ],
       "@klazzroom/client-portal-stores-space-teacher-age-structure": [
         "libs/client/portal/stores/space/teacher/age-structure/src/index.ts"
