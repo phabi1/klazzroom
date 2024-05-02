@@ -12,9 +12,9 @@ import {
 } from '@klazzroom/client-common-config-core';
 import { ClientCommonUiLayoutModule } from '@klazzroom/client-common-ui-layout';
 import {
-  ClientPortalSidebarTeacherModule,
   SidebarComponent,
-} from '@klazzroom/client-portal-sidebar-teacher';
+  ClientPortalSidebarsSpaceModule,
+} from '@klazzroom/client-portal-sidebars-space';
 import { ClientPortalStoresSpacesModule } from '@klazzroom/client-portal-stores-spaces';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -51,7 +51,6 @@ import initializeKeycloak from './initializers/keycloak.initializer';
         },
       ],
     }),
-    ClientPortalSidebarTeacherModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
@@ -61,6 +60,7 @@ import initializeKeycloak from './initializers/keycloak.initializer';
       logOnly: !isDevMode(),
       connectInZone: true,
     }),
+    ClientPortalSidebarsSpaceModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

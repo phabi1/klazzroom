@@ -8,7 +8,10 @@ export function createApollo(
   httpLink: HttpLink,
   configService: ConfigService
 ): ApolloClientOptions<any> {
-  const uri = configService.getSettings('api.endpoint', 'https://api.klazzroom.fr/graphql');
+  const uri = configService.getSettings<string>(
+    'api.endpoint',
+    'https://api.klazzroom.fr/graphql'
+  );
   return {
     link: httpLink.create({
       uri: uri,

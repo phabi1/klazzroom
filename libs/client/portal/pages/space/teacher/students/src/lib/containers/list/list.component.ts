@@ -5,7 +5,10 @@ import {
   SpaceTeacherStudentsSelectors,
   Student,
 } from '@klazzroom/client-portal-stores-space-teacher-students';
-import { SpaceSelectors } from '@klazzroom/client-portal-stores-spaces';
+import {
+  SpaceSelectors,
+  TeacherSpace,
+} from '@klazzroom/client-portal-stores-spaces';
 import { Store } from '@ngrx/store';
 import {
   Subject,
@@ -68,7 +71,7 @@ export class ListComponent implements OnInit, OnDestroy {
         if (space) {
           this.store.dispatch(
             SpaceTeacherStudentsActions.init({
-              course: space.course,
+              course: (space as TeacherSpace).course,
             })
           );
         }

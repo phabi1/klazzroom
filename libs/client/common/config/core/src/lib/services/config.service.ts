@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { CONFIG_LOADER } from '../constants/tokens';
 import { ConfigLoader } from '../interfaces/config-loader.interface';
 
@@ -16,19 +15,16 @@ export class ConfigService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getSettings<T = any>(key: string | string[], defaultValue = null): T {
+  getSettings<T = any>(key: string | string[], defaultValue?: T): T {
     if (typeof key === 'string') {
       key = key.split('.');
     }
     let current = this.settings;
-    while (current) {
-      const k = key.shift();
-      if (k && current[k] !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        current = current[k] as any;
-      } else {
+    for (const k of key) {
+      if (current[k] === undefined) {
         return defaultValue as T;
       }
+      current = current[k] as Record<string, unknown>;
     }
     return current as T;
   }

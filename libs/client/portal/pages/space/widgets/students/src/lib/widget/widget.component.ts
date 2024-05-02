@@ -10,7 +10,10 @@ import {
   SpaceTeacherStudentsActions,
   SpaceTeacherStudentsSelectors,
 } from '@klazzroom/client-portal-stores-space-teacher-students';
-import { SpaceSelectors } from '@klazzroom/client-portal-stores-spaces';
+import {
+  SpaceSelectors,
+  TeacherSpace,
+} from '@klazzroom/client-portal-stores-spaces';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, map, takeUntil } from 'rxjs';
 
@@ -41,7 +44,9 @@ export class ClientPortalSpaceDashboardWidgetsStudentsWidgetComponent
       .subscribe((space) => {
         if (space) {
           this.store.dispatch(
-            SpaceTeacherStudentsActions.init({ course: space.course })
+            SpaceTeacherStudentsActions.init({
+              course: (space as TeacherSpace).course,
+            })
           );
         }
       });

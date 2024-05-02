@@ -1,0 +1,11 @@
+<ng-container *ngIf="currentSpace$ | async as currentSpace">
+  <ng-container [ngSwitch]="currentSpace.type">
+    <klazzroom-portal-sidebars-admin-sidebar
+      *ngSwitchCase="'AdministratorSpace'"
+    />
+    <klazzroom-portal-sidebars-teacher-sidebar
+      *ngSwitchCase="'TeacherSpace'"
+    />
+    <div *ngSwitchDefault></div>
+  </ng-container>
+</ng-container>

@@ -51,6 +51,9 @@
       "@klazzroom/client-portal-sidebar-teacher": [
         "libs/client/portal/sidebars/teacher/src/index.ts"
       ],
+      "@klazzroom/client-portal-sidebars-space": [
+        "libs/client/portal/sidebars/space/src/index.ts"
+      ],
       "@klazzroom/client-portal-space-dashboard-widgets-birthdays": [
         "libs/client/portal/pages/space/widgets/birthdays/src/index.ts"
       ],

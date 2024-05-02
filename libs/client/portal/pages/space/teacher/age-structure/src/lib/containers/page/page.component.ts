@@ -3,7 +3,10 @@ import {
   SpaceTeacherAgeStructureActions,
   SpaceTeacherAgeStructureSelectors,
 } from '@klazzroom/client-portal-stores-space-teacher-age-structure';
-import { SpaceSelectors } from '@klazzroom/client-portal-stores-spaces';
+import {
+  SpaceSelectors,
+  TeacherSpace,
+} from '@klazzroom/client-portal-stores-spaces';
 import { Store } from '@ngrx/store';
 import { first } from 'rxjs';
 
@@ -27,7 +30,9 @@ export class PageComponent implements OnInit {
       .subscribe((space) => {
         if (!space) return;
         this.store.dispatch(
-          SpaceTeacherAgeStructureActions.load({ course: space.course })
+          SpaceTeacherAgeStructureActions.load({
+            course: (space as TeacherSpace).course,
+          })
         );
       });
   }

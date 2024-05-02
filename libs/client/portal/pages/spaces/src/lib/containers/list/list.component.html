@@ -7,7 +7,7 @@
       *ngFor="let space of spaces$ | async"
       class="bg-white border rounded-sm p-4"
     >
-      <div class="text-center text-sm">Teacher</div>
+      <div class="text-center text-sm">{{ space.type | spaceName }}</div>
       <div class="font-bold text-center mb-4">
         {{ space.title }}
       </div>

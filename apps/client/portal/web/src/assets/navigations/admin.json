@@ -1,3 +1,10 @@
 {
-    "links": []
+  "links": [
+    {
+      "type": "item",
+      "title": { "en": "Dashboard", "fr": "Tableau de bord" },
+      "to": "/space/:space",
+      "icon": "dashboard"
+    }
+  ]
 }

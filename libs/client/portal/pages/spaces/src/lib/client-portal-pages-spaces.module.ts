@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { clientCommonPagesSpacesRoutes } from './lib.routes';
 import { ListComponent } from './containers/list/list.component';
 import { MatButtonModule } from '@angular/material/button';
+import { SpaceNamePipe } from './pipes/space-name.pipe';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     RouterModule.forChild(clientCommonPagesSpacesRoutes),
   ],
-  declarations: [ListComponent],
+  declarations: [ListComponent, SpaceNamePipe],
 })
 export class ClientPortalPagesSpacesModule {}

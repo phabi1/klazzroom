@@ -7,12 +7,16 @@ import { Space } from '../models/space.model';
 
 const GET_SPACES_GQL = gql`
   query GetSpaces {
-    __typename
     spaces {
+      __typename
       ... on TeacherSpace {
         id
         title
         course
+      }
+      ... on AdministratorSpace {
+        id
+        title
       }
     }
   }
@@ -24,13 +28,15 @@ export class SpaceEffects {
     return this.actions$.pipe(
       ofType(SpaceActions.loadSpaces),
       switchMap(() =>
-        this.apollo
-          .query<{ spaces: Space[] }>({ query: GET_SPACES_GQL })
-          .pipe(
-            map((res) =>
-              SpaceActions.loadSpacesSuccess({ spaces: res.data['spaces'] })
-            )
-          )
+        this.apollo.query<{ spaces: any[] }>({ query: GET_SPACES_GQL }).pipe(
+          map((res) =>
+            res.data.spaces.map((space) => ({
+              ...space,
+              type: space.__typename,
+            }))
+          ),
+          map((spaces) => SpaceActions.loadSpacesSuccess({ spaces }))
+        )
       )
     );
   });
