@@ -6,6 +6,11 @@ import { TeacherSpaceSchema } from './entities/teacher-space.entity';
 import { SpaceResolver } from './resolvers/space.resolver';
 import { TeacherResolver } from './resolvers/teacher/teacher.resolver';
 import { SpaceService } from './services/space.service';
+import { ConfigService } from '@nestjs/config';
+import {
+  AdministratorSpace,
+  AdministratorSpaceSchema,
+} from './entities/administrator-space.entity';
 
 @Module({
   imports: [
@@ -18,24 +23,19 @@ import { SpaceService } from './services/space.service';
             name: 'TeacherSpace',
             schema: TeacherSpaceSchema,
           },
+          {
+            name: 'AdminstratorSpace',
+            schema: AdministratorSpaceSchema,
+          },
         ],
       },
     ]),
     ClientsModule.registerAsync([
       {
         name: 'course',
-        useFactory: () => {
-          return {
-            transport: Transport.RMQ,
-            options: {
-              urls: ['amqp://rabbitmq:5672'],
-              queue: 'course_queue',
-              queueOptions: {
-                durable: false,
-              },
-            },
-          };
-        },
+        useFactory: (configService: ConfigService) =>
+          configService.get('course.service'),
+        inject: [ConfigService],
       },
     ]),
   ],

@@ -1,6 +1,9 @@
-import { InputType, PartialType } from '@nestjs/graphql';
-import { CreateSkillInput } from './create-skill-domain.input';
+import { Field, InputType } from '@nestjs/graphql';
 
-@InputType()
-export class UpdateSkillInput extends PartialType(CreateSkillInput) {
+@InputType('UpdateSkillDomainInput')
+export class UpdateDomainInput {
+  @Field({ nullable: true })
+  title: string;
+  @Field({ nullable: true })
+  color: string;
 }

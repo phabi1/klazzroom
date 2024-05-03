@@ -33,6 +33,9 @@
       "@klazzroom/client-common-ui-navbar": [
         "libs/client/common/ui/navbar/src/index.ts"
       ],
+      "@klazzroom/client-portal-pages-skills": [
+        "libs/client/portal/pages/skills/src/index.ts"
+      ],
       "@klazzroom/client-portal-pages-space-dashboard": [
         "libs/client/portal/pages/space/dashboard/src/index.ts"
       ],

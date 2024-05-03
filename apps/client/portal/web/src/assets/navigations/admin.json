@@ -5,6 +5,12 @@
       "title": { "en": "Dashboard", "fr": "Tableau de bord" },
       "to": "/space/:space",
       "icon": "dashboard"
+    },
+    {
+      "type": "item",
+      "title": { "en": "Skills", "fr": "Compétences" },
+      "to": "/space/:space/skills",
+      "icon": "account_balance"
     }
   ]
 }

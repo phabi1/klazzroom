@@ -3,12 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Apollo, gql } from 'apollo-angular';
 import { map, switchMap, tap } from 'rxjs';
 import { SpaceActions } from '../actions/space.actions';
-import { Space } from '../models/space.model';
 
 const GET_SPACES_GQL = gql`
   query GetSpaces {
     spaces {
-      __typename
       ... on TeacherSpace {
         id
         title

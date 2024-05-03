@@ -9,16 +9,20 @@ import { Item } from '../../entities/item.entity';
 export class ItemService {
   constructor(@InjectModel(Item.name) private readonly model: Model<Item>) {}
 
-  getItemsByDomain(domainId: string) {
-    return this.model.find({ domain: new Types.ObjectId(domainId) });
+  findByDomain(domain: string): Promise<Item[]> {
+    return this.model.find({ domain: new Types.ObjectId(domain) });
   }
 
-  create(data: CreateItemDto) {
+  findById(id: string): Promise<Item> {
+    return this.model.findById(id);
+  }
+
+  create(data: CreateItemDto): Promise<Item> {
     const entity = new this.model(data);
     return entity.save();
   }
 
-  async update(id: string, data: UpdateItemDto) {
+  async update(id: string, data: UpdateItemDto): Promise<Item> {
     const entity = await this.model.findById(id);
     Object.keys(data).forEach((key) => {
       entity.set(key, data[key]);
@@ -26,7 +30,9 @@ export class ItemService {
     return entity.save();
   }
 
-  remove(id: string) {
-    return this.model.findByIdAndDelete(id);
+  async remove(id: string): Promise<Item> {
+    const item = await this.model.findById(id).exec();
+    await item.deleteOne();
+    return item;
   }
 }

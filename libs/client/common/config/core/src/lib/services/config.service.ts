@@ -5,13 +5,18 @@ import { ConfigLoader } from '../interfaces/config-loader.interface';
 @Injectable()
 export class ConfigService {
   private settings: Record<string, unknown> = {};
+  private loaded = false;
 
   constructor(@Inject(CONFIG_LOADER) private loader: ConfigLoader) {}
 
-  async init(): Promise<void> {
+  async init(): Promise<boolean> {
+    if (this.loaded) {
+      return true;
+    }
     const settings = await this.loader.loadSettings();
     this.settings = settings;
-    return;
+    this.loaded = true;
+    return true;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

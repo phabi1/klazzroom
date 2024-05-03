@@ -5,29 +5,24 @@
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
 
+import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.connectMicroservice({
-    transport: Transport.RMQ,
-    options: {
-      urls: ['amqp://rabbitmq:5672'],
-      queue: 'course_queue',
-      queueOptions: {
-        durable: false,
-      },
-    },
-  });
+  const configService = app.get(ConfigService);
+
+  app.connectMicroservice(configService.get('messageBroker'));
   await app.startAllMicroservices();
 
-  const globalPrefix = '';
+  const globalPrefix = configService.get('app.globalPrefix');
   app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 3000;
-  const host = process.env.HOST || 'localhost';
+  
+  const port = configService.get('app.port');
+  const host = configService.get('app.host');
+  
   await app.listen(port, host);
   Logger.log(
     `🚀 Application is running on: http://${host}:${port}/${globalPrefix}`

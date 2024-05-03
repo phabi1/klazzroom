@@ -1,112 +1,12 @@
-version: '3'
-
 services:
   mongo:
     image: mongo
-    networks:
-      - private
     ports:
       - 27018:27017
   rabbitmq:
     image: rabbitmq:3-management
-    networks:
-      - private
-  client-portal-web:
-    image: klazzroom/base
-    environment:
-      NODE_ENV: development
-    command: ["npm", "run", "nx", "run", "client-portal-web:serve"]
-    volumes:
-      - .:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
-    networks:
-      - public
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.klazzroom-client-portal-web.rule=Host(`portal-klazzroom.docker.localhost`)
-      - traefik.http.routers.klazzroom-client-portal-web.entrypoints=web
-      - traefik.http.routers.klazzroom-client-portal-webs.rule=Host(`portal-klazzroom.docker.localhost`)
-      - traefik.http.routers.klazzroom-client-portal-webs.entrypoints=websecure
-      - traefik.http.routers.klazzroom-client-portal-webs.tls=true
-      - traefik.http.services.klazzroom-client-portal-web.loadbalancer.server.port=4200
-  api-gateway:
-    image: klazzroom/base
-    environment:
-      NODE_ENV: development
-      HOST: 0.0.0.0
-    command: ["npm", "run", "nx", "run", "api-gateway:serve"]
-    depends_on:
-      - space-server
-    volumes:
-      - .:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
-    networks:
-      - public
-      - private
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.klazzroom-api-gateway.rule=Host(`api-klazzroom.docker.localhost`)
-      - traefik.http.routers.klazzroom-api-gateway.entrypoints=web
-      - traefik.http.routers.klazzroom-api-gateways.rule=Host(`api-klazzroom.docker.localhost`)
-      - traefik.http.routers.klazzroom-api-gateways.entrypoints=websecure
-      - traefik.http.routers.klazzroom-api-gateways.tls=true
-      - traefik.http.services.klazzroom-api-gateway.loadbalancer.server.port=3000
-    extra_hosts:
-      - auth.docker.localhost:${TRAEFIK_IP}
+    ports:
+      - 5672:5672
 
-  space-server:
-    image: klazzroom/base
-    environment:
-      NODE_ENV: development
-      HOST: 0.0.0.0
-      MONGO_URI: mongodb://mongo:27017/space
-    depends_on:
-      - mongo
-      - rabbitmq
-    command: ["npm", "run", "nx", "run", "server-space:serve"]
-    volumes:
-      - .:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
-    networks:
-      - private
-  course-server:
-    image: klazzroom/base
-    environment:
-      NODE_ENV: development
-      HOST: 0.0.0.0
-      MONGO_URI: mongodb://mongo:27017/course
-    depends_on:
-      - mongo
-      - rabbitmq
-    command: ["npm", "run", "nx", "run", "server-course:serve"]
-    volumes:
-      - .:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
-    networks:
-      - private
-  timetable-server:
-    image: klazzroom/base
-    environment:
-      NODE_ENV: development
-      HOST: 0.0.0.0
-      MONGO_URI: mongodb://mongo:27017/timetable
-    depends_on:
-      - mongo
-      - rabbitmq
-    command: ["npm", "run", "nx", "run", "server-timetable:serve"]
-    volumes:
-      - .:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
-    networks:
-      - private
-
-networks:
-  private:
-  public:
-    name: traefik_webgateway
-    external: true
-
-volumes:
-  node_modules:
 
  

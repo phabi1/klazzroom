@@ -3,8 +3,5 @@
         "endpoint": "https://auth.klazzroom.fr",
         "realm": "klazzroom",
         "clientId": "client-portal-web"
-    },
-    "api": {
-        "endpoint": "https://api.klazzroom.fr/graphql"
     }
 }

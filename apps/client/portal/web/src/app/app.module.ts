@@ -4,6 +4,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { InMemoryCache } from '@apollo/client/cache';
 import { AssetService } from '@klazzroom/client-common-asset';
 import {
   CONFIG_LOADER,
@@ -12,8 +13,8 @@ import {
 } from '@klazzroom/client-common-config-core';
 import { ClientCommonUiLayoutModule } from '@klazzroom/client-common-ui-layout';
 import {
-  SidebarComponent,
   ClientPortalSidebarsSpaceModule,
+  SidebarComponent,
 } from '@klazzroom/client-portal-sidebars-space';
 import { ClientPortalStoresSpacesModule } from '@klazzroom/client-portal-stores-spaces';
 import { EffectsModule } from '@ngrx/effects';
@@ -21,12 +22,15 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { createAssetService } from './factories/asset-service.factory';
 import { createConfigLoader } from './factories/config-loader.factory';
-import { GraphQLModule } from './graphql/graphql.module';
+import initializeConfig from './initializers/config.initializer';
 import initializeKeycloak from './initializers/keycloak.initializer';
 
 @NgModule({
@@ -35,6 +39,7 @@ import initializeKeycloak from './initializers/keycloak.initializer';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ApolloModule,
     ClientCommonConfigModule.forRoot({
       loader: {
         provide: CONFIG_LOADER,
@@ -51,7 +56,7 @@ import initializeKeycloak from './initializers/keycloak.initializer';
         },
       ],
     }),
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     ClientPortalStoresSpacesModule,
@@ -65,9 +70,14 @@ import initializeKeycloak from './initializers/keycloak.initializer';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-    GraphQLModule,
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeConfig,
+      multi: true,
+      deps: [ConfigService],
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
@@ -78,6 +88,18 @@ import initializeKeycloak from './initializers/keycloak.initializer';
       provide: AssetService,
       useFactory: createAssetService,
       deps: [LOCALE_ID],
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: environment.api.endpoint,
+          }),
+        };
+      },
+      deps: [HttpLink, ConfigService],
     },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

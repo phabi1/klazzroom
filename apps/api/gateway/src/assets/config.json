@@ -1,0 +1,10 @@
+{
+  "services": [
+    { "name": "spaces", "url": "http://localhost:3001/graphql" },
+    { "name": "courses", "url": "http://localhost:3002/graphql" },
+    {
+      "name": "timetables",
+      "url": "http://localhost:3003/graphql"
+    }
+  ]
+}

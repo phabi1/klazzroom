@@ -6,4 +6,4 @@ import { Space } from './space.entity';
 @Schema()
 export class AdministratorSpace extends Space {}
 
-export const TeacherSpaceSchema = SchemaFactory.createForClass(AdministratorSpace);
+export const AdministratorSpaceSchema = SchemaFactory.createForClass(AdministratorSpace);

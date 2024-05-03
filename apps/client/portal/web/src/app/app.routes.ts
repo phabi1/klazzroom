@@ -30,6 +30,13 @@ export const routes: Routes = [
               ),
           },
           {
+            path: 'skills',
+            loadChildren: () =>
+              import('@klazzroom/client-portal-pages-skills').then(
+                (m) => m.ClientPortalPagesSkillsModule
+              ),
+          },
+          {
             path: 'students',
             loadChildren: () =>
               import(
