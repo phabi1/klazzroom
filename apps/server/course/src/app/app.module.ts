@@ -14,6 +14,7 @@ import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { GradeModule } from './grade/grade.module';
 import { SkillModule } from './skill/skill.module';
+import { HolidayModule } from './holiday/holiday.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { SkillModule } from './skill/skill.module';
     CourseModule,
     GradeModule,
     SkillModule,
+    HolidayModule,
   ],
   controllers: [AppController],
   providers: [AppService],
