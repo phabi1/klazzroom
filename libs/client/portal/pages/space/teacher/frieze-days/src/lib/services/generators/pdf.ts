@@ -37,7 +37,7 @@ export class PdfGenerator {
     year: number,
     columns: number
   ): any[] {
-    const date = new Date(year, month, 0);
+    const date = new Date(year, month + 1, 0);
     const numberOfDays = date.getDate();
     const maxRows = Math.ceil(numberOfDays / columns);
 
