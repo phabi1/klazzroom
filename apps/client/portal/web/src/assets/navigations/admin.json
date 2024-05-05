@@ -11,6 +11,12 @@
       "title": { "en": "Skills", "fr": "Compétences" },
       "to": "/space/:space/skills",
       "icon": "account_balance"
+    },
+    {
+      "type": "item",
+      "title": { "en": "Holidays", "fr": "Vacances" },
+      "to": "/space/:space/holidays",
+      "icon": "home"
     }
   ]
 }

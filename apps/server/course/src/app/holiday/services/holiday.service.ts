@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class HolidayService {
+
   constructor(
     @InjectModel(Holiday.name) private readonly holidayModel: Model<Holiday>
   ) {}
@@ -18,6 +19,10 @@ export class HolidayService {
 
   findAll() {
     return this.holidayModel.find().exec();
+  }
+
+  findByTags(tags: string[]) {
+    return this.holidayModel.find({ tags: { $in: tags } }).exec();
   }
 
   findOne(id: string) {

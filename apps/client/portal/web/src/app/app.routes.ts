@@ -5,13 +5,6 @@ import { IsLoggedGuard } from './guards/is-logged.guard';
 
 export const routes: Routes = [
   {
-    path: 'client-portal-pages-holidays',
-    loadChildren: () =>
-      import('@klazzroom/client-portal-pages-holidays').then(
-        (m) => m.ClientPortalPagesHolidaysModule
-      ),
-  },
-  {
     path: '',
     canActivate: [IsLoggedGuard],
     component: LayoutComponent,
@@ -34,6 +27,13 @@ export const routes: Routes = [
             loadChildren: () =>
               import('@klazzroom/client-portal-pages-space-dashboard').then(
                 (m) => m.ClientPortalPagesDashboardModule
+              ),
+          },
+          {
+            path: 'holidays',
+            loadChildren: () =>
+              import('@klazzroom/client-portal-pages-holidays').then(
+                (m) => m.ClientPortalPagesHolidaysModule
               ),
           },
           {

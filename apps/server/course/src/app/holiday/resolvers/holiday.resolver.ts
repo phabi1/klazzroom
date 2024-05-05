@@ -9,15 +9,15 @@ export class HolidayResolver {
   constructor(private readonly holidayService: HolidayService) {}
 
   @Mutation(() => Holiday)
-  createHoliday(
-    @Args('data') createHolidayInput: CreateHolidayInput
-  ) {
+  createHoliday(@Args('data') createHolidayInput: CreateHolidayInput) {
     return this.holidayService.create(createHolidayInput);
   }
 
-  @Query(() => [Holiday], { name: 'holiday' })
-  findAll() {
-    return this.holidayService.findAll();
+  @Query(() => [Holiday], { name: 'holidays' })
+  findAll(
+    @Args('tags', { type: () => [String], nullable: 'items' }) tags: string[]
+  ) {
+    return this.holidayService.findByTags(tags);
   }
 
   @Query(() => Holiday, { name: 'holiday' })

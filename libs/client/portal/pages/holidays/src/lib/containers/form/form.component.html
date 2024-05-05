@@ -1,0 +1,10 @@
+<ng-template #dialogTpl>
+    <h1 mat-dialog-title>Holiday</h1>
+    <mat-dialog-content>
+        <formly-form [form]="form" [model]="model" [fields]="fields"></formly-form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+    </mat-dialog-actions>
+</ng-template>

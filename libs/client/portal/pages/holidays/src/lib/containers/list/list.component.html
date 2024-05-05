@@ -1,0 +1,67 @@
+<div class="p-4">
+  <div class="flex mb-4 justify-between items-center">
+    <h1 class="text-2xl font-bold" i18n="@@holidays.list.title">Holidays</h1>
+    <div>
+      <div>
+        <a
+          mat-raised-button
+          color="primary"
+          routerLink="./create"
+          i18n="@@commons.buttons.create"
+          >Create</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="shadow">
+    <table mat-table [dataSource]="items">
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef class="w-1/2">Title</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['./', element.id, 'items']">{{ element.title }}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="zone">
+        <th mat-header-cell *matHeaderCellDef class="w-1/2">Zone</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tags | holidayZone }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startAt">
+        <th mat-header-cell *matHeaderCellDef>Start at</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.startAt | date : 'shortDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endAt">
+        <th mat-header-cell *matHeaderCellDef>End at</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.endAt | date : 'shortDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex">
+            <a mat-icon-button [routerLink]="['.', element.id, 'edit']"
+              ><mat-icon>edit</mat-icon></a
+            >
+            <a mat-icon-button [routerLink]="['.', element.id, 'delete']"
+              ><mat-icon>delete</mat-icon></a
+            >
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <router-outlet></router-outlet>
+</div>
