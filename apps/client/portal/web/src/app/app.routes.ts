@@ -30,6 +30,13 @@ export const routes: Routes = [
               ),
           },
           {
+            path: 'sticky',
+            loadChildren: () =>
+              import('@klazzroom/client-portal-pages-space-teacher-sticky').then(
+                (m) => m.ClientPortalPagesSpaceTeacherStickyModule
+              ),
+          },
+          {
             path: 'holidays',
             loadChildren: () =>
               import('@klazzroom/client-portal-pages-holidays').then(

@@ -1,111 +1,79 @@
 version: '3.4'
 
 services:
-  # postgres:
-  #   container_name: db
-  #   image: "postgres:14.4"
-  #   healthcheck:
-  #     test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
-  #     timeout: 45s
-  #     interval: 10s
-  #     retries: 10
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   environment:
-  #     POSTGRES_USER: ${POSTGRES_USER}
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  #     POSTGRES_DB: keycloak
-  #     POSTGRES_HOST: postgres
-  #   networks:
-  #     - local
-  #   ports:
-  #     - "5432:5432"
 
-  # keycloak:
-  #   image: quay.io/keycloak/keycloak:23.0.0
-  #   command: ['start']
-  #   depends_on:
-  #     - "postgres"
-  #   environment:
-  #     JAVA_OPTS_APPEND: -Dkeycloak.profile.feature.upload_scripts=enabled
-  #     KC_DB: postgres
-  #     KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
-  #     KC_DB_URL_HOST: postgres
-  #     KC_DB_USERNAME: ${POSTGRES_USER}
-  #     KC_HEALTH_ENABLED: 'true'
-  #     KC_HTTP_ENABLED: 'true'
-  #     KC_METRICS_ENABLED: 'true'
-  #     KC_HOSTNAME_URL: https://auth.klazzroom.fr
-  #     KC_PROXY: reencrypt
-  #     KEYCLOAK_ADMIN: admin
-  #     KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
-  #   ports:
-  #     - "8080:8080"
-  #     - "8787:8787" # debug port
-  #   networks:
-  #     - local
-
-  # mongo:
-  #   image: mongo:${MONGO_VERSION}
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-  #     - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-  #   networks:
-  #     - local
-  #   ports:
-  #     - 27018:27017
-  #   volumes:
-  #     - ./mongo/data:/data/db
-
-  # rabbitmq:
-  #   image: rabbitmq:3-management
-  #   networks:
-  #     - local
-
-  client-portal-web:
-    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web
-    volumes:
-      - ./apps/client/portal/web/nginx.conf:/etc/nginx/conf.d/default.conf
+  mongo:
+    image: mongo:${MONGO_VERSION}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - private
     ports:
-      - 4200:80
+      - 27018:27017
+    volumes:
+      - ./mongo/data:/data/db
 
-  # api-gateway:
-  #   image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway
-  #   environment:
-  #     HOST: 0.0.0.0
-  #   depends_on:
-  #     - space-server
-  #   networks:
-  #     - local
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - private
+
+  # client-portal-web:
+  #   image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/client-portal-web
+  #   volumes:
+  #     - ./apps/client/portal/web/nginx.conf:/etc/nginx/conf.d/default.conf
   #   ports:
-  #     - 3000:3000
+  #     - 4200:80
 
-  # space-server:
-  #   image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-space
-  #   environment:
-  #     HOST: 0.0.0.0
-  #     MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/space
-  #   depends_on:
-  #     - mongo
-  #     - rabbitmq
-  #   networks:
-  #     - local
 
-  # course-server:
-  #   image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-course
-  #   environment:
-  #     HOST: 0.0.0.0
-  #     MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/course
-  #   depends_on:
-  #     - mongo
-  #     - rabbitmq
-  #   networks:
-  #     - local
+  api-gateway:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/api-gateway
+    environment:
+      HOST: 0.0.0.0
+    depends_on:
+      - space-server
+      - course-server
+    networks:
+      - private
+    ports:
+      - 3000:3000
 
-# networks:
-#   local:
-#     name: local
-#     driver: bridge
+  space-server:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-space
+    environment:
+      HOST: 0.0.0.0
+      MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/klazzroom_space
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - private
 
-# volumes:
-#   postgres_data:
+  course-server:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-course
+    environment:
+      HOST: 0.0.0.0
+      MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/klazzroom_course
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - private
+
+  timetable-server:
+    image: r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-timetable
+    environment:
+      HOST: 0.0.0.0
+      MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/klazzroom_timetable
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - private
+
+networks:
+  private:
+  public:
+    name: traefik_webgateway
+    external: true

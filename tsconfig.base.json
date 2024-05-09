@@ -45,6 +45,9 @@
       "@klazzroom/client-portal-pages-space-teacher-age-structure": [
         "libs/client/portal/pages/space/teacher/age-structure/src/index.ts"
       ],
+      "@klazzroom/client-portal-pages-space-teacher-sticky": [
+        "libs/client/portal/pages/space/teacher/sticky/src/index.ts"
+      ],
       "@klazzroom/client-portal-pages-space-teacher-students": [
         "libs/client/portal/pages/space/teacher/students/src/index.ts"
       ],

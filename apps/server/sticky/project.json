@@ -1,0 +1,63 @@
+{
+  "name": "server-sticky",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/server/sticky/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/server/sticky",
+        "main": "apps/server/sticky/src/main.ts",
+        "tsConfig": "apps/server/sticky/tsconfig.app.json",
+        "assets": ["apps/server/sticky/src/assets"],
+        "webpackConfig": "apps/server/sticky/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "server-sticky:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "server-sticky:build:development"
+        },
+        "production": {
+          "buildTarget": "server-sticky:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/server/sticky/jest.config.ts"
+      }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "options": {
+        "engine": "docker",
+        "tags": [
+          "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/server-sticky"
+        ],
+        "push": true
+      }
+    }
+  }
+}
