@@ -47,6 +47,18 @@
           "to": "/space/:space/frieze-days"
         }
       ]
+    },
+    {
+      "type": "group",
+      "title": { "en": "Settings", "fr": "Paramètres" },
+      "to": "",
+      "children": [
+        {
+          "type": "item",
+          "title": { "en": "General", "fr": "Général" },
+          "to": "/space/:space/course"
+        }
+      ]
     }
   ]
 }

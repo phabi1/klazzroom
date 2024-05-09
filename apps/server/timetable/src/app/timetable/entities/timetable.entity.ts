@@ -15,6 +15,10 @@ export class Timetable {
   @Field(() => [TimetableEvent], { description: 'Events of timetable' })
   @Prop({ type: [TimetableEventSchema] })
   events: TimetableEvent[];
+
+  @Field(() => [String])
+  @Prop({ default: [] })
+  tags: string[];
 }
 
 export const TimetableSchema = SchemaFactory.createForClass(Timetable);

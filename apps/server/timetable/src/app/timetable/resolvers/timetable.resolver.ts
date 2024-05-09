@@ -14,8 +14,8 @@ export class TimetableResolver {
   }
 
   @Query(() => [Timetable], { name: 'timetables' })
-  findAll() {
-    return this.timetableService.findAll();
+  findAll(@Args('tags', {type: () => [String], nullable: 'items'}) tags: []) {
+    return this.timetableService.findAll(tags);
   }
 
   @Query(() => Timetable, { name: 'timetable' })

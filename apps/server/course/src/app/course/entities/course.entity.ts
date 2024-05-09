@@ -13,13 +13,17 @@ export class Course {
   @Prop()
   days: string[];
 
-  @Field(() => [Grade], {description: 'Grades in the course'})
+  @Field(() => [Grade], { description: 'Grades in the course' })
   @Prop()
   grades: string[];
 
   @Field(() => [Student], { description: 'Students in the course' })
   @Prop({ type: [StudentSchema] })
   students: Student[];
+
+  @Field()
+  @Prop({ default: 'c' })
+  zone: string;
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);

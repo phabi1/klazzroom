@@ -27,6 +27,9 @@
       "@klazzroom/client-common-form-field-repeat": [
         "libs/client/common/form/field/repeat/src/index.ts"
       ],
+      "@klazzroom/client-common-form-field-timepicker": [
+        "libs/client/common/form/field/timepicker/src/index.ts"
+      ],
       "@klazzroom/client-common-ui-layout": [
         "libs/client/common/ui/layout/src/index.ts"
       ],
@@ -44,6 +47,9 @@
       ],
       "@klazzroom/client-portal-pages-space-teacher-age-structure": [
         "libs/client/portal/pages/space/teacher/age-structure/src/index.ts"
+      ],
+      "@klazzroom/client-portal-pages-space-teacher-course": [
+        "libs/client/portal/pages/space/teacher/course/src/index.ts"
       ],
       "@klazzroom/client-portal-pages-space-teacher-students": [
         "libs/client/portal/pages/space/teacher/students/src/index.ts"
@@ -86,9 +92,6 @@
       ],
       "@klazzroom/client-portal-stores-space-teacher-students": [
         "libs/client/portal/stores/space/teacher/students/src/index.ts"
-      ],
-      "@klazzroom/client-portal-stores-space-teacher-timetable": [
-        "libs/client/portal/stores/space/teacher/timetable/src/index.ts"
       ],
       "@klazzroom/client-portal-stores-spaces": [
         "libs/client/portal/stores/spaces/src/index.ts"

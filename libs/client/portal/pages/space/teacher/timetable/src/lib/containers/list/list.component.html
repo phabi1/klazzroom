@@ -1,6 +1,17 @@
 <div class="p-4">
-    <div *ngFor="let item of items$ | async" class="bg-white shadow rounded">
-        {{item.title}}
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Timetables</h1>
+    <a mat-raised-button color="primary" routerLink="./add">New timetable</a>
+  </div>
+  <div>
+    <div class="grid grid-cols-4 gap-2">
+      <div *ngFor="let item of items" class="bg-white shadow rounded p-3">
+        <div class="mb-3">
+          {{ item.title }}
+        </div>
+        <a [routerLink]="['.', item.id]" mat-raised-button color="primary" class="w-full">Edit</a>
+      </div>
     </div>
-    <button (click)="addTimetable()">New timetable</button>
+  </div>
 </div>
+<router-outlet></router-outlet>

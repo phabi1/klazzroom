@@ -4,7 +4,12 @@ import { EventInput } from './event.input';
 
 @InputType()
 export class UpdateTimetableInput extends PartialType(CreateTimetableInput) {
+  @Field({ nullable: true })
+  title: string;
 
-  @Field(() => [EventInput], {description: 'Timetable events'})
+  @Field(() => [EventInput], {
+    description: 'Timetable events',
+    nullable: true,
+  })
   events: EventInput[];
 }

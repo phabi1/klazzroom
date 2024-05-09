@@ -44,6 +44,10 @@ export const routes: Routes = [
               ),
           },
           {
+            path: 'course',
+            loadChildren: () => import('@klazzroom/client-portal-pages-space-teacher-course').then((m) => m.CourseModule),
+          },
+          {
             path: 'students',
             loadChildren: () =>
               import(

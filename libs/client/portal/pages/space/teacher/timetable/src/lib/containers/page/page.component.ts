@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import {
-  EventInput,
-  SpaceTeacherTimetableActions,
-  SpaceTeacherTimetableSelectors,
-} from '@klazzroom/client-portal-stores-space-teacher-timetable';
 import { Store } from '@ngrx/store';
 import {
   CalendarDateFormatter,
@@ -15,6 +10,9 @@ import { Subject, catchError, map, of, switchMap, takeUntil, tap } from 'rxjs';
 import { EventFormComponent } from '../../components/event-form/event-form.component';
 import { TimetableEvent } from '../../models/timetable-event.model';
 import { DateFormatter } from '../../providers/date-formatter.provider';
+import { Apollo } from 'apollo-angular';
+import { GET_TIMETABLE_GQL } from '../../graphql/queries';
+import { SettingsFormComponent } from '../../components/settings-form/settings-form.component';
 
 @Component({
   selector: 'klazzroom-portal-space-teacker-timetable-page',
@@ -39,34 +37,25 @@ export class PageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store,
+    private apollo: Apollo,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.route.params
       .pipe(
-        map((params) => params['timetable']),
-        tap((id) =>
-          this.store.dispatch(
-            SpaceTeacherTimetableActions.loadTimetable({ id })
-          )
+        switchMap((id) =>
+          this.apollo.query<{ timetable: any }>({
+            query: GET_TIMETABLE_GQL,
+            variables: { id },
+          })
         ),
-        switchMap((timetable) =>
-          this.store.select(SpaceTeacherTimetableSelectors.selectEntities)
-            .pipe(
-              map((entities) => entities[timetable]),
-              catchError((error) => {
-                return of(null);
-              }
-            )
-          )
-        ),
+        map((res) => res.data.timetable),
         takeUntil(this.ngSubscribeAll)
       )
       .subscribe((timetable) => {
         if (timetable) {
-          this.timetable = timetable?.id;
+          this.timetable = timetable.id;
           this.events = timetable.events;
           this.refresh.next();
         }
@@ -97,15 +86,16 @@ export class PageComponent implements OnInit {
     const event = $event.event;
     event.start = $event.newStart;
     event.end = $event.newEnd;
-    this.store.dispatch(
-      SpaceTeacherTimetableActions.updateTimetable({
-        id: this.timetable,
-        input: {
-          events: this.transformEventToInput(this.events),
-        },
-      })
-    );
+
     this.refresh.next();
+  }
+
+  openSettings() {
+    this.dialog.open(SettingsFormComponent, {
+      position: { top: '16px', right: '16px' },
+      width: '240px',
+      height: 'calc(100% - 32px)',
+    });
   }
 
   private showEventForm(event: TimetableEvent) {
@@ -118,27 +108,8 @@ export class PageComponent implements OnInit {
       .subscribe((event: TimetableEvent) => {
         if (event) {
           this.events.push(event);
-          this.store.dispatch(
-            SpaceTeacherTimetableActions.updateTimetable({
-              id: this.timetable,
-              input: {
-                events: this.transformEventToInput(this.events),
-              },
-            })
-          );
         }
         this.refresh.next();
       });
-  }
-
-  private transformEventToInput(events: TimetableEvent[]): EventInput[] {
-    return events.map((event) => {
-      return {
-        start: event.start,
-        end: event.end,
-        title: event.title,
-        type: event.meta?.type || 'LESSON',
-      };
-    });
   }
 }

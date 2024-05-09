@@ -17,7 +17,10 @@ export class TimetableService {
     return entity;
   }
 
-  findAll() {
+  findAll(tags: string[]): Promise<Timetable[]> {
+    if (tags.length > 0) {
+      return this.model.find({ tags: { $in: tags } }).exec();
+    }
     return this.model.find().exec();
   }
 
@@ -29,11 +32,22 @@ export class TimetableService {
     return entity;
   }
 
-  async update(id: string, updateTimetableInput: UpdateTimetableInput) {
+  async update(id: string, data: UpdateTimetableInput) {
     const entity = await this.model.findById(id);
     if (!entity) {
       throw new NotFoundException('Timetable not found');
     }
+
+    if (data.title) {
+      entity.title = data.title;
+    }
+
+    if (data.events) {
+      entity.events = data.events;
+    }
+
+    await entity.save();
+
     return entity;
   }
 

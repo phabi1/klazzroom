@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
     api: {
-        endpoint: 'http://localhost:3000/graphql',
+        endpoint: 'https://api.klazzroom.fr/graphql',
     }
 };
