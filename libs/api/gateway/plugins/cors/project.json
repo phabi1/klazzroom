@@ -1,0 +1,19 @@
+{
+  "name": "libs-api-gateway-plugin-cors",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/gateway/plugins/cors/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/gateway/plugins/cors",
+        "main": "libs/api/gateway/plugins/cors/src/index.ts",
+        "tsConfig": "libs/api/gateway/plugins/cors/tsconfig.lib.json",
+        "assets": ["libs/api/gateway/plugins/cors/*.md"]
+      }
+    }
+  }
+}

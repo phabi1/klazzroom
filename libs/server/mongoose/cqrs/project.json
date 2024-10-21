@@ -1,0 +1,19 @@
+{
+  "name": "libs-server-mongoose-cqrs",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/server/mongoose/cqrs/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/server/mongoose/cqrs",
+        "main": "libs/server/mongoose/cqrs/src/index.ts",
+        "tsConfig": "libs/server/mongoose/cqrs/tsconfig.lib.json",
+        "assets": ["libs/server/mongoose/cqrs/*.md"]
+      }
+    }
+  }
+}

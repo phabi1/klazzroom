@@ -1,0 +1,26 @@
+{
+  "name": "apps-server-accounts",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/server/accounts/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "apps-server-accounts:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "apps-server-accounts:build:development"
+        },
+        "production": {
+          "buildTarget": "apps-server-accounts:build:production"
+        }
+      }
+    }
+  }
+}

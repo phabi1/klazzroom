@@ -1,0 +1,19 @@
+{
+  "name": "libs-api-gateway-plugin",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/gateway/plugin/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/gateway/plugin",
+        "main": "libs/api/gateway/plugin/src/index.ts",
+        "tsConfig": "libs/api/gateway/plugin/tsconfig.lib.json",
+        "assets": ["libs/api/gateway/plugin/*.md"]
+      }
+    }
+  }
+}
