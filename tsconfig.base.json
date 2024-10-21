@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@klazzroom/libs-api-gateway-plugin": [
+        "libs/api/gateway/plugin/src/index.ts"
+      ],
+      "@klazzroom/libs-api-gateway-plugin-cors": [
+        "libs/api/gateway/plugins/cors/src/index.ts"
+      ],
+      "@klazzroom/libs-server-mongoose-normalize": [
+        "libs/server/mongoose/normalize/src/index.ts"
+      ],
+      "@klazzroom/libs-server-mongoose-cqrs": [
+        "libs/server/mongoose/cqrs/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
