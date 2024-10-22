@@ -5,6 +5,7 @@ export interface IRoute {
   id: string;
   path: string;
   plugins: IPlugin[];
+  methods?: string[];
   serviceId: string;
 }
 
@@ -14,6 +15,14 @@ export const RouteSchema = new Schema({
   path: {
     type: SchemaTypes.String,
     required: true,
+  },
+  methods: {
+    type: [SchemaTypes.String],
+    required: false,
+  },
+  plugins: {
+    type: [SchemaTypes.Mixed],
+    required: false,
   },
   serviceId: {
     type: SchemaTypes.String,

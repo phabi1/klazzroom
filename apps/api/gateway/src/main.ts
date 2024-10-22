@@ -12,8 +12,12 @@ async function bootstrap() {
   const app = express();
 
   await databaseSetup(app);
-  await authSetup();
+  await authSetup(app);
   await routesSetup(app);
+
+  app.get('/', (req, res) => {
+    res.send({ message: 'Welcome to api!' });
+  }); 
 
   const port = +process.env.PORT || 3000;
   const host = process.env.HOST || 'localhost';

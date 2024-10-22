@@ -1,9 +1,11 @@
-import { IPluginContext } from "./plugin-context.interface";
-import { IPluginOptions } from "./plugin-options.interface";
+import { Application } from 'express';
+import { PluginHook } from './plugin-hook.interface';
 
-export interface IPlugin<O extends IPluginOptions> {
-    get name(): string;
-    get version(): string;
-    load(ctx: IPluginContext, options: O): Promise<void>;
-    unload(ctx: IPluginContext): Promise<void>;
+export interface IPlugin<O> {
+  get name(): string;
+  get version(): string;
+  app: Application;
+  getHooks(name: string): PluginHook[];
+  load(options: O): Promise<void>;
+  unload(): Promise<void>;
 }

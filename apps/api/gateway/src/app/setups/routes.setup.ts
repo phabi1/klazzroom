@@ -1,40 +1,53 @@
-import { Application, Request, Response, Router } from 'express';
+import { IPlugin, PluginHook } from '@klazzroom/libs-api-gateway-plugin';
+import { Application, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { IRoute } from '../models/route.model';
 import pluginManager from '../services/plugin-manager';
 
-class Context {
-  private _hooks: Record<string, { handle: () => void; priority?: number }[]> =
-    {};
-  register(hook: string, handler: any) {
-    if (!this._hooks[hook]) {
-      this._hooks[hook] = [];
-    }
-    this._hooks[hook].push(handler);
-  }
-  call(hook: string): any[] {
-    const handlers = this._hooks[hook].sort((a, b) => {
-      const p1 = a.priority || 0;
-      const p2 = b.priority || 0;
-      return p1 - p2;
-    });
+function callHooks(name: string, plugins: IPlugin<unknown>[]): PluginHook[] {
+  const hooks = [];
 
-    const middlewares = [];
-    for (const handler of handlers) {
-      middlewares.push(handler.handle);
-    }
-    return middlewares;
+  plugins.forEach((plugin) => {
+    const pluginHooks = plugin.getHooks(name);
+    pluginHooks.forEach((hook) => {
+      hooks.push(hook);
+    });
+  });
+
+  hooks.sort((a, b) => (a.priority || 0) - (b.priority || 0));
+  return hooks;
+}
+
+function printRoute(
+  route: IRoute,
+  plugins: IPlugin<unknown>[],
+  method = 'ALL'
+) {
+  if (plugins.length === 0) {
+    console.log(
+      `Registering route ${method} ${route.path} for service ${route.serviceId} with no plugins`
+    );
+  } else {
+    console.log(
+      `Registering route ${method} ${route.path} for service ${
+        route.serviceId
+      } with plugins ${plugins.map((p) => p.name).join(', ')}`
+    );
   }
 }
 
 export default async function (app: Application) {
-  const { Route: RouteModel, Service: ServiceModel } = app.get('models');
+  const {
+    Route: RouteModel,
+    Service: ServiceModel,
+    Plugin: PluginModel,
+  } = app.get('models');
 
-  const routes = await RouteModel.find();
+  const routes: IRoute[] = await RouteModel.find();
   const services = await ServiceModel.find();
+  const plugins = await PluginModel.find();
 
   for (const route of routes) {
-    const ctx = new Context();
-
     const service = services.find((service) => service.id === route.serviceId);
     if (!service) {
       throw new Error(
@@ -50,33 +63,44 @@ export default async function (app: Application) {
       },
     });
 
-    const plugins = [];
-    for (const pluginInfo of plugins) {
-      const plugin = pluginManager.resolve(pluginInfo.name);
-      await plugin.load(ctx, pluginInfo.options);
+    const routePlugins = [...plugins, ...(route.plugins || [])];
+
+    const _plugins = [];
+    for (const pluginInfo of routePlugins) {
+      const plugin = await pluginManager.resolve(pluginInfo.name);
+      _plugins.push(plugin);
+      plugin.app = app;
+      await plugin.load(pluginInfo.options);
+    }
+    const pipeline = [];
+
+    for (const hook of callHooks('auth', _plugins)) {
+      pipeline.push(hook.handler);
     }
 
-    const middlewares = [];
+    pipeline.push((req: Request) => {
+      req.headers['x-user-id'] = req.user?.id;
+    });
 
-    const mids = ctx.call('auth');
-    mids.forEach((mid) => middlewares.push(mid));
+    for (const hook of callHooks('request', _plugins)) {
+      pipeline.push(hook.handler);
+    }
 
-    const router = Router();
+    pipeline.push(proxy);
 
-    middlewares.push(proxy);
+    for (const hook of callHooks('response', _plugins)) {
+      pipeline.push(hook.handler);
+    }
 
-    if (route.methods && route.methods !== '*') {
-      const methods = Array.isArray(route.methods)
-        ? route.methods
-        : [route.methods];
-      for (const method of methods) {
-        const m = method.toLoawerCase();
-        router[m](route.path, ...middlewares);
+    if (route.methods && route.methods.length > 0) {
+      for (const method of route.methods) {
+        const m = method.toLowerCase();
+        app[m](route.path, ...pipeline);
+        printRoute(route, routePlugins, method);
       }
     } else {
-      router.all(route.path, ...middlewares);
+      app.all(route.path, ...pipeline);
+      printRoute(route, routePlugins);
     }
-
-    app.use(router);
   }
 }

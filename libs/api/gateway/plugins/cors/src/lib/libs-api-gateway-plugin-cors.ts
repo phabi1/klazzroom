@@ -1,16 +1,22 @@
-import { IPlugin, IPluginContext } from '@klazzroom/libs-api-gateway-plugin';
+import { Plugin } from '@klazzroom/libs-api-gateway-plugin';
 
-export class CorsPlugin implements IPlugin<{}> {
-  get name(): string {
+export class CorsPlugin extends Plugin<void> {
+  override get name(): string {
     return 'cors';
   }
-  get version(): string {
+  override get version(): string {
     return '1.0.0';
   }
-  load(ctx: IPluginContext, options: {}): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  async load(): Promise<void> {
+    this.registerHook('request', {
+      name: 'cors',
+      handler: (req, res, next) => {
+        next();
+      },
+    });
   }
   unload(): Promise<void> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve();
   }
 }

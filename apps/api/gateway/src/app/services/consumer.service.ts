@@ -1,4 +1,8 @@
-import { ConsumerNotFoundError, IConsumer, IConsumerService } from '@klazzroom/libs-api-gateway-core';
+import {
+  ConsumerNotFoundError,
+  IConsumer,
+  IConsumerService,
+} from '@klazzroom/libs-api-gateway-core';
 import mongoose from 'mongoose';
 
 export class ConsumerService implements IConsumerService {
@@ -17,6 +21,15 @@ export class ConsumerService implements IConsumerService {
     }
     return item;
   }
+
+  async findByProvider(provider: string, value: string): Promise<IConsumer> {
+    const item = await this.model.findOne({ ['providers.' + provider]: value });
+    if (!item) {
+      throw ConsumerNotFoundError.withProvider(provider, value);
+    }
+    return item;
+  }
+
   async create(data: any): Promise<IConsumer> {
     const item = new this.model();
     item.set(data);
