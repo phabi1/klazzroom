@@ -1,0 +1,19 @@
+{
+  "name": "libs-api-gateway-plugin-keycloak",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/gateway/plugins/keycloak/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/gateway/plugins/keycloak",
+        "main": "libs/api/gateway/plugins/keycloak/src/index.ts",
+        "tsConfig": "libs/api/gateway/plugins/keycloak/tsconfig.lib.json",
+        "assets": ["libs/api/gateway/plugins/keycloak/*.md"]
+      }
+    }
+  }
+}

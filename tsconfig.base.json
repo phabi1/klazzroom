@@ -15,17 +15,23 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@klazzroom/libs-api-gateway-core": [
+        "libs/api/gateway/core/src/index.ts"
+      ],
       "@klazzroom/libs-api-gateway-plugin": [
         "libs/api/gateway/plugin/src/index.ts"
       ],
       "@klazzroom/libs-api-gateway-plugin-cors": [
         "libs/api/gateway/plugins/cors/src/index.ts"
       ],
-      "@klazzroom/libs-server-mongoose-normalize": [
-        "libs/server/mongoose/normalize/src/index.ts"
+      "@klazzroom/libs-api-gateway-plugin-keycloak": [
+        "libs/api/gateway/plugins/keycloak/src/index.ts"
       ],
       "@klazzroom/libs-server-mongoose-cqrs": [
         "libs/server/mongoose/cqrs/src/index.ts"
+      ],
+      "@klazzroom/libs-server-mongoose-normalize": [
+        "libs/server/mongoose/normalize/src/index.ts"
       ]
     }
   },

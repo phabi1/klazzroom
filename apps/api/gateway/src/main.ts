@@ -6,11 +6,13 @@
 import express from 'express';
 import databaseSetup from './app/setups/database.setup';
 import routesSetup from './app/setups/routes.setup';
+import authSetup from './app/setups/auth.setup';
 
 async function bootstrap() {
   const app = express();
 
   await databaseSetup(app);
+  await authSetup();
   await routesSetup(app);
 
   const port = +process.env.PORT || 3000;
