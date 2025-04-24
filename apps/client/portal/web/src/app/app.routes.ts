@@ -7,6 +7,7 @@ import {
 } from '@klazzroom/libs-client-portal-stores-space';
 import { LibsClientPortalUiLayoutComponent } from '@klazzroom/libs-client-portal-ui-layout';
 import { authGuard } from './guards/auth.guard';
+import { DashboardWidgetRegistryService } from 'libs/client/portal/pages/space/dashboard/src/lib/services/dashboard-widget-registry.service';
 
 export const appRoutes: Route[] = [
   {
@@ -32,6 +33,30 @@ export const appRoutes: Route[] = [
         children: [
           {
             path: '',
+            providers: [
+              {
+                provide: DashboardWidgetRegistryService,
+                useFactory: () => {
+                  const service = new DashboardWidgetRegistryService();
+                  service.register('welcome', () =>
+                    import(
+                      '@klazzroom/libs-client-portal-dashboard-widgets-welcome'
+                    ).then((m) => m.WidgetComponent)
+                  );
+                  service.register('clock', () =>
+                    import(
+                      '@klazzroom/libs-client-portal-dashboard-widgets-clock'
+                    ).then((m) => m.WidgetComponent)
+                  );
+                  service.register('students', () =>
+                    import(
+                      '@klazzroom/libs-client-portal-dashboard-widgets-weather'
+                    ).then((m) => m.WidgetComponent)
+                  );
+                  return service;
+                },
+              },
+            ],
             loadChildren: () =>
               import(
                 '@klazzroom/libs-client-portal-pages-space-dashboard'
@@ -50,9 +75,9 @@ export const appRoutes: Route[] = [
               space: ['teacher'],
             },
             loadChildren: () =>
-              import('libs/client/portal/pages/space/teacher-students/src').then(
-                (m) => m.libsClientPortalPagesSpaceStudentsRoutes
-              ),
+              import(
+                'libs/client/portal/pages/space/teacher-students/src'
+              ).then((m) => m.libsClientPortalPagesSpaceStudentsRoutes),
           },
         ],
       },

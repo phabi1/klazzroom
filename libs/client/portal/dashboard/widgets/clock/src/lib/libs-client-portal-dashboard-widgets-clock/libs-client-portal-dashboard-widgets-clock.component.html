@@ -1,0 +1,12 @@
+<div class="flex flex-col items-center justify-center h-full">
+  <div class="text-2xl font-bold">
+    {{ hours() | formatZero }}:{{ minutes() | formatZero }}
+  </div>
+  <div>
+    <span class="text-sm">
+      {{ date() | date : 'EEEE' }}
+      {{ date() | date : 'dd' }}
+      {{ date() | date : 'MMMM' }}
+    </span>
+  </div>
+</div>

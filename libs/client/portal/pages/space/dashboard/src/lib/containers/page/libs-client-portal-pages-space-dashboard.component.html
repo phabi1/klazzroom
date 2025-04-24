@@ -1,0 +1,9 @@
+<gridster [options]="options()" class="bg-transparent">
+  @for (item of dashboard(); track item) {
+  <gridster-item [item]="item">
+    <lib-libs-client-portal-pages-space-dashboard-widget-outlet
+      [type]="item.type"
+    ></lib-libs-client-portal-pages-space-dashboard-widget-outlet>
+  </gridster-item>
+  }
+</gridster>

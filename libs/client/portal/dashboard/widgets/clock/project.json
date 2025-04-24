@@ -1,8 +1,8 @@
 {
-  "name": "libs-client-portal-pages-space-dashboard",
+  "name": "libs-client-portal-dashboard-widgets-clock",
   "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/client/portal/pages/space/dashboard/src",
-  "prefix": "lib-libs-client-portal-pages-space-dashboard",
+  "sourceRoot": "libs/client/portal/dashboard/widgets/clock/src",
+  "prefix": "lib",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/client/portal/pages/space/dashboard/jest.config.ts"
+        "jestConfig": "libs/client/portal/dashboard/widgets/clock/jest.config.ts"
       }
     },
     "lint": {

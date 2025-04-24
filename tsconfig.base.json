@@ -27,6 +27,15 @@
       "@klazzroom/libs-client-common-ui-page": [
         "libs/client/common/ui/page/src/index.ts"
       ],
+      "@klazzroom/libs-client-portal-dashboard-widgets-clock": [
+        "libs/client/portal/dashboard/widgets/clock/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-dashboard-widgets-weather": [
+        "libs/client/portal/dashboard/widgets/weather/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-dashboard-widgets-welcome": [
+        "libs/client/portal/dashboard/widgets/welcome/src/index.ts"
+      ],
       "@klazzroom/libs-client-portal-graphql-space": [
         "libs/client/portal/graphql/space/src/index.ts"
       ],

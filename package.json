@@ -87,6 +87,7 @@
     "@ngx-formly/core": "^6.3.12",
     "@ngx-formly/material": "^6.3.12",
     "@primeng/themes": "^18.0.5-lts",
+    "angular-gridster2": "^18.0.1",
     "apollo-angular": "^10.0.3",
     "axios": "^1.6.0",
     "dataloader": "^2.2.3",

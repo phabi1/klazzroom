@@ -39,7 +39,16 @@
     {
       "type": "group",
       "label": "Toolbox",
+      "children": []
+    },
+    {
+      "type": "group",
+      "label": "Settings",
       "children": [
+        {
+          "to": "/space/:spaceId/course",
+          "label": "Course"
+        }
       ]
     }
   ]
