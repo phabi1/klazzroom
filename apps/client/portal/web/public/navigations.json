@@ -20,14 +20,27 @@
   ],
   "teacher": [
     {
+      "type": "item",
       "to": "/space/:spaceId",
       "label": "Dashboard",
       "icon": "icon-dashboard"
     },
     {
-      "to": "/space/:spaceId/students",
-      "label": "Students",
-      "icon": "icon-rocket"
+      "type": "group",
+      "label": "Class",
+      "children": [
+        {
+          "to": "/space/:spaceId/students",
+          "label": "Students",
+          "icon": "icon-rocket"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": "Toolbox",
+      "children": [
+      ]
     }
   ]
 }
