@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "apps-server-schools",
-        "apps-client-portal-web"
+        "apps-client-portal-web",
+        "libs-client-portal-pages-teacher-students"
     ]
 }

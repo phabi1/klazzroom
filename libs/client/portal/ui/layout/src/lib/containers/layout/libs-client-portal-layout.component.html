@@ -1,13 +1,11 @@
-<div class="flex h-screen">
-  <div class="w-64 bg-slate-900 text-white flex flex-col">
+<mat-sidenav-container class="h-screen">
+  <mat-sidenav class="w-64" mode="side" opened>
     <div class="w-full h-16 flex justify-center items-center">
       <span>App Name</span>
     </div>
     @if (sidebarCmp()) {
     <ng-container *ngComponentOutlet="sidebarCmp()"></ng-container>
     }
-  </div>
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>

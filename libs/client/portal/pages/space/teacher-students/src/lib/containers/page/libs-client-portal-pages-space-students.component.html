@@ -1,15 +1,23 @@
-<div class="h-screen flex">
-  <div class="w-64 border-r flex flex-col">
-    <lib-libs-client-portal-pages-space-teacher-students-student-list
-      [students]="store.filteredStudents()"
-      [loading]="store.loading()"
-      class="flex-1 overflow-y-auto"
-    ></lib-libs-client-portal-pages-space-teacher-students-student-list>
-    <div class="p-4">
-      <button mat-raised-button routerLink="./add" class="w-full">Add</button>
+<mat-drawer-container class="h-screen">
+  <mat-drawer class="w-64" mode="side" opened>
+    <div class="h-full flex flex-col">
+      <div>
+        <lib-libs-client-portal-pages-space-teacher-students-student-search
+        value=""
+        (search)="store.search($event)"
+        ></lib-libs-client-portal-pages-space-teacher-students-student-search>
+      </div>
+      <lib-libs-client-portal-pages-space-teacher-students-student-list
+        [students]="store.filteredStudents()"
+        [loading]="store.loading()"
+        class="flex-1 overflow-y-auto"
+      ></lib-libs-client-portal-pages-space-teacher-students-student-list>
+      <div class="p-4">
+        <button mat-raised-button routerLink="./add" class="w-full">Add</button>
+      </div>
     </div>
-  </div>
-  <div>
+  </mat-drawer>
+  <mat-drawer-content>
     <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

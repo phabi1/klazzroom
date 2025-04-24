@@ -2,12 +2,11 @@ import { CommonModule, NgComponentOutlet } from '@angular/common';
 import {
   Component,
   effect,
-  forwardRef,
   inject,
-  OnInit,
   signal,
-  Type,
+  Type
 } from '@angular/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { sidebarStore } from '@klazzroom/libs-client-portal-stores-layout';
 import { SidebarRegistryService } from '../../services/sidebar-registry.service';
@@ -15,7 +14,7 @@ import { SidebarRegistryService } from '../../services/sidebar-registry.service'
 @Component({
   selector: 'lib-libs-client-portal-ui-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgComponentOutlet],
+  imports: [CommonModule, RouterOutlet, NgComponentOutlet, MatSidenavModule],
   templateUrl: './libs-client-portal-layout.component.html',
   styleUrl: './libs-client-portal-layout.component.css',
   providers: [

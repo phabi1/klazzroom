@@ -24,6 +24,9 @@ export type TeacherStudentsState = {
   loading: boolean;
   error: string | null;
   curentStudentId: string | null;
+  filters: {
+    search: string;
+  };
 };
 
 const initialState: TeacherStudentsState = {
@@ -33,6 +36,9 @@ const initialState: TeacherStudentsState = {
   loading: false,
   error: null,
   curentStudentId: null,
+  filters: {
+    search: '',
+  },
 };
 
 export const TeacherStudentsStore = signalStore(
@@ -40,7 +46,25 @@ export const TeacherStudentsStore = signalStore(
   withComputed((state) => ({
     filteredStudents: computed(() => {
       const students = state.students();
-      const studentsSorted = students.sort((a, b) => {
+      if (!students) {
+        return [];
+      }
+      let filteredStudents: Student[] = [];
+
+      const search = state.filters.search().toLowerCase();
+      if (search === '') {
+        filteredStudents = students;
+      } else {
+        filteredStudents = students.filter((student) => {
+          const firstname = student.firstname.toLowerCase();
+          const lastname = student.lastname.toLowerCase();
+          if (firstname.includes(search) || lastname.includes(search)) {
+            return true;
+          }
+          return false;
+        });
+      }
+      const studentsSorted = filteredStudents.sort((a, b) => {
         if (a.lastname < b.lastname) {
           return -1;
         }
@@ -100,6 +124,14 @@ export const TeacherStudentsStore = signalStore(
         })
       )
     ),
+    search(search: string) {
+      patchState(state, {
+        filters: {
+          ...state.filters(),
+          search,
+        },
+      });
+    },
     addStudent: (student: Student) => {
       const students = state.students();
       patchState(state, { students: [...students, student] });
