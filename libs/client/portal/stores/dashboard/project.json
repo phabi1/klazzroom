@@ -1,0 +1,9 @@
+{
+  "name": "libs-client-portal-stores-dashboard",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/portal/stores/dashboard/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project libs-client-portal-stores-dashboard --web",
+  "targets": {}
+}

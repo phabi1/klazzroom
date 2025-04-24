@@ -1,0 +1,89 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom", "esnext.asynciterable"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@klazzroom/apps-client-common-pages-error-forbidden": [
+        "libs/client/common/pages/error/forbidden/src/index.ts"
+      ],
+      "@klazzroom/libs-client-common-services-config-core": [
+        "libs/client/common/services/config/core/src/index.ts"
+      ],
+      "@klazzroom/libs-client-common-ui-navigation": [
+        "libs/client/common/ui/navigation/src/index.ts"
+      ],
+      "@klazzroom/libs-client-common-ui-page": [
+        "libs/client/common/ui/page/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-graphql-space": [
+        "libs/client/portal/graphql/space/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-graphql-teacher-students": [
+        "libs/client/portal/graphql/teacher-students/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-home": [
+        "libs/client/portal/pages/home/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-space-dashboard": [
+        "libs/client/portal/pages/space/dashboard/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-space-skills": [
+        "libs/client/portal/pages/space/skills/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-space-teacher-students": [
+        "libs/client/portal/pages/space/teacher-students/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-spaces": [
+        "libs/client/portal/pages/spaces/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-stores-dashboard": [
+        "libs/client/portal/stores/dashboard/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-stores-layout": [
+        "libs/client/portal/stores/layout/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-stores-space": [
+        "libs/client/portal/stores/space/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-stores-teacher-students": [
+        "libs/client/portal/stores/teacher-students/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-ui-layout": [
+        "libs/client/portal/ui/layout/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-ui-sidebars-default": [
+        "libs/client/portal/ui/sidebars/default/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-ui-sidebars-space": [
+        "libs/client/portal/ui/sidebars/space/src/index.ts"
+      ],
+      "@klazzroom/libs-server-graphql-gateway-auth": [
+        "libs/server/graphql/gateway/auth/src/index.ts"
+      ],
+      "@klazzroom/libs-server-graphql-subgraph-auth": [
+        "libs/server/graphql/subgraph/auth/src/index.ts"
+      ],
+      "@klazzroom/libs-server-graphql-subgraph-dataloaders": [
+        "libs/server/graphql/subgraph/dataloaders/src/index.ts"
+      ],
+      "@klazzroom/libs-server-logging": ["libs/server/logging/src/index.ts"],
+      "@klazzroom/libs-server-mongoose-cqrs": [
+        "libs/server/mongoose/cqrs/src/index.ts"
+      ]
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "tmp"]
+}

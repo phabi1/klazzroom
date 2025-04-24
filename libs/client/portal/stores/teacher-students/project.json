@@ -1,0 +1,9 @@
+{
+  "name": "libs-client-portal-stores-teacher-students",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/portal/stores/teacher-students/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project libs-client-portal-stores-teacher-students --web",
+  "targets": {}
+}

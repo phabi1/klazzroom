@@ -1,0 +1,33 @@
+{
+  "default": [
+    {
+      "to": "/spaces",
+      "label": "Spaces",
+      "icon": "icon-rocket"
+    }
+  ],
+  "administrator": [
+    {
+      "to": "/space/:spaceId",
+      "label": "Dashboard",
+      "icon": "icon-dashboard"
+    },
+    {
+      "to": "/space/:spaceId/skills",
+      "label": "Skills",
+      "icon": "icon-rocket"
+    }
+  ],
+  "teacher": [
+    {
+      "to": "/space/:spaceId",
+      "label": "Dashboard",
+      "icon": "icon-dashboard"
+    },
+    {
+      "to": "/space/:spaceId/students",
+      "label": "Students",
+      "icon": "icon-rocket"
+    }
+  ]
+}

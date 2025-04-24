@@ -1,0 +1,15 @@
+query GetSpaces {
+    me {
+      spaces {
+        ... on AdministratorSpace {
+          id
+          title
+        }
+        ... on TeacherSpace {
+          id
+          title
+          courseId
+        }
+      }
+    }
+  }

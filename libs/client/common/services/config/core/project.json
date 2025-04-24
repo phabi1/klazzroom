@@ -1,0 +1,9 @@
+{
+  "name": "libs-client-common-services-config-core",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/common/services/config/core/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project libs-client-common-services-config-core --web",
+  "targets": {}
+}

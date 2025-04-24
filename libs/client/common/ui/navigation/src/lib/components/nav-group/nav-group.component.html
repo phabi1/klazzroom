@@ -1,0 +1,12 @@
+<div>{{ link().label }}</div>
+@if(link().children) {
+<ul>
+  @for (child of link().children; track $index) {
+  <li>
+    <lib-libs-client-common-ui-navigation-nav-item
+      [link]="child"
+    ></lib-libs-client-common-ui-navigation-nav-item>
+  </li>
+  }
+</ul>
+}

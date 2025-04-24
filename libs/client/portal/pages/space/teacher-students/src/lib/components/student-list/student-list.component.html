@@ -1,0 +1,9 @@
+@if(students().length > 0) { @for(student of students(); track student.id) {
+<lib-libs-client-portal-pages-space-teacher-students-student-item
+  [student]="student"
+  (click)="onSelectStudent(student)"
+  class="border-b"
+></lib-libs-client-portal-pages-space-teacher-students-student-item>
+} } @else {
+<p>No students found</p>
+}

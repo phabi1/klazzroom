@@ -1,0 +1,16 @@
+query GetStudentDetails($courseId: ID!, $studentId: ID!) {
+  course(id: $courseId) {
+    id
+    student(id: $studentId) {
+      id
+      firstname
+      lastname
+      birthday
+      sex
+      grade {
+        id
+        title
+      }
+    }
+  }
+}

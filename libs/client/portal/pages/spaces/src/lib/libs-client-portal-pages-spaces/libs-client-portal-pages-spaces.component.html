@@ -1,0 +1,14 @@
+<lib-libs-client-common-ui-page headingTitle="Spaces">
+  @if(store.loading()) {
+  <p>Loading...</p>
+  } @else {
+  <div class="grid grid-cols-4 gap-4">
+    @for(space of store.spaces(); track space.id) {
+    <div class="dark:bg-slate-700 p-4 rounded">
+      <h2>{{ space.title }}</h2>
+      <button [routerLink]="['/space', space.id]">View Space</button>
+    </div>
+    }
+  </div>
+  }
+</lib-libs-client-common-ui-page>

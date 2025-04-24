@@ -1,0 +1,9 @@
+@for (link of links(); track $index) { @switch (link.type) { @case ('group') {
+<lib-libs-client-common-ui-navigation-nav-group
+  [link]="link"
+></lib-libs-client-common-ui-navigation-nav-group>
+} @default {
+<lib-libs-client-common-ui-navigation-nav-item
+  [link]="link"
+></lib-libs-client-common-ui-navigation-nav-item>
+} } }

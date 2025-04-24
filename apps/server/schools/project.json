@@ -1,0 +1,26 @@
+{
+  "name": "apps-server-schools",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/server/schools/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "apps-server-schools:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "apps-server-schools:build:development"
+        },
+        "production": {
+          "buildTarget": "apps-server-schools:build:production"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+mutation AddStudentToCourse($input: CreateStudentInput!, $courseId: ID!) {
+ createStudent(input: $input, courseId: $courseId) {
+    id
+    firstname
+    lastname
+    grade {
+      id
+      title
+    }
+  }
+}

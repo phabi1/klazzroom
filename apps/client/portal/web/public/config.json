@@ -1,0 +1,10 @@
+{
+  "graphql": {
+    "endpoint": "http://localhost:3000/graphql"
+  },
+  "keycloak": {
+    "realm": "klazzroom",
+    "url": "https://auth.klazzroom.fr",
+    "clientId": "client-portal-web"
+  }
+}

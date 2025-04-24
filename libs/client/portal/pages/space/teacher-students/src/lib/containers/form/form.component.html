@@ -1,0 +1,32 @@
+<div class="p-4">
+  <div class="flex justify-between">
+    <div>
+      @if(mode() === 'edit') {
+      <h2>Edit student</h2>
+      } @else {
+      <h2>Create student</h2>
+      }
+    </div>
+  </div>
+  <formly-form [form]="form" [model]="model" [fields]="fields"></formly-form>
+  <div>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    @if(mode() === 'edit') {
+    <button
+      mat-raised-button
+      (click)="onSubmit()"
+      [disabled]="form.invalid || form.pristine"
+    >
+      Save
+    </button>
+    } @else {
+    <button
+      mat-raised-button
+      (click)="onSubmit()"
+      [disabled]="form.invalid || form.pristine"
+    >
+      Create
+    </button>
+    }
+  </div>
+</div>

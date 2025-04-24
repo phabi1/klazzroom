@@ -1,0 +1,7 @@
+mutation RemoveStudentFromCourse($studentId: ID!, $courseId: ID!) {
+  deleteStudent(id: $studentId, courseId: $courseId) {
+    id
+    firstname
+    lastname
+  }
+}

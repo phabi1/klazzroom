@@ -1,0 +1,9 @@
+{
+  "name": "libs-server-graphql-gateway-auth",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/server/graphql/gateway/auth/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project libs-server-graphql-gateway-auth --web",
+  "targets": {}
+}
