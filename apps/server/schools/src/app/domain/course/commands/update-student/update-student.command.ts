@@ -7,7 +7,7 @@ export class UpdateStudentCommand implements ICommand {
     public readonly data: {
       firstname?: string;
       lastname?: string;
-      grade?: string;
+      gradeId?: string;
       avatarUrl?: string;
       birthday?: Date | null;
       sex?: StudentSex;

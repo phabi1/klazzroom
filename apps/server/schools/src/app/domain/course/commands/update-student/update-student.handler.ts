@@ -4,6 +4,7 @@ import { Student } from '../../models/student.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { CourseSchemaName } from '../../schemas/course.schema';
 import { CourseModel } from '../../models/course.model';
+import { Types } from 'mongoose';
 
 @CommandHandler(UpdateStudentCommand)
 export class UpdateStudentHandler
@@ -17,7 +18,7 @@ export class UpdateStudentHandler
   async execute(command: UpdateStudentCommand): Promise<Student> {
     const { id, data } = command;
     const course = await this.model.findOne({
-      'students.id': id,
+      'students._id': new Types.ObjectId(id),
     });
 
     if (!course) {
@@ -32,6 +33,18 @@ export class UpdateStudentHandler
     }
     if (data.lastname) {
       student.lastname = data.lastname;
+    }
+
+    if (data.gradeId) {
+      student.gradeId = data.gradeId;
+    }
+
+    if (data.birthday) {
+      student.birthday = data.birthday;
+    }
+
+    if (data.sex) {
+      student.sex = data.sex;
     }
 
     await course.save();
