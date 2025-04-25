@@ -36,14 +36,23 @@
       "@klazzroom/libs-client-portal-dashboard-widgets-welcome": [
         "libs/client/portal/dashboard/widgets/welcome/src/index.ts"
       ],
+      "@klazzroom/libs-client-portal-graphql-course": [
+        "libs/client/portal/graphql/course/src/index.ts"
+      ],
       "@klazzroom/libs-client-portal-graphql-space": [
         "libs/client/portal/graphql/space/src/index.ts"
       ],
       "@klazzroom/libs-client-portal-graphql-teacher-students": [
         "libs/client/portal/graphql/teacher-students/src/index.ts"
       ],
+      "@klazzroom/libs-client-portal-pages-calendar-days": [
+        "libs/client/portal/pages/space/calendar-days/src/index.ts"
+      ],
       "@klazzroom/libs-client-portal-pages-home": [
         "libs/client/portal/pages/home/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-space-course": [
+        "libs/client/portal/pages/space/course/src/index.ts"
       ],
       "@klazzroom/libs-client-portal-pages-space-dashboard": [
         "libs/client/portal/pages/space/dashboard/src/index.ts"

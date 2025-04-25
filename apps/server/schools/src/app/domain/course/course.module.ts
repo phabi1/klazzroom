@@ -1,4 +1,6 @@
+import { Plugin as MongooseCqrsPlugin } from '@klazzroom/libs-server-mongoose-cqrs';
 import { forwardRef, Module } from '@nestjs/common';
+import { EventBus } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GradeModule } from '../grade/grade.module';
 import { COMMAND_HANDLERS } from './commands';
@@ -12,10 +14,12 @@ import { StudentService } from './services/student/student.service';
     MongooseModule.forFeatureAsync([
       {
         name: CourseSchemaName,
-        useFactory: () => {
+        useFactory: (eventBus: EventBus) => {
           const schema = CourseSchema;
+          schema.plugin(MongooseCqrsPlugin, { eventBus });
           return schema;
         },
+        inject: [EventBus],
       },
     ]),
     forwardRef(() => GradeModule),

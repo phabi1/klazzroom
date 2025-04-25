@@ -1,1 +1,20 @@
-<p>actions works!</p>
+<div class="flex items-center">
+  @if(primaryAction()) {
+  <button mat-raised-button (click)="primaryAction()?.handle()">
+    {{ primaryAction()?.label }}
+  </button>
+  } @if(secondaryActions() && secondaryActions().length > 0) {
+  <button mat-icon-button [mat-menu-trigger-for]="menu">
+    <mat-icon>more vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let action of secondaryActions()"
+      (click)="action.handle()"
+    >
+      {{ action.label }}
+    </button>
+  </mat-menu>
+  }
+</div>

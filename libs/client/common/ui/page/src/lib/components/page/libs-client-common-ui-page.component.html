@@ -1,6 +1,11 @@
 <div class="p-4">
-    <div class="mb-4">
-        <lib-libs-client-common-ui-page-header [title]="headingTitle()"></lib-libs-client-common-ui-page-header>
-    </div>
+  <div class="mb-4">
+    <lib-libs-client-common-ui-page-header
+      [title]="headingTitle()"
+      [subtitle]="headingSubtitle()"
+      [actions]="headingActions()"
+      [primaryAction]="headingPrimaryAction()"
+    ></lib-libs-client-common-ui-page-header>
+  </div>
   <ng-content></ng-content>
 </div>

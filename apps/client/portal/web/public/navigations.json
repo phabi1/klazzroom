@@ -30,6 +30,7 @@
       "label": "Class",
       "children": [
         {
+          "type": "item",
           "to": "/space/:spaceId/students",
           "label": "Students",
           "icon": "icon-rocket"
@@ -39,13 +40,20 @@
     {
       "type": "group",
       "label": "Toolbox",
-      "children": []
+      "children": [
+        {
+          "type": "item",
+          "to": "/space/:spaceId/calendar-days",
+          "label": "Calendar Days"
+        }
+      ]
     },
     {
       "type": "group",
       "label": "Settings",
       "children": [
         {
+          "type": "item",
           "to": "/space/:spaceId/course",
           "label": "Course"
         }

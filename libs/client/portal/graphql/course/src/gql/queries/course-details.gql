@@ -1,0 +1,14 @@
+query CourseForm($id: ID!) {
+  grades {
+    id
+    title
+  }
+  course(id: $id) {
+    id
+    grades {
+      id
+      title
+    }
+    holidayZone
+  }
+}

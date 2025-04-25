@@ -43,4 +43,10 @@ export function Plugin(schema: any, options: PluginOptions) {
       doc.commit();
     }
   });
+
+  schema.post('deleteOne', function (doc: any) {
+    if (autoCommit) {
+      doc.commit();
+    }
+  });
 }

@@ -2,6 +2,7 @@ import { Dataloader } from '@klazzroom/libs-server-graphql-subgraph-dataloaders'
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -12,6 +13,7 @@ import { CourseService } from '../../../../domain/course/services/course/course.
 import { Course } from '../../types/course.type';
 import { Grade } from '../../types/grade.type';
 import { Student } from '../../types/student.type';
+import { UpdateCourseInput } from '../../inputs/update-course.input';
 
 @Resolver(() => Course)
 export class CourseResolver {
@@ -24,6 +26,14 @@ export class CourseResolver {
       throw new Error('Course not found');
     }
     return course;
+  }
+
+  @Mutation(() => Course)
+  async updateCourse(
+    @Args('id', { type: () => ID }) id: string,
+    @Args('input') input: UpdateCourseInput
+  ) {
+    return this.courseService.update(id, input);
   }
 
   @ResolveField('student', () => Student, { nullable: true })

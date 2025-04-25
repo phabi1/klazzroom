@@ -1,8 +1,10 @@
-import { ICommandHandler } from '@nestjs/cqrs';
+import { EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Course, type CourseModel } from '../../models/course.model';
 import { DeleteCourseCommand } from './delete-course.command';
 import { CourseSchemaName } from '../../schemas/course.schema';
+import { CourseNotFoundException } from '../../exceptions/course-not-found.exception';
+import { CourseDeletedEvent } from '../../events/course-deleted.event';
 
 export class DeleteCourseHandler
   implements ICommandHandler<DeleteCourseCommand, Course>
@@ -17,10 +19,13 @@ export class DeleteCourseHandler
 
     const course = await this.courseModel.findById(id);
     if (!course) {
-      throw new Error(`Course with id ${id} not found`);
+      throw CourseNotFoundException.withId(id);
     }
 
+    course.apply(new CourseDeletedEvent(course.id));
+
     await course.deleteOne();
+
     return course;
   }
 }

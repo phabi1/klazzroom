@@ -20,6 +20,14 @@ const config: CodegenConfig = {
         'typescript-apollo-angular',
       ],
     },
+    './libs/client/portal/graphql/course/src/generated.ts': {
+      documents: 'libs/client/portal/graphql/course/src/gql/**/*.gql',
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-apollo-angular',
+      ],
+    },
   },
 };
 export default config;

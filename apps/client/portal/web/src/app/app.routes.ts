@@ -79,6 +79,26 @@ export const appRoutes: Route[] = [
                 'libs/client/portal/pages/space/teacher-students/src'
               ).then((m) => m.libsClientPortalPagesSpaceStudentsRoutes),
           },
+          {
+            path: 'course',
+            data: {
+              space: ['teacher'],
+            },
+            loadChildren: () =>
+              import('@klazzroom/libs-client-portal-pages-space-course').then(
+                (m) => m.libsClientPortalPagesSpaceCourseRoutes
+              ),
+          },
+          {
+            path: 'calendar-days',
+            data: {
+              space: ['teacher'],
+            },
+            loadChildren: () =>
+              import('@klazzroom/libs-client-portal-pages-calendar-days').then(
+                (m) => m.libsClientPortalPagesCalendarDaysRoutes
+              ),
+          },
         ],
       },
       {

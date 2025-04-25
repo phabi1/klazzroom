@@ -28,6 +28,7 @@ export type AdministratorSpace = {
 export type Course = {
   __typename?: 'Course';
   grades: Array<Grade>;
+  holidayZone: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   student?: Maybe<Student>;
   students: Array<Maybe<Student>>;
@@ -39,9 +40,11 @@ export type CourseStudentArgs = {
 };
 
 export type CreateStudentInput = {
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
   firstname: Scalars['String']['input'];
   gradeId: Scalars['ID']['input'];
   lastname: Scalars['String']['input'];
+  sex?: InputMaybe<StudentSex>;
 };
 
 export type Grade = {
@@ -66,6 +69,7 @@ export type Mutation = {
   createTeacherSpace: TeacherSpace;
   deleteSkill: Skill;
   deleteStudent: Student;
+  updateCourse: Course;
   updateSkill: Skill;
   updateStudent: Student;
 };
@@ -98,6 +102,12 @@ export type MutationDeleteSkillArgs = {
 export type MutationDeleteStudentArgs = {
   courseId: Scalars['ID']['input'];
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdateCourseArgs = {
+  id: Scalars['ID']['input'];
+  input: UpdateCourseInput;
 };
 
 
@@ -169,10 +179,17 @@ export type TeacherSpace = {
   title: Scalars['String']['output'];
 };
 
+export type UpdateCourseInput = {
+  gradeIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  holidayZone?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type UpdateStudentInput = {
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
   firstname?: InputMaybe<Scalars['String']['input']>;
   gradeId?: InputMaybe<Scalars['ID']['input']>;
   lastname?: InputMaybe<Scalars['String']['input']>;
+  sex?: InputMaybe<StudentSex>;
 };
 
 export type AddStudentToCourseMutationVariables = Exact<{

@@ -8,6 +8,7 @@ export const CourseSchema = new Schema({
   },
   holidayZone: {
     type: String,
+    default: '',
   },
   teachers: {
     type: [TeacherSchema],

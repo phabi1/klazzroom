@@ -1,0 +1,16 @@
+{
+  "name": "libs-client-portal-graphql-course",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/client/portal/graphql/course/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project libs-client-portal-graphql-course --web",
+  "targets": {
+    "generate-graphql": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "graphql-codegen --config ./codegen.ts --project libs-client-portal-graphql-course"
+      }
+    }
+  }
+}

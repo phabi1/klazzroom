@@ -16,6 +16,9 @@ export class Course {
   @Field(() => [Grade])
   grades: Grade[];
 
+  @Field(() => String)
+  holidayZone: string;
+
   @Field(() => [Student], { nullable: 'items' })
   students: Student[];
 }

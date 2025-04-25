@@ -1,0 +1,6 @@
+mutation UpdateCourse($id: ID!, $input: UpdateCourseInput!) {
+  updateCourse(id: $id, input: $input) {
+    id
+    holidayZone
+  }
+}
