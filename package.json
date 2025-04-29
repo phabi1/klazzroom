@@ -93,6 +93,7 @@
     "apollo-angular": "^10.0.3",
     "axios": "^1.6.0",
     "dataloader": "^2.2.3",
+    "fabric": "^6.6.4",
     "graphql": "^16.10.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
