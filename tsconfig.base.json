@@ -66,6 +66,12 @@
       "@klazzroom/libs-client-portal-pages-spaces": [
         "libs/client/portal/pages/spaces/src/index.ts"
       ],
+      "@klazzroom/libs-client-portal-pages-sticky-names": [
+        "libs/client/portal/pages/space/sticky-names/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-pages-timetable": [
+        "libs/client/portal/pages/space/timetable/src/index.ts"
+      ],
       "@klazzroom/libs-client-portal-stores-dashboard": [
         "libs/client/portal/stores/dashboard/src/index.ts"
       ],
@@ -77,6 +83,9 @@
       ],
       "@klazzroom/libs-client-portal-stores-teacher-students": [
         "libs/client/portal/stores/teacher-students/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-stores-timetable": [
+        "libs/client/portal/stores/timetable/src/index.ts"
       ],
       "@klazzroom/libs-client-portal-ui-layout": [
         "libs/client/portal/ui/layout/src/index.ts"

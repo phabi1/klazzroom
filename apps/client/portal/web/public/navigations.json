@@ -32,8 +32,12 @@
         {
           "type": "item",
           "to": "/space/:spaceId/students",
-          "label": "Students",
-          "icon": "icon-rocket"
+          "label": "Students"
+        },
+        {
+          "type": "item",
+          "to": "/space/:spaceId/timetable",
+          "label": "Timetable"
         }
       ]
     },
@@ -45,6 +49,11 @@
           "type": "item",
           "to": "/space/:spaceId/calendar-days",
           "label": "Calendar Days"
+        },
+        {
+          "type": "item",
+          "to": "/space/:spaceId/sticky-names",
+          "label": "Sticky names"
         }
       ]
     },

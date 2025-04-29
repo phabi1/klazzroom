@@ -1,0 +1,26 @@
+{
+  "name": "apps-server-timetables",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/server/timetables/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "apps-server-timetables:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "apps-server-timetables:build:development"
+        },
+        "production": {
+          "buildTarget": "apps-server-timetables:build:production"
+        }
+      }
+    }
+  }
+}

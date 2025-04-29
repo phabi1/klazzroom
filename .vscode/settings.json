@@ -2,6 +2,9 @@
     "conventionalCommits.scopes": [
         "apps-server-schools",
         "apps-client-portal-web",
-        "libs-client-portal-pages-teacher-students"
+        "libs-client-portal-pages-teacher-students",
+        "libs-client-portal-stores-timetables",
+        "libs-client-portal-pages-sticky-names",
+        "libs-client-portal-pages-timetables"
     ]
 }

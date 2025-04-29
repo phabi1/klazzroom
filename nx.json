@@ -39,7 +39,8 @@
         "apps/api/gateway-e2e/**/*",
         "apps/server/accounts-e2e/**/*",
         "apps/server/spaces-e2e/**/*",
-        "apps/server/schools-e2e/**/*"
+        "apps/server/schools-e2e/**/*",
+        "apps/server/timetables-e2e/**/*"
       ]
     },
     {

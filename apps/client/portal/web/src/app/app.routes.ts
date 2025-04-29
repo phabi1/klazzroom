@@ -99,6 +99,26 @@ export const appRoutes: Route[] = [
                 (m) => m.libsClientPortalPagesCalendarDaysRoutes
               ),
           },
+          {
+            path: 'timetable',
+            data: {
+              space: ['teacher'],
+            },
+            loadChildren: () =>
+              import('@klazzroom/libs-client-portal-pages-timetable').then(
+                (m) => m.libsClientPortalPagesTimetableRoutes
+              ),
+          },
+          {
+            path: 'sticky-names',
+            data: {
+              space: ['teacher'],
+            },
+            loadChildren: () =>
+              import('@klazzroom/libs-client-portal-pages-sticky-names').then(
+                (m) => m.libsClientPortalPagesStickyNamesRoutes
+              ),
+          },
         ],
       },
       {
