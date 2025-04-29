@@ -1,0 +1,7 @@
+<lib-libs-client-common-ui-page headingTitle="Timetables">
+  <div>
+    @for(item of store.items(); track item.id) {
+    <a [routerLink]="['/timetable', item.id]">{{ item.title }}</a>
+    }
+  </div>
+</lib-libs-client-common-ui-page>
