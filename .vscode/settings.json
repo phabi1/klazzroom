@@ -5,6 +5,8 @@
         "libs-client-portal-pages-teacher-students",
         "libs-client-portal-stores-timetables",
         "libs-client-portal-pages-sticky-names",
-        "libs-client-portal-pages-timetables"
+        "libs-client-portal-pages-timetables",
+        "apps-server-timetables",
+        "libs-client-portal-pages-space-sticky-names"
     ]
 }
