@@ -28,6 +28,14 @@ const config: CodegenConfig = {
         'typescript-apollo-angular',
       ],
     },
+    './libs/client/portal/graphql/timetables/src/generated.ts': {
+      documents: 'libs/client/portal/graphql/timetables/src/gql/**/*.gql',
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-apollo-angular',
+      ],
+    },
   },
 };
 export default config;

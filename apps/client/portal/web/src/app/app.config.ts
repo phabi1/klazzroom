@@ -16,12 +16,14 @@ import {
   HttpConfigLoader,
   provideConfig,
 } from '@klazzroom/libs-client-common-services-config-core';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { appRoutes } from './app.routes';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -93,6 +95,12 @@ export const appConfig: ApplicationConfig = {
     },
     importProvidersFrom(FormlyModule.forRoot()),
     importProvidersFrom(FormlyMaterialModule),
+    importProvidersFrom(
+      CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+      })
+    ),
     provideAnimationsAsync(),
   ],
 };

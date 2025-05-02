@@ -13,9 +13,11 @@ export class CreateTimetableHandler
   ) {}
 
   async execute(command: CreateTimetableCommand): Promise<Timetable> {
+    const { data } = command;
+
     const timetable = new this.model();
-    timetable.title = command.title;
-    timetable.tags = command.tags;
+    timetable.title = data.title;
+    timetable.tags = data.tags;
 
     await timetable.save();
 

@@ -1,5 +1,5 @@
 import { ICommand } from '@nestjs/cqrs';
 
 export class CreateTimetableCommand implements ICommand {
-  constructor(public readonly title: string, public readonly tags: string[]) {}
+  constructor(public readonly data: { title: string; tags: string[] }) {}
 }

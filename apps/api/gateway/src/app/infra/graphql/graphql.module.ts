@@ -5,6 +5,7 @@ import {
 } from '@klazzroom/libs-server-graphql-gateway-auth';
 import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { readFile } from 'fs/promises';
 
@@ -13,9 +14,12 @@ import { readFile } from 'fs/promises';
     GraphQLModule.forRootAsync<ApolloGatewayDriverConfig>({
       driver: ApolloGatewayDriver,
       imports: [LibsServerGraphqlGatewayAuthModule],
-      useFactory: async (authService: AuthService) => {
+      useFactory: async (
+        configService: ConfigService,
+        authService: AuthService
+      ) => {
         const content = await readFile(
-          'data/api/gateway/graphql.json',
+          configService.get<string>('app.directory') + '/graphql.json',
           'utf-8'
         );
         const config = JSON.parse(content);
@@ -44,7 +48,7 @@ import { readFile } from 'fs/promises';
           },
         };
       },
-      inject: [AuthService],
+      inject: [ConfigService, AuthService],
     }),
   ],
 })

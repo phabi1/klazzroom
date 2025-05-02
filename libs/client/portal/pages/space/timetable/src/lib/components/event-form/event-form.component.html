@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Event</h1>
+<div mat-dialog-content>
+    <formly-form [form]="form" [model]="model" [fields]="fields"></formly-form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button>Cancel</button>
+    <button mat-button [disabled]="form.invalid" [mat-dialog-close]="model">Save</button>
+</div>

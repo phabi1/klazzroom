@@ -24,8 +24,15 @@ export class EditorComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => {
+
+      window.addEventListener('resize', () => {
+        this.onWindowResize();
+      });
+
       this.initEditor();
     });
+
+
   }
 
   command(name: string, payload = {}): void {
@@ -35,10 +42,24 @@ export class EditorComponent implements AfterViewInit {
   private initEditor(): void {
     const canvasId = 'canvas';
     const plugins: PluginInfo[] = [
-      { name: 'workspace', options: { width: 800, height: 600 } },
+      { name: 'workspace', options: { width: 320, height: 240 } },
       { name: 'text', options: {} },
       { name: 'autoSave', options: {} },
     ];
     this.editorService.init(canvasId, plugins);
+
+    const instance = this.editorService.getInstance();
+    instance.load();
+  }
+
+  private onWindowResize(): void {
+    const instance = this.editorService.getInstance();
+    instance.canvas.setDimensions(
+      {
+        width: '100%',
+        height: '100%',
+      },
+      { cssOnly: true }
+    );
   }
 }

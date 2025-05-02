@@ -1,0 +1,16 @@
+mutation UpdateTimetable($input: UpdateTimetableInput!) {
+  updateTimetable(input: $input) {
+    id
+    title
+    events {
+      id
+      startAt
+      endAt
+      title
+      type
+      skillId
+      grades
+    }
+    tags
+  }
+}

@@ -1,1 +1,2 @@
-export * from './lib/libs-client-portal-stores-timetable';
+export * from './lib/list.store';
+export * from './lib/details.store';

@@ -10,4 +10,16 @@ export const TimetableEventSchema = new Schema({
   endAt: {
     type: Date,
   },
+  type: {
+    type: String,
+  },
+  skillId: {
+    type: String,
+  },
+  grades: [
+    {
+      type: [String],
+      default: () => [],
+    },
+  ],
 });

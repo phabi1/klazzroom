@@ -6,4 +6,5 @@ export const config = registerAs('app', () => ({
   port: parseInt(process.env.PORT || '3000', 10),
   host: process.env.HOST || 'localhost',
   prefix: process.env.APP_PREFIX || '',
+  directory: process.env.APP_DIRECTORY || 'data',
 }));

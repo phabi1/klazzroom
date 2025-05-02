@@ -1,1 +1,48 @@
-<p>details works!</p>
+<lib-libs-client-common-ui-page headingTitle="Timetable">
+  <mwl-calendar-week-view
+    [viewDate]="viewDate()"
+    [events]="events()"
+    [locale]="'en'"
+    [excludeDays]="[0, 6, 3]"
+    [dayStartHour]="8"
+    [dayEndHour]="17"
+    [hourSegments]="6"
+    [headerTemplate]="calendarHeaderTemplate"
+    (eventClicked)="onEventClicked($event)"
+    (hourSegmentClicked)="onHourSegmentClicked($event)"
+  ></mwl-calendar-week-view>
+  <ng-template
+    #calendarHeaderTemplate
+    let-days="days"
+    let-locale="locale"
+    let-dayHeaderClicked="dayHeaderClicked"
+    let-eventDropped="eventDropped"
+    let-trackByWeekDayHeaderDate="trackByWeekDayHeaderDate"
+    let-dragEnter="dragEnter"
+  >
+    <div class="cal-day-headers" role="row">
+      <div
+        class="cal-header"
+        *ngFor="let day of days; trackBy: trackByWeekDayHeaderDate"
+        [class.cal-past]="day.isPast"
+        [class.cal-future]="day.isFuture"
+        [class.cal-weekend]="day.isWeekend"
+        [ngClass]="day.cssClass"
+        (mwlClick)="dayHeaderClicked.emit({ day: day, sourceEvent: $event })"
+        mwlDroppable
+        dragOverClass="cal-drag-over"
+        (drop)="
+          eventDropped.emit({
+            event: $event.dropData.event,
+            newStart: day.date
+          })
+        "
+        (dragEnter)="dragEnter.emit({ date: day.date })"
+        tabindex="0"
+        role="columnheader"
+      >
+        <b>{{ day.date | calendarDate : 'weekViewColumnHeader' : locale }}</b>
+      </div>
+    </div>
+  </ng-template>
+</lib-libs-client-common-ui-page>

@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { COMMAND_HANDLERS } from './commands';
+import { QUERY_HANDLERS } from './queries';
 import {
   TimetableSchema,
   TimetableSchemaName,
 } from './schemas/timetable.schema';
-import { COMMAND_HANDLERS } from './commands';
 import { TimetableService } from './services/timetable/timetable.service';
 
 @Module({
@@ -16,6 +17,7 @@ import { TimetableService } from './services/timetable/timetable.service';
       },
     ]),
   ],
-  providers: [...COMMAND_HANDLERS, TimetableService],
+  providers: [...COMMAND_HANDLERS, ...QUERY_HANDLERS, TimetableService],
+  exports: [TimetableService],
 })
 export class TimetableModule {}

@@ -1,0 +1,6 @@
+query GetTimetablesForSpace($tags: [String!]!) {
+  timetablesByTags(tags: $tags) {
+    id
+    title
+  }
+}

@@ -2,7 +2,7 @@
   "name": "libs-client-portal-pages-timetable",
   "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/client/portal/pages/space/timetable/src",
-  "prefix": "lib",
+  "prefix": "lib-client-portal-pages-space-timetable",
   "projectType": "library",
   "tags": [],
   "targets": {

@@ -21,6 +21,28 @@
           "buildTarget": "apps-server-spaces:build:production"
         }
       }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "defaultConfiguration": "production",
+      "options": {
+        "engine": "docker",
+        "context": "dist/apps/server/spaces",
+        "file": "apps/server/spaces/Dockerfile"
+      },
+      "configurations": {
+        "local": {
+          "tags": ["apps-server-spaces:latest"],
+          "push": false
+        },
+        "production": {
+          "tags": [
+            "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/apps-server-spaces:latest"
+          ],
+          "push": true
+        }
+      }
     }
   }
 }

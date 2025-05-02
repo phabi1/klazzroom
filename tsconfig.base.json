@@ -18,6 +18,9 @@
       "@klazzroom/apps-client-common-pages-error-forbidden": [
         "libs/client/common/pages/error/forbidden/src/index.ts"
       ],
+      "@klazzroom/libs-client-common-form-field-timepicker": [
+        "libs/client/common/form/field/timepicker/src/index.ts"
+      ],
       "@klazzroom/libs-client-common-services-config-core": [
         "libs/client/common/services/config/core/src/index.ts"
       ],
@@ -44,6 +47,9 @@
       ],
       "@klazzroom/libs-client-portal-graphql-teacher-students": [
         "libs/client/portal/graphql/teacher-students/src/index.ts"
+      ],
+      "@klazzroom/libs-client-portal-graphql-timetables": [
+        "libs/client/portal/graphql/timetables/src/index.ts"
       ],
       "@klazzroom/libs-client-portal-pages-calendar-days": [
         "libs/client/portal/pages/space/calendar-days/src/index.ts"

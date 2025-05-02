@@ -1,6 +1,7 @@
 import { Plugin } from '../../interfaces/plugin.interface';
 import { PluginBase } from '../../model/plugin-base.model';
 import { Storage } from '../../interfaces/storage.interface';
+import { Editor } from '../../editor';
 
 type AutoSavePluginOptions = {
   interval?: number; // Auto-save interval in milliseconds
@@ -16,9 +17,9 @@ export default class AutoSavePlugin
 {
   private intervalId: NodeJS.Timeout | null = null;
 
-  override init(options: AutoSavePluginOptions): void {
+  override init(editor: Editor, options: AutoSavePluginOptions): void {
     options.interval = options.interval || 300000; // Default to 5 minutes
-    super.init(options);
+    super.init(editor, options);
   }
 
   override load(): void {

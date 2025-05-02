@@ -1,0 +1,16 @@
+query GetTimetable($id: ID!) {
+  timetable(id: $id) {
+    id
+    title
+    events {
+      id
+      startAt
+      endAt
+      title
+      type
+      skillId
+      grades
+    }
+    tags
+  }
+}

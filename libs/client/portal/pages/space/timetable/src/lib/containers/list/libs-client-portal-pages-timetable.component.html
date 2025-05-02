@@ -1,7 +1,7 @@
 <lib-libs-client-common-ui-page headingTitle="Timetables">
   <div>
     @for(item of store.items(); track item.id) {
-    <a [routerLink]="['/timetable', item.id]">{{ item.title }}</a>
+    <a [routerLink]="['.', item.id]" class="block bg-white rounded p-4 mb-4">{{ item.title }}</a>
     }
   </div>
 </lib-libs-client-common-ui-page>

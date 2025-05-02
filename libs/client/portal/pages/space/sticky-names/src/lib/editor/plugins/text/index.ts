@@ -1,9 +1,10 @@
+import * as fabric from 'fabric';
+import { Editor } from '../../editor';
 import { PluginBase } from '../../model/plugin-base.model';
-import fabric from 'fabric';
 
 export default class TextPlugin extends PluginBase<unknown> {
-  override init(options: unknown): void {
-    super.init(options);
+  override init(editor: Editor, options: unknown): void {
+    super.init(editor, options);
     this.setupCommands();
   }
 

@@ -1,6 +1,7 @@
 import { Point, Rect } from 'fabric';
 import { Plugin } from '../../interfaces/plugin.interface';
 import { PluginBase } from '../../model/plugin-base.model';
+import { Editor } from '../../editor';
 
 type WorkspacePluginOptions = {
   width: number;
@@ -16,8 +17,8 @@ export default class WorkspacePlugin
   private _isDragging = false;
   private _lastPos = [0, 0];
 
-  override init(options: WorkspacePluginOptions): void {
-    super.init(options);
+  override init(editor: Editor, options: WorkspacePluginOptions): void {
+    super.init(editor, options);
     this.setupCommands();
   }
 
@@ -82,22 +83,9 @@ export default class WorkspacePlugin
       hasControls: false,
     });
 
-    const mask = new Rect({
-      left: 0,
-      top: 0,
-      width,
-      height,
-      fill: 'rgba(0, 0, 0, 0.5)',
-      selectable: false,
-      hasControls: false,
-      evented: false,
-    });
-    this.mask = mask;
-
-    canvas.clipPath = mask;
-
     canvas.add(rect);
     this.el = rect;
+    canvas.renderAll();
   }
 
   private zoomIn() {

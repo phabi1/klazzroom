@@ -21,6 +21,28 @@
           "buildTarget": "apps-api-gateway:build:production"
         }
       }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "defaultConfiguration": "production",
+      "options": {
+        "engine": "docker",
+        "context": "dist/apps/api/gateway",
+        "file": "apps/api/gateway/Dockerfile"
+      },
+      "configurations": {
+        "local": {
+          "tags": ["apps-api-gateway:latest"],
+          "push": false
+        },
+        "production": {
+          "tags": [
+            "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/apps-api-gateway:latest"
+          ],
+          "push": true
+        }
+      }
     }
   }
 }

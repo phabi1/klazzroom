@@ -1,8 +1,9 @@
+import { Canvas } from 'fabric';
 import { PluginInfo } from './interfaces/plugin-info.interface';
 import { Plugin } from './interfaces/plugin.interface';
-import { Canvas } from 'fabric';
-import { StorageManager } from './services/storage-manager';
 import { CommandManager } from './services/command-manager';
+import { StorageManager } from './services/storage-manager';
+import { PluginManager } from './services/plugin-manager';
 
 export type EditorOptions = {
   storage?: {
@@ -32,11 +33,15 @@ export class Editor {
     }
 
     this._canvas = new Canvas(canvasEl, {
-      backgroundColor: '#efefef',
+      backgroundColor: '#ccc',
       preserveObjectStacking: true,
       renderOnAddRemove: false,
       controlsAboveOverlay: true,
+      width: 800,
+      height: 600,
     });
+
+    this._canvas.renderAll();
 
     await this.setupStorage(options || {});
     await this.setupPlugins(plugins);
@@ -80,14 +85,13 @@ export class Editor {
   }
 
   private async setupPlugins(plugins: PluginInfo[]): Promise<void> {
-    plugins.forEach(({ name: plugin, options }) => {
-      import(`./plugins/${plugin}`)
-        .then((module) => {
-          const PluginClass = module.default;
-          const pluginInstance = new PluginClass();
-          pluginInstance.editor = this;
-          pluginInstance.init(options);
+    const pluginManager = new PluginManager();
 
+    plugins.forEach(({ name: plugin, options }) => {
+      pluginManager.resolve(plugin)
+        .then((PluginClass) => {
+          const pluginInstance = new PluginClass();
+          pluginInstance.init(this, options);
           this.plugins.push(pluginInstance);
         })
         .catch((error) => {

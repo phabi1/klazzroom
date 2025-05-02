@@ -8,21 +8,22 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/client/portal/web",
         "index": "apps/client/portal/web/src/index.html",
         "browser": "apps/client/portal/web/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/client/portal/web/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/client/portal/web/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/client/portal/web/nginx",
+            "output": "/assets"
           }
         ],
         "styles": [
@@ -36,8 +37,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1mb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -78,9 +79,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/client/portal/web/jest.config.ts"
       }
@@ -92,6 +91,27 @@
         "port": 4200,
         "staticFilePath": "dist/apps/client/portal/web/browser",
         "spa": true
+      }
+    },
+    "container":{
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "defaultConfiguration": "production",
+      "options": {
+        "engine": "docker",
+        "file": "apps/client/portal/web/Dockerfile"
+      },
+      "configurations": {
+        "local": {
+          "tags": ["apps-client-portal-web:latest"],
+          "push": false
+        },
+        "production": {
+          "tags": [
+            "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/apps-client-portal-web:latest"
+          ],
+          "push": true
+        }
       }
     }
   }

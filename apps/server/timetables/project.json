@@ -21,6 +21,28 @@
           "buildTarget": "apps-server-timetables:build:production"
         }
       }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "defaultConfiguration": "production",
+      "options": {
+        "engine": "docker",
+        "context": "dist/apps/server/timetables",
+        "file": "apps/server/timetables/Dockerfile"
+      },
+      "configurations": {
+        "local": {
+          "tags": ["apps-server-timetables:latest"],
+          "push": false
+        },
+        "production": {
+          "tags": [
+            "r88x66nm.c1.gra9.container-registry.ovh.net/klazzroom/apps-server-timetables:latest"
+          ],
+          "push": true
+        }
+      }
     }
   }
 }

@@ -47,6 +47,11 @@ export type CreateStudentInput = {
   sex?: InputMaybe<StudentSex>;
 };
 
+export type CreateTimetableInput = {
+  tags: Array<InputMaybe<Scalars['String']['input']>>;
+  title: Scalars['String']['input'];
+};
+
 export type Grade = {
   __typename?: 'Grade';
   id: Scalars['ID']['output'];
@@ -67,11 +72,14 @@ export type Mutation = {
   createSkill: Skill;
   createStudent: Student;
   createTeacherSpace: TeacherSpace;
+  createTimetable: Timetable;
   deleteSkill: Skill;
   deleteStudent: Student;
+  deleteTimetable: Timetable;
   updateCourse: Course;
   updateSkill: Skill;
   updateStudent: Student;
+  updateTimetable: Timetable;
 };
 
 
@@ -94,6 +102,11 @@ export type MutationCreateTeacherSpaceArgs = {
 };
 
 
+export type MutationCreateTimetableArgs = {
+  input: CreateTimetableInput;
+};
+
+
 export type MutationDeleteSkillArgs = {
   id: Scalars['ID']['input'];
 };
@@ -101,6 +114,11 @@ export type MutationDeleteSkillArgs = {
 
 export type MutationDeleteStudentArgs = {
   courseId: Scalars['ID']['input'];
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteTimetableArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -125,6 +143,11 @@ export type MutationUpdateStudentArgs = {
   input: UpdateStudentInput;
 };
 
+
+export type MutationUpdateTimetableArgs = {
+  input: UpdateTimetableInput;
+};
+
 export type Query = {
   __typename?: 'Query';
   course: Course;
@@ -132,6 +155,8 @@ export type Query = {
   me: Me;
   skills: Array<Skill>;
   space: Space;
+  timetable: Timetable;
+  timetablesByTags: Array<Timetable>;
 };
 
 
@@ -142,6 +167,16 @@ export type QueryCourseArgs = {
 
 export type QuerySpaceArgs = {
   id: Scalars['String']['input'];
+};
+
+
+export type QueryTimetableArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryTimetablesByTagsArgs = {
+  tags: Array<Scalars['String']['input']>;
 };
 
 export type Skill = {
@@ -179,6 +214,35 @@ export type TeacherSpace = {
   title: Scalars['String']['output'];
 };
 
+export type Timetable = {
+  __typename?: 'Timetable';
+  events: Array<Maybe<TimetableEvent>>;
+  id: Scalars['ID']['output'];
+  tags: Array<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+export type TimetableEvent = {
+  __typename?: 'TimetableEvent';
+  endAt: Scalars['DateTime']['output'];
+  grades: Array<Maybe<Scalars['String']['output']>>;
+  id: Scalars['ID']['output'];
+  skillId?: Maybe<Scalars['String']['output']>;
+  startAt: Scalars['DateTime']['output'];
+  title: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
+export type TimetableEventInput = {
+  endAt: Scalars['DateTime']['input'];
+  grades: Array<InputMaybe<Scalars['String']['input']>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  skillId?: InputMaybe<Scalars['String']['input']>;
+  startAt: Scalars['DateTime']['input'];
+  title: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+};
+
 export type UpdateCourseInput = {
   gradeIds?: InputMaybe<Array<Scalars['String']['input']>>;
   holidayZone?: InputMaybe<Scalars['String']['input']>;
@@ -190,6 +254,13 @@ export type UpdateStudentInput = {
   gradeId?: InputMaybe<Scalars['ID']['input']>;
   lastname?: InputMaybe<Scalars['String']['input']>;
   sex?: InputMaybe<StudentSex>;
+};
+
+export type UpdateTimetableInput = {
+  events?: InputMaybe<Array<InputMaybe<TimetableEventInput>>>;
+  id: Scalars['ID']['input'];
+  tags?: InputMaybe<Array<Scalars['String']['input']>>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AddStudentToCourseMutationVariables = Exact<{
