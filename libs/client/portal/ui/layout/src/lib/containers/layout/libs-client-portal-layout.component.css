@@ -1,0 +1,7 @@
+.mat-sidenav-container {
+  @apply bg-gray-200 dark:bg-gray-800;
+}
+
+.mat-sidenav-container .mat-sidenav {
+  @apply bg-gray-900;
+}
