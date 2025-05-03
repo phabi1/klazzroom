@@ -3,5 +3,5 @@
 }
 
 .mat-sidenav-container .mat-sidenav {
-  @apply bg-gray-900;
+  @apply bg-gray-900 rounded-none;
 }
